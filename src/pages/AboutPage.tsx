@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Bot, Users, Target, Rocket, Linkedin, Mail } from 'lucide-react';
+import { Bot, Users, Target, Rocket, Linkedin, Calendar } from 'lucide-react';
 import ParallaxSection from '../components/ParallaxSection';
 
 function AboutPage() {
@@ -13,7 +13,7 @@ function AboutPage() {
       image: "/images/alex.jpeg",
       bio: "Alex leads our automation and product development, bringing cutting-edge AI solutions to streamline sales processes.",
       linkedin: "https://www.linkedin.com/in/alexkaymakanov/",
-      email: "alex@salesautomated.ai"
+      calendar: "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2-UglDAKe2klUjiyje2AT5jdSN8ekcxF7g4ya0MugO8RDn7c3JxkYFMKNEIryGMTcT4UtQnmD9"
     },
     {
       name: "Giacomo Heddle",
@@ -21,7 +21,7 @@ function AboutPage() {
       image: "/images/giacomo.jpeg",
       bio: "Giacomo drives our content strategy and creation, ensuring our solutions effectively communicate and deliver value to our clients.",
       linkedin: "https://www.linkedin.com/in/giacomoheddle/",
-      email: "giacomo@salesautomated.ai"
+      calendar: "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2-UglDAKe2klUjiyje2AT5jdSN8ekcxF7g4ya0MugO8RDn7c3JxkYFMKNEIryGMTcT4UtQnmD9"
     }
   ];
 
@@ -67,7 +67,9 @@ function AboutPage() {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover grayscale"
+                    className={`w-full h-full object-cover object-center scale-125 ${
+                      member.name === "Giacomo Heddle" ? "object-[center_25%]" : ""
+                    }`}
                     onError={(e) => {
                       console.error(`Failed to load image: ${member.image}`);
                       const imgElement = e.target as HTMLImageElement;
@@ -89,10 +91,12 @@ function AboutPage() {
                   <Linkedin size={24} />
                 </a>
                 <a 
-                  href={`mailto:${member.email}`}
+                  href={member.calendar}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-600 hover:text-primary-500 transition-colors"
                 >
-                  <Mail size={24} />
+                  <Calendar size={24} />
                 </a>
               </div>
             </motion.div>
