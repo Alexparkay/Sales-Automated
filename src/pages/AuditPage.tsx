@@ -61,7 +61,7 @@ function AuditPage() {
     };
 
     try {
-      const response = await fetch('https://hook.eu2.make.com/chtab71sivmtyx4ky4rj330j7286n4km', {
+      const response = await fetch('https://hook.eu2.make.com/lrsxr5yvoqerm5bbms14o98wpk0c1bml', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -499,7 +499,7 @@ function AuditPage() {
               We've received your submission and we'll be in touch with you shortly.
             </p>
             <p className="text-lg text-gray-600">
-              Our team will review your information and get back to you with next steps.
+              Our team will review your information and call in the next few minutes.
             </p>
           </motion.div>
         </div>
