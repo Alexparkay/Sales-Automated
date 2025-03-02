@@ -1,113 +1,97 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Bot, Menu, X, Linkedin, Youtube } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Linkedin, Github, Mail, ArrowRight } from 'lucide-react';
+import Navigation from './components/Navigation';
+import ScrollToTop from './components/ScrollToTop';
 
-// Import all pages and components
+// Import all pages
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
-import AuditPage from './pages/AuditPage';
-import CareersPage from './pages/CareersPage';
 import CaseStudiesPage from './pages/CaseStudiesPage';
 import ContactPage from './pages/ContactPage';
-import VideosPage from './pages/VideosPage';
-import LeadResearchPage from './pages/solutions/LeadResearchPage';
-import OutreachPage from './pages/solutions/OutreachPage';
-import SchedulingPage from './pages/solutions/SchedulingPage';
-import CustomSolutionsPage from './pages/solutions/CustomSolutionsPage';
-import ScrollToTop from './components/ScrollToTop';
-import PageTransition from './components/PageTransition';
+import SolutionsPage from './pages/SolutionsPage';
+import ResourcesPage from './pages/ResourcesPage';
+import ResourceContentPage from './pages/ResourceContentPage';
+import SchedulePage from './pages/SchedulePage';
 
-function NavBar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+// Import resource pages
+import AIOutreachSystemWebinar from './pages/resources/AIOutreachSystemWebinar';
+import AISalesAutomationMasterclass from './pages/resources/AISalesAutomationMasterclass';
+import AILeadGenerationBlueprint from './pages/resources/AILeadGenerationBlueprint';
+import AISalesPlaybook from './pages/resources/100MAISalesPlaybook';
+import AICRMIntegrationGuide from './pages/resources/AICRMIntegrationGuide';
+
+function Footer() {
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
-  const isHeroVisible = isHomePage && !isScrolled;
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const handleLogoClick = (e: React.MouseEvent) => {
-    if (isHomePage) {
-      e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const isWhiteBackground = location.pathname === '/' || location.pathname === '/solutions' || location.pathname === '/about-us';
+  const isResourcesPage = location.pathname === '/resources-hub';
 
   return (
-    <nav 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'py-2 bg-white/60 backdrop-blur-sm shadow-sm' : 'py-4'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <Link 
-          to="/" 
-          className="flex items-center gap-2"
-          onClick={handleLogoClick}
-        >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2"
-          >
-            <Bot 
-              className={`transition-colors duration-300 ${
-                isHeroVisible ? 'text-white' : 'text-primary-500'
-              }`} 
-              size={32} 
-            />
-            <span 
-              className={`font-bold text-xl transition-colors duration-300 ${
-                isHeroVisible ? 'text-white' : 'text-gray-900'
-              }`}
-            >
-              Sales Automated
-            </span>
-          </motion.div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link to="/get-audit" className="btn-primary">
-            Get Your Free AI Audit
-          </Link>
+    <div className={`w-full px-6 pb-6 ${isWhiteBackground ? 'bg-white' : ''}`}>
+      <div className={`relative ${isResourcesPage ? 'bg-transparent' : 'bg-gradient-to-br from-slate-900 via-slate-800/95 to-slate-900'} rounded-[2rem] overflow-hidden ${isResourcesPage ? '' : 'border border-white/10'}`}>
+        {/* Background Image from Growth folder */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <motion.img 
+            src="/images/Growth/pexels-sohi-807598.jpg" 
+            alt="Growth Background" 
+            className={`w-full h-full object-cover ${isResourcesPage ? 'opacity-10' : 'opacity-40'}`}
+            initial={{ scale: 1 }}
+            animate={{ 
+              scale: 1.05,
+              transition: { 
+                duration: 20, 
+                repeat: Infinity, 
+                repeatType: "reverse" 
+              } 
+            }}
+          />
         </div>
-
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? (
-            <X className={isHeroVisible ? 'text-white' : 'text-gray-900'} size={24} />
-          ) : (
-            <Menu className={isHeroVisible ? 'text-white' : 'text-gray-900'} size={24} />
-          )}
-        </button>
-      </div>
-
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white/60 backdrop-blur-sm border-b border-gray-100 py-4">
-          <div className="flex flex-col items-center gap-4">
-            <Link to="/get-audit" className="btn-primary">
-              Get Your Free AI Audit
-            </Link>
+        <div className={`absolute inset-0 ${isResourcesPage ? 'bg-transparent' : 'bg-gradient-to-t from-emerald-900/40 via-slate-800/60 to-slate-900/70'} opacity-100 pointer-events-none z-10`}></div>
+        
+        <div className="relative z-20">
+          <div className={`py-8 md:py-10 px-8 ${isResourcesPage ? 'bg-transparent' : 'bg-gradient-to-r from-slate-900/80 via-slate-800/5 to-slate-900/80'}`}>
+            <div className={`absolute inset-0 ${isResourcesPage ? 'bg-transparent' : 'bg-gradient-to-b from-emerald-800/5 to-transparent'} opacity-20 pointer-events-none`}></div>
+            <div className="flex flex-col md:flex-row items-center justify-between w-full">
+              <div className="flex flex-col items-center md:items-start w-full md:w-auto">
+                <h2 className="text-2xl md:text-3xl font-bold">
+                  <span className="bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
+                    Transform Your Business Growth
+                  </span>
+                </h2>
+                <p className="mt-2 text-gray-300 text-sm md:text-base text-center md:text-left">
+                  Partner with us to unlock your company's full revenue potential through AI-powered solutions
+                </p>
+              </div>
+              <Link 
+                to="/schedule"
+                className="px-6 py-2.5 text-sm font-medium text-white bg-white/10 rounded-full hover:bg-white/20 transition-colors whitespace-nowrap mt-4 md:mt-0"
+              >
+                Schedule a Meeting
+              </Link>
+            </div>
           </div>
         </div>
-      )}
-    </nav>
+
+        <div className={`${isResourcesPage ? '' : 'border-t border-white/10'}`}>
+          <div className="relative z-20">
+            <div className={`py-4 px-8 ${isResourcesPage ? 'bg-transparent' : 'bg-gradient-to-r from-slate-900/80 via-slate-800/5 to-slate-900/80'} flex flex-col md:flex-row items-center justify-between w-full`}>
+              <div className={`absolute inset-0 ${isResourcesPage ? 'bg-transparent' : 'bg-gradient-to-t from-emerald-900/5 to-transparent'} opacity-20 pointer-events-none`}></div>
+              <div className="flex items-center gap-2">
+                <Link to="/" className="text-lg font-bold bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
+                  Imperium Growth
+                </Link>
+                <span className="text-gray-400 text-sm">|</span>
+                <span className="text-gray-400 text-sm">Revenue Growth Partner</span>
+              </div>
+              <p className="text-gray-400 text-sm mt-2 md:mt-0">
+                © {new Date().getFullYear()} Imperium Growth. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -121,833 +105,33 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const isSchedulePage = location.pathname === '/schedule';
+  const isResourcePage = location.pathname.startsWith('/resources/');
+  const isResourcesHub = location.pathname === '/resources-hub';
 
   return (
-    <div className="min-h-screen bg-white overflow-hidden">
-      <NavBar />
-      
-      <AnimatePresence mode="wait" initial={false}>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={
-            <>
-              {/* Hero section rendered directly */}
-              <div className="relative z-0">
-                <HomePage />
-              </div>
-              <footer className="bg-[#0a0f0d] text-white py-12 mt-32">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="col-span-2 md:col-span-1">
-                      <Link to="/" className="flex items-center gap-2 mb-4">
-                        <Bot className="text-primary-500" size={32} />
-                        <span className="font-bold text-xl">Sales Automated</span>
-                      </Link>
-                      <p className="text-gray-400">
-                        Your dedicated AI sales growth partner
-                      </p>
-                      <div className="flex gap-4 mt-4">
-                        <a 
-                          href="https://www.linkedin.com/company/salesautomated/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Linkedin size={24} />
-                        </a>
-                        <a 
-                          href="https://www.youtube.com/@AGIntelligence" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Youtube size={24} />
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Company</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/about" className="hover:text-primary-400">About Us</Link></li>
-                        <li><Link to="/case-studies" className="hover:text-primary-400">Case Studies</Link></li>
-                        <li><Link to="/videos" className="hover:text-primary-400">Videos</Link></li>
-                        <li><Link to="/careers" className="hover:text-primary-400">Careers</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Solutions</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/solutions/lead-research" className="hover:text-primary-400">Lead Research</Link></li>
-                        <li><Link to="/solutions/outreach" className="hover:text-primary-400">Outreach Automation</Link></li>
-                        <li><Link to="/solutions/scheduling" className="hover:text-primary-400">Meeting Scheduling</Link></li>
-                        <li><Link to="/solutions/custom" className="hover:text-primary-400">Custom AI Solutions</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Contact</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li>
-                          <Link to="/contact" className="hover:text-primary-400">
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="mailto:alex@salesautomated.ai" className="hover:text-primary-400">
-                            alex@salesautomated.ai
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="border-t border-[#151d17] mt-12 pt-8 text-center">
-                    <p className="text-gray-400">&copy; {new Date().getFullYear()} Sales Automated. All rights reserved.</p>
-                  </div>
-                </div>
-              </footer>
-            </>
-          } />
-          <Route path="/about" element={
-            <PageTransition>
-              <AboutPage />
-              <footer className="bg-[#0a0f0d] text-white py-12 mt-32">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="col-span-2 md:col-span-1">
-                      <Link to="/" className="flex items-center gap-2 mb-4">
-                        <Bot className="text-primary-500" size={32} />
-                        <span className="font-bold text-xl">Sales Automated</span>
-                      </Link>
-                      <p className="text-gray-400">
-                        Your dedicated AI sales growth partner
-                      </p>
-                      <div className="flex gap-4 mt-4">
-                        <a 
-                          href="https://www.linkedin.com/company/salesautomated/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Linkedin size={24} />
-                        </a>
-                        <a 
-                          href="https://www.youtube.com/@AGIntelligence" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Youtube size={24} />
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Company</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/about" className="hover:text-primary-400">About Us</Link></li>
-                        <li><Link to="/case-studies" className="hover:text-primary-400">Case Studies</Link></li>
-                        <li><Link to="/videos" className="hover:text-primary-400">Videos</Link></li>
-                        <li><Link to="/careers" className="hover:text-primary-400">Careers</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Solutions</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/solutions/lead-research" className="hover:text-primary-400">Lead Research</Link></li>
-                        <li><Link to="/solutions/outreach" className="hover:text-primary-400">Outreach Automation</Link></li>
-                        <li><Link to="/solutions/scheduling" className="hover:text-primary-400">Meeting Scheduling</Link></li>
-                        <li><Link to="/solutions/custom" className="hover:text-primary-400">Custom AI Solutions</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Contact</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li>
-                          <Link to="/contact" className="hover:text-primary-400">
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="mailto:alex@salesautomated.ai" className="hover:text-primary-400">
-                            alex@salesautomated.ai
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="border-t border-[#151d17] mt-12 pt-8 text-center">
-                    <p className="text-gray-400">&copy; {new Date().getFullYear()} Sales Automated. All rights reserved.</p>
-                  </div>
-                </div>
-              </footer>
-            </PageTransition>
-          } />
-          <Route path="/get-audit" element={
-            <PageTransition>
-              <AuditPage />
-              <footer className="bg-[#0a0f0d] text-white py-12 mt-32">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="col-span-2 md:col-span-1">
-                      <Link to="/" className="flex items-center gap-2 mb-4">
-                        <Bot className="text-primary-500" size={32} />
-                        <span className="font-bold text-xl">Sales Automated</span>
-                      </Link>
-                      <p className="text-gray-400">
-                        Your dedicated AI sales growth partner
-                      </p>
-                      <div className="flex gap-4 mt-4">
-                        <a 
-                          href="https://www.linkedin.com/company/salesautomated/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Linkedin size={24} />
-                        </a>
-                        <a 
-                          href="https://www.youtube.com/@AGIntelligence" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Youtube size={24} />
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Company</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/about" className="hover:text-primary-400">About Us</Link></li>
-                        <li><Link to="/case-studies" className="hover:text-primary-400">Case Studies</Link></li>
-                        <li><Link to="/videos" className="hover:text-primary-400">Videos</Link></li>
-                        <li><Link to="/careers" className="hover:text-primary-400">Careers</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Solutions</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/solutions/lead-research" className="hover:text-primary-400">Lead Research</Link></li>
-                        <li><Link to="/solutions/outreach" className="hover:text-primary-400">Outreach Automation</Link></li>
-                        <li><Link to="/solutions/scheduling" className="hover:text-primary-400">Meeting Scheduling</Link></li>
-                        <li><Link to="/solutions/custom" className="hover:text-primary-400">Custom AI Solutions</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Contact</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li>
-                          <Link to="/contact" className="hover:text-primary-400">
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="mailto:alex@salesautomated.ai" className="hover:text-primary-400">
-                            alex@salesautomated.ai
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="border-t border-[#151d17] mt-12 pt-8 text-center">
-                    <p className="text-gray-400">&copy; {new Date().getFullYear()} Sales Automated. All rights reserved.</p>
-                  </div>
-                </div>
-              </footer>
-            </PageTransition>
-          } />
-          <Route path="/careers" element={
-            <PageTransition>
-              <CareersPage />
-              <footer className="bg-[#0a0f0d] text-white py-12 mt-32">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="col-span-2 md:col-span-1">
-                      <Link to="/" className="flex items-center gap-2 mb-4">
-                        <Bot className="text-primary-500" size={32} />
-                        <span className="font-bold text-xl">Sales Automated</span>
-                      </Link>
-                      <p className="text-gray-400">
-                        Your dedicated AI sales growth partner
-                      </p>
-                      <div className="flex gap-4 mt-4">
-                        <a 
-                          href="https://www.linkedin.com/company/salesautomated/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Linkedin size={24} />
-                        </a>
-                        <a 
-                          href="https://www.youtube.com/@AGIntelligence" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Youtube size={24} />
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Company</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/about" className="hover:text-primary-400">About Us</Link></li>
-                        <li><Link to="/case-studies" className="hover:text-primary-400">Case Studies</Link></li>
-                        <li><Link to="/videos" className="hover:text-primary-400">Videos</Link></li>
-                        <li><Link to="/careers" className="hover:text-primary-400">Careers</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Solutions</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/solutions/lead-research" className="hover:text-primary-400">Lead Research</Link></li>
-                        <li><Link to="/solutions/outreach" className="hover:text-primary-400">Outreach Automation</Link></li>
-                        <li><Link to="/solutions/scheduling" className="hover:text-primary-400">Meeting Scheduling</Link></li>
-                        <li><Link to="/solutions/custom" className="hover:text-primary-400">Custom AI Solutions</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Contact</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li>
-                          <Link to="/contact" className="hover:text-primary-400">
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="mailto:alex@salesautomated.ai" className="hover:text-primary-400">
-                            alex@salesautomated.ai
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="border-t border-[#151d17] mt-12 pt-8 text-center">
-                    <p className="text-gray-400">&copy; {new Date().getFullYear()} Sales Automated. All rights reserved.</p>
-                  </div>
-                </div>
-              </footer>
-            </PageTransition>
-          } />
-          <Route path="/case-studies" element={
-            <PageTransition>
-              <CaseStudiesPage />
-              <footer className="bg-[#0a0f0d] text-white py-12 mt-32">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="col-span-2 md:col-span-1">
-                      <Link to="/" className="flex items-center gap-2 mb-4">
-                        <Bot className="text-primary-500" size={32} />
-                        <span className="font-bold text-xl">Sales Automated</span>
-                      </Link>
-                      <p className="text-gray-400">
-                        Your dedicated AI sales growth partner
-                      </p>
-                      <div className="flex gap-4 mt-4">
-                        <a 
-                          href="https://www.linkedin.com/company/salesautomated/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Linkedin size={24} />
-                        </a>
-                        <a 
-                          href="https://www.youtube.com/@AGIntelligence" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Youtube size={24} />
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Company</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/about" className="hover:text-primary-400">About Us</Link></li>
-                        <li><Link to="/case-studies" className="hover:text-primary-400">Case Studies</Link></li>
-                        <li><Link to="/videos" className="hover:text-primary-400">Videos</Link></li>
-                        <li><Link to="/careers" className="hover:text-primary-400">Careers</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Solutions</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/solutions/lead-research" className="hover:text-primary-400">Lead Research</Link></li>
-                        <li><Link to="/solutions/outreach" className="hover:text-primary-400">Outreach Automation</Link></li>
-                        <li><Link to="/solutions/scheduling" className="hover:text-primary-400">Meeting Scheduling</Link></li>
-                        <li><Link to="/solutions/custom" className="hover:text-primary-400">Custom AI Solutions</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Contact</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li>
-                          <Link to="/contact" className="hover:text-primary-400">
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="mailto:alex@salesautomated.ai" className="hover:text-primary-400">
-                            alex@salesautomated.ai
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="border-t border-[#151d17] mt-12 pt-8 text-center">
-                    <p className="text-gray-400">&copy; {new Date().getFullYear()} Sales Automated. All rights reserved.</p>
-                  </div>
-                </div>
-              </footer>
-            </PageTransition>
-          } />
-          <Route path="/contact" element={
-            <PageTransition>
-              <ContactPage />
-              <footer className="bg-[#0a0f0d] text-white py-12 mt-32">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="col-span-2 md:col-span-1">
-                      <Link to="/" className="flex items-center gap-2 mb-4">
-                        <Bot className="text-primary-500" size={32} />
-                        <span className="font-bold text-xl">Sales Automated</span>
-                      </Link>
-                      <p className="text-gray-400">
-                        Your dedicated AI sales growth partner
-                      </p>
-                      <div className="flex gap-4 mt-4">
-                        <a 
-                          href="https://www.linkedin.com/company/salesautomated/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Linkedin size={24} />
-                        </a>
-                        <a 
-                          href="https://www.youtube.com/@AGIntelligence" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Youtube size={24} />
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Company</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/about" className="hover:text-primary-400">About Us</Link></li>
-                        <li><Link to="/case-studies" className="hover:text-primary-400">Case Studies</Link></li>
-                        <li><Link to="/videos" className="hover:text-primary-400">Videos</Link></li>
-                        <li><Link to="/careers" className="hover:text-primary-400">Careers</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Solutions</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/solutions/lead-research" className="hover:text-primary-400">Lead Research</Link></li>
-                        <li><Link to="/solutions/outreach" className="hover:text-primary-400">Outreach Automation</Link></li>
-                        <li><Link to="/solutions/scheduling" className="hover:text-primary-400">Meeting Scheduling</Link></li>
-                        <li><Link to="/solutions/custom" className="hover:text-primary-400">Custom AI Solutions</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Contact</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li>
-                          <Link to="/contact" className="hover:text-primary-400">
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="mailto:alex@salesautomated.ai" className="hover:text-primary-400">
-                            alex@salesautomated.ai
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="border-t border-[#151d17] mt-12 pt-8 text-center">
-                    <p className="text-gray-400">&copy; {new Date().getFullYear()} Sales Automated. All rights reserved.</p>
-                  </div>
-                </div>
-              </footer>
-            </PageTransition>
-          } />
-          <Route path="/videos" element={
-            <PageTransition>
-              <VideosPage />
-              <footer className="bg-[#0a0f0d] text-white py-12 mt-32">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="col-span-2 md:col-span-1">
-                      <Link to="/" className="flex items-center gap-2 mb-4">
-                        <Bot className="text-primary-500" size={32} />
-                        <span className="font-bold text-xl">Sales Automated</span>
-                      </Link>
-                      <p className="text-gray-400">
-                        Your dedicated AI sales growth partner
-                      </p>
-                      <div className="flex gap-4 mt-4">
-                        <a 
-                          href="https://www.linkedin.com/company/salesautomated/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Linkedin size={24} />
-                        </a>
-                        <a 
-                          href="https://www.youtube.com/@AGIntelligence" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Youtube size={24} />
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Company</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/about" className="hover:text-primary-400">About Us</Link></li>
-                        <li><Link to="/case-studies" className="hover:text-primary-400">Case Studies</Link></li>
-                        <li><Link to="/videos" className="hover:text-primary-400">Videos</Link></li>
-                        <li><Link to="/careers" className="hover:text-primary-400">Careers</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Solutions</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/solutions/lead-research" className="hover:text-primary-400">Lead Research</Link></li>
-                        <li><Link to="/solutions/outreach" className="hover:text-primary-400">Outreach Automation</Link></li>
-                        <li><Link to="/solutions/scheduling" className="hover:text-primary-400">Meeting Scheduling</Link></li>
-                        <li><Link to="/solutions/custom" className="hover:text-primary-400">Custom AI Solutions</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Contact</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li>
-                          <Link to="/contact" className="hover:text-primary-400">
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="mailto:alex@salesautomated.ai" className="hover:text-primary-400">
-                            alex@salesautomated.ai
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="border-t border-[#151d17] mt-12 pt-8 text-center">
-                    <p className="text-gray-400">&copy; {new Date().getFullYear()} Sales Automated. All rights reserved.</p>
-                  </div>
-                </div>
-              </footer>
-            </PageTransition>
-          } />
-          <Route path="/solutions/lead-research" element={
-            <PageTransition>
-              <LeadResearchPage />
-              <footer className="bg-[#0a0f0d] text-white py-12 mt-32">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="col-span-2 md:col-span-1">
-                      <Link to="/" className="flex items-center gap-2 mb-4">
-                        <Bot className="text-primary-500" size={32} />
-                        <span className="font-bold text-xl">Sales Automated</span>
-                      </Link>
-                      <p className="text-gray-400">
-                        Your dedicated AI sales growth partner
-                      </p>
-                      <div className="flex gap-4 mt-4">
-                        <a 
-                          href="https://www.linkedin.com/company/salesautomated/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Linkedin size={24} />
-                        </a>
-                        <a 
-                          href="https://www.youtube.com/@AGIntelligence" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Youtube size={24} />
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Company</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/about" className="hover:text-primary-400">About Us</Link></li>
-                        <li><Link to="/case-studies" className="hover:text-primary-400">Case Studies</Link></li>
-                        <li><Link to="/videos" className="hover:text-primary-400">Videos</Link></li>
-                        <li><Link to="/careers" className="hover:text-primary-400">Careers</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Solutions</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/solutions/lead-research" className="hover:text-primary-400">Lead Research</Link></li>
-                        <li><Link to="/solutions/outreach" className="hover:text-primary-400">Outreach Automation</Link></li>
-                        <li><Link to="/solutions/scheduling" className="hover:text-primary-400">Meeting Scheduling</Link></li>
-                        <li><Link to="/solutions/custom" className="hover:text-primary-400">Custom AI Solutions</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Contact</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li>
-                          <Link to="/contact" className="hover:text-primary-400">
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="mailto:alex@salesautomated.ai" className="hover:text-primary-400">
-                            alex@salesautomated.ai
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="border-t border-[#151d17] mt-12 pt-8 text-center">
-                    <p className="text-gray-400">&copy; {new Date().getFullYear()} Sales Automated. All rights reserved.</p>
-                  </div>
-                </div>
-              </footer>
-            </PageTransition>
-          } />
-          <Route path="/solutions/outreach" element={
-            <PageTransition>
-              <OutreachPage />
-              <footer className="bg-[#0a0f0d] text-white py-12 mt-32">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="col-span-2 md:col-span-1">
-                      <Link to="/" className="flex items-center gap-2 mb-4">
-                        <Bot className="text-primary-500" size={32} />
-                        <span className="font-bold text-xl">Sales Automated</span>
-                      </Link>
-                      <p className="text-gray-400">
-                        Your dedicated AI sales growth partner
-                      </p>
-                      <div className="flex gap-4 mt-4">
-                        <a 
-                          href="https://www.linkedin.com/company/salesautomated/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Linkedin size={24} />
-                        </a>
-                        <a 
-                          href="https://www.youtube.com/@AGIntelligence" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Youtube size={24} />
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Company</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/about" className="hover:text-primary-400">About Us</Link></li>
-                        <li><Link to="/case-studies" className="hover:text-primary-400">Case Studies</Link></li>
-                        <li><Link to="/videos" className="hover:text-primary-400">Videos</Link></li>
-                        <li><Link to="/careers" className="hover:text-primary-400">Careers</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Solutions</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/solutions/lead-research" className="hover:text-primary-400">Lead Research</Link></li>
-                        <li><Link to="/solutions/outreach" className="hover:text-primary-400">Outreach Automation</Link></li>
-                        <li><Link to="/solutions/scheduling" className="hover:text-primary-400">Meeting Scheduling</Link></li>
-                        <li><Link to="/solutions/custom" className="hover:text-primary-400">Custom AI Solutions</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Contact</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li>
-                          <Link to="/contact" className="hover:text-primary-400">
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="mailto:alex@salesautomated.ai" className="hover:text-primary-400">
-                            alex@salesautomated.ai
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="border-t border-[#151d17] mt-12 pt-8 text-center">
-                    <p className="text-gray-400">&copy; {new Date().getFullYear()} Sales Automated. All rights reserved.</p>
-                  </div>
-                </div>
-              </footer>
-            </PageTransition>
-          } />
-          <Route path="/solutions/scheduling" element={
-            <PageTransition>
-              <SchedulingPage />
-              <footer className="bg-[#0a0f0d] text-white py-12 mt-32">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="col-span-2 md:col-span-1">
-                      <Link to="/" className="flex items-center gap-2 mb-4">
-                        <Bot className="text-primary-500" size={32} />
-                        <span className="font-bold text-xl">Sales Automated</span>
-                      </Link>
-                      <p className="text-gray-400">
-                        Your dedicated AI sales growth partner
-                      </p>
-                      <div className="flex gap-4 mt-4">
-                        <a 
-                          href="https://www.linkedin.com/company/salesautomated/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Linkedin size={24} />
-                        </a>
-                        <a 
-                          href="https://www.youtube.com/@AGIntelligence" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Youtube size={24} />
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Company</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/about" className="hover:text-primary-400">About Us</Link></li>
-                        <li><Link to="/case-studies" className="hover:text-primary-400">Case Studies</Link></li>
-                        <li><Link to="/videos" className="hover:text-primary-400">Videos</Link></li>
-                        <li><Link to="/careers" className="hover:text-primary-400">Careers</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Solutions</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/solutions/lead-research" className="hover:text-primary-400">Lead Research</Link></li>
-                        <li><Link to="/solutions/outreach" className="hover:text-primary-400">Outreach Automation</Link></li>
-                        <li><Link to="/solutions/scheduling" className="hover:text-primary-400">Meeting Scheduling</Link></li>
-                        <li><Link to="/solutions/custom" className="hover:text-primary-400">Custom AI Solutions</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Contact</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li>
-                          <Link to="/contact" className="hover:text-primary-400">
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="mailto:alex@salesautomated.ai" className="hover:text-primary-400">
-                            alex@salesautomated.ai
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="border-t border-[#151d17] mt-12 pt-8 text-center">
-                    <p className="text-gray-400">&copy; {new Date().getFullYear()} Sales Automated. All rights reserved.</p>
-                  </div>
-                </div>
-              </footer>
-            </PageTransition>
-          } />
-          <Route path="/solutions/custom" element={
-            <PageTransition>
-              <CustomSolutionsPage />
-              <footer className="bg-[#0a0f0d] text-white py-12 mt-32">
-                <div className="max-w-7xl mx-auto px-6">
-                  <div className="grid md:grid-cols-4 gap-8">
-                    <div className="col-span-2 md:col-span-1">
-                      <Link to="/" className="flex items-center gap-2 mb-4">
-                        <Bot className="text-primary-500" size={32} />
-                        <span className="font-bold text-xl">Sales Automated</span>
-                      </Link>
-                      <p className="text-gray-400">
-                        Your dedicated AI sales growth partner
-                      </p>
-                      <div className="flex gap-4 mt-4">
-                        <a 
-                          href="https://www.linkedin.com/company/salesautomated/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Linkedin size={24} />
-                        </a>
-                        <a 
-                          href="https://www.youtube.com/@AGIntelligence" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-gray-400 hover:text-primary-500 transition-colors"
-                        >
-                          <Youtube size={24} />
-                        </a>
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Company</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/about" className="hover:text-primary-400">About Us</Link></li>
-                        <li><Link to="/case-studies" className="hover:text-primary-400">Case Studies</Link></li>
-                        <li><Link to="/videos" className="hover:text-primary-400">Videos</Link></li>
-                        <li><Link to="/careers" className="hover:text-primary-400">Careers</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Solutions</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li><Link to="/solutions/lead-research" className="hover:text-primary-400">Lead Research</Link></li>
-                        <li><Link to="/solutions/outreach" className="hover:text-primary-400">Outreach Automation</Link></li>
-                        <li><Link to="/solutions/scheduling" className="hover:text-primary-400">Meeting Scheduling</Link></li>
-                        <li><Link to="/solutions/custom" className="hover:text-primary-400">Custom AI Solutions</Link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-4">Contact</h4>
-                      <ul className="space-y-2 text-gray-400">
-                        <li>
-                          <Link to="/contact" className="hover:text-primary-400">
-                            Contact Us
-                          </Link>
-                        </li>
-                        <li>
-                          <a href="mailto:alex@salesautomated.ai" className="hover:text-primary-400">
-                            alex@salesautomated.ai
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="border-t border-[#151d17] mt-12 pt-8 text-center">
-                    <p className="text-gray-400">&copy; {new Date().getFullYear()} Sales Automated. All rights reserved.</p>
-                  </div>
-                </div>
-              </footer>
-            </PageTransition>
-          } />
+    <div className="flex flex-col min-h-screen bg-slate-900">
+      <ScrollToTop />
+      <Navigation darkTheme={isResourcePage || isResourcesHub || isSchedulePage} />
+      <main className={`flex-grow ${isSchedulePage ? 'overflow-hidden' : ''}`}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/solutions" element={<SolutionsPage />} />
+          <Route path="/about-us" element={<AboutPage />} />
+          <Route path="/resources-hub" element={<ResourcesPage />} />
+          <Route path="/resources-hub/:id" element={<ResourceContentPage />} />
+          
+          {/* Resource content pages */}
+          <Route path="/resources/ai-outreach-system-webinar" element={<AIOutreachSystemWebinar />} />
+          <Route path="/resources/ai-sales-automation-masterclass" element={<AISalesAutomationMasterclass />} />
+          <Route path="/resources/ai-lead-generation-blueprint" element={<AILeadGenerationBlueprint />} />
+          <Route path="/resources/100m-ai-sales-playbook" element={<AISalesPlaybook />} />
+          <Route path="/resources/ai-crm-integration-guide" element={<AICRMIntegrationGuide />} />
+          
+          <Route path="/schedule" element={<SchedulePage />} />
         </Routes>
-      </AnimatePresence>
+      </main>
+      {!isSchedulePage && <Footer />}
     </div>
   );
 }

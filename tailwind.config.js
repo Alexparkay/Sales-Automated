@@ -35,6 +35,8 @@ export default {
       },
       animation: {
         'gradient': 'gradient 8s linear infinite',
+        'shimmer': 'shimmer 3s linear infinite',
+        'spin-slow': 'spin 8s linear infinite',
       },
       keyframes: {
         gradient: {
@@ -47,6 +49,10 @@ export default {
             'background-position': 'right center'
           },
         },
+        shimmer: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        }
       },
     },
   },
