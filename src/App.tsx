@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Linkedin, Github, Mail, ArrowRight } from 'lucide-react';
 import Navigation from './components/Navigation';
 import ScrollToTop from './components/ScrollToTop';
+import LoadingAnimation from './components/LoadingAnimation';
 
 // Import all pages
 import HomePage from './pages/HomePage';
@@ -108,30 +109,67 @@ function AppContent() {
   const isSchedulePage = location.pathname === '/schedule';
   const isResourcePage = location.pathname.startsWith('/resources/');
   const isResourcesHub = location.pathname === '/resources-hub';
+  
+  const [showLoadingAnimation, setShowLoadingAnimation] = useState(true);
+  const [hasCheckedStorage, setHasCheckedStorage] = useState(false);
+
+  useEffect(() => {
+    // Check if this is the first visit
+    const hasSeenAnimation = localStorage.getItem('hasSeenImperiumAnimation');
+    
+    if (hasSeenAnimation) {
+      setShowLoadingAnimation(false);
+    } else {
+      setShowLoadingAnimation(true);
+      // Mark that the user has seen the animation
+      localStorage.setItem('hasSeenImperiumAnimation', 'true');
+    }
+    
+    setHasCheckedStorage(true);
+    
+    // For testing: Uncomment this line to clear the localStorage flag and see the animation again
+    // localStorage.removeItem('hasSeenImperiumAnimation');
+  }, []);
+
+  const handleAnimationComplete = () => {
+    console.log("Animation complete callback triggered");
+    setShowLoadingAnimation(false);
+  };
+
+  // Don't render anything until we've checked localStorage
+  if (!hasCheckedStorage) {
+    return null;
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-900">
-      <ScrollToTop />
-      <Navigation darkTheme={isResourcePage || isResourcesHub || isSchedulePage} />
-      <main className={`flex-grow ${isSchedulePage ? 'overflow-hidden' : ''}`}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/solutions" element={<SolutionsPage />} />
-          <Route path="/about-us" element={<AboutPage />} />
-          <Route path="/resources-hub" element={<ResourcesPage />} />
-          <Route path="/resources-hub/:id" element={<ResourceContentPage />} />
-          
-          {/* Resource content pages */}
-          <Route path="/resources/ai-outreach-system-webinar" element={<AIOutreachSystemWebinar />} />
-          <Route path="/resources/ai-sales-automation-masterclass" element={<AISalesAutomationMasterclass />} />
-          <Route path="/resources/ai-lead-generation-blueprint" element={<AILeadGenerationBlueprint />} />
-          <Route path="/resources/100m-ai-sales-playbook" element={<AISalesPlaybook />} />
-          <Route path="/resources/ai-crm-integration-guide" element={<AICRMIntegrationGuide />} />
-          
-          <Route path="/schedule" element={<SchedulePage />} />
-        </Routes>
-      </main>
-      {!isSchedulePage && <Footer />}
+      {showLoadingAnimation ? (
+        <LoadingAnimation onAnimationComplete={handleAnimationComplete} />
+      ) : (
+        <>
+          <ScrollToTop />
+          <Navigation darkTheme={isResourcePage || isResourcesHub || isSchedulePage} />
+          <main className={`flex-grow ${isSchedulePage ? 'overflow-hidden' : ''}`}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/solutions" element={<SolutionsPage />} />
+              <Route path="/about-us" element={<AboutPage />} />
+              <Route path="/resources-hub" element={<ResourcesPage />} />
+              <Route path="/resources-hub/:id" element={<ResourceContentPage />} />
+              
+              {/* Resource content pages */}
+              <Route path="/resources/ai-outreach-system-webinar" element={<AIOutreachSystemWebinar />} />
+              <Route path="/resources/ai-sales-automation-masterclass" element={<AISalesAutomationMasterclass />} />
+              <Route path="/resources/ai-lead-generation-blueprint" element={<AILeadGenerationBlueprint />} />
+              <Route path="/resources/100m-ai-sales-playbook" element={<AISalesPlaybook />} />
+              <Route path="/resources/ai-crm-integration-guide" element={<AICRMIntegrationGuide />} />
+              
+              <Route path="/schedule" element={<SchedulePage />} />
+            </Routes>
+          </main>
+          {!isSchedulePage && <Footer />}
+        </>
+      )}
     </div>
   );
 }

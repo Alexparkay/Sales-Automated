@@ -131,7 +131,7 @@ function HomePage() {
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/PEnlKhDo5F4?rel=0"
+              src="https://www.youtube.com/embed/EZx5sHGMNFQ?rel=0"
               title="AI Automation Tutorial"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
