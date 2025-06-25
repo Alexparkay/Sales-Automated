@@ -16,11 +16,6 @@ import ResourcesPage from './pages/ResourcesPage';
 import ResourceContentPage from './pages/ResourceContentPage';
 import SchedulePage from './pages/SchedulePage';
 
-// Import industry pages
-import MSPsPage from './pages/industries/MSPsPage';
-import SAPPartnersPage from './pages/industries/SAPPartnersPage';
-import ITServicesPage from './pages/industries/ITServicesPage';
-
 // Import resource pages
 import AIOutreachSystemWebinar from './pages/resources/AIOutreachSystemWebinar';
 import AISalesAutomationMasterclass from './pages/resources/AISalesAutomationMasterclass';
@@ -161,11 +156,6 @@ function AppContent() {
               <Route path="/about-us" element={<AboutPage />} />
               <Route path="/resources-hub" element={<ResourcesPage />} />
               <Route path="/resources-hub/:id" element={<ResourceContentPage />} />
-              
-              {/* Industry pages */}
-              <Route path="/industries/msp" element={<MSPsPage />} />
-              <Route path="/industries/sap" element={<SAPPartnersPage />} />
-              <Route path="/industries/it-services" element={<ITServicesPage />} />
               
               {/* Resource content pages */}
               <Route path="/resources/ai-outreach-system-webinar" element={<AIOutreachSystemWebinar />} />
