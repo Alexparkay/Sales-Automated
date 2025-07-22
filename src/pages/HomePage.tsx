@@ -1,89 +1,313 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, BarChart3, Users, Lightbulb, Target, ChevronDown, Plus } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, BarChart3, Users, Lightbulb, Target, ChevronDown, Plus, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AbstractShapes from '../components/AbstractShapes';
 import VideoSection from '../components/VideoSection';
 
+// Software Dashboard Component
+const SoftwareDashboard = () => {
+  return (
+    <div className="w-full h-full bg-gray-900 rounded-xl p-6 shadow-2xl">
+      <div className="flex items-center justify-between mb-6">
+        <h3 className="text-white text-lg font-semibold">Growth Analytics Dashboard</h3>
+        <div className="flex gap-2">
+          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+        </div>
+      </div>
+      
+      <div className="grid grid-cols-3 gap-4 mb-6">
+        <div className="bg-gray-800 p-4 rounded-lg">
+          <p className="text-gray-400 text-sm mb-1">Qualified Leads</p>
+          <p className="text-2xl font-bold text-emerald-400">2,847</p>
+          <p className="text-xs text-green-400 mt-1">↑ 23% this month</p>
+        </div>
+        <div className="bg-gray-800 p-4 rounded-lg">
+          <p className="text-gray-400 text-sm mb-1">Conversion Rate</p>
+          <p className="text-2xl font-bold text-blue-400">68.4%</p>
+          <p className="text-xs text-green-400 mt-1">↑ 12% improvement</p>
+        </div>
+        <div className="bg-gray-800 p-4 rounded-lg">
+          <p className="text-gray-400 text-sm mb-1">Revenue Growth</p>
+          <p className="text-2xl font-bold text-purple-400">$1.2M</p>
+          <p className="text-xs text-green-400 mt-1">↑ 45% YoY</p>
+        </div>
+      </div>
+      
+      <div className="bg-gray-800 p-4 rounded-lg mb-4">
+        <div className="flex justify-between items-center mb-3">
+          <p className="text-gray-400 text-sm">Lead Scoring Algorithm Performance</p>
+          <span className="text-xs text-emerald-400">Real-time</span>
+        </div>
+        <div className="h-32 relative">
+          {/* Simulated Chart */}
+          <svg className="w-full h-full">
+            <polyline
+              fill="none"
+              stroke="#10b981"
+              strokeWidth="2"
+              points="0,100 50,80 100,60 150,65 200,45 250,40 300,25 350,30 400,15"
+            />
+          </svg>
+        </div>
+      </div>
+      
+      <div className="grid grid-cols-2 gap-4">
+        <div className="bg-gray-800 p-3 rounded-lg">
+          <p className="text-gray-400 text-xs mb-2">AI Model Accuracy</p>
+          <div className="w-full bg-gray-700 rounded-full h-2">
+            <div className="bg-emerald-500 h-2 rounded-full" style={{ width: '94%' }}></div>
+          </div>
+          <p className="text-emerald-400 text-xs mt-1">94%</p>
+        </div>
+        <div className="bg-gray-800 p-3 rounded-lg">
+          <p className="text-gray-400 text-xs mb-2">Automation Efficiency</p>
+          <div className="w-full bg-gray-700 rounded-full h-2">
+            <div className="bg-blue-500 h-2 rounded-full" style={{ width: '87%' }}></div>
+          </div>
+          <p className="text-blue-400 text-xs mt-1">87%</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Hero graphic component with connected pillars
+const HeroGraphic = () => {
+  const pillars = [
+    { height: 180, delay: 0 },
+    { height: 220, delay: 0.1 },
+    { height: 200, delay: 0.2 },
+    { height: 240, delay: 0.3 },
+    { height: 190, delay: 0.4 },
+    { height: 210, delay: 0.5 },
+  ];
+
+  return (
+    <div className="relative w-full max-w-2xl mx-auto">
+      <svg
+        viewBox="0 0 600 300"
+        className="w-full h-auto"
+        preserveAspectRatio="xMidYMid meet"
+      >
+        {/* Connection lines between pillars */}
+        <g opacity="0.3">
+          {pillars.map((_, index) => {
+            if (index < pillars.length - 1) {
+              const x1 = 50 + index * 100;
+              const x2 = 50 + (index + 1) * 100;
+              const y1 = 250 - pillars[index].height;
+              const y2 = 250 - pillars[index + 1].height;
+              
+              return (
+                <line
+                  key={`line-${index}`}
+                  x1={x1}
+                  y1={y1}
+                  x2={x2}
+                  y2={y2}
+                  stroke="#10b981"
+                  strokeWidth="2"
+                  strokeDasharray="5,5"
+                />
+              );
+            }
+            return null;
+          })}
+        </g>
+        
+        {/* Pillars */}
+        {pillars.map((pillar, index) => (
+          <motion.g key={index}>
+            <motion.rect
+              x={30 + index * 100}
+              y={250 - pillar.height}
+              width="40"
+              height={pillar.height}
+              fill="url(#gradient)"
+              initial={{ height: 0, y: 250 }}
+              animate={{ height: pillar.height, y: 250 - pillar.height }}
+              transition={{
+                duration: 1,
+                delay: pillar.delay,
+                ease: "easeOut"
+              }}
+            />
+            {/* Connection dots */}
+            <motion.circle
+              cx={50 + index * 100}
+              cy={250 - pillar.height}
+              r="8"
+              fill="#10b981"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{
+                duration: 0.5,
+                delay: pillar.delay + 0.5
+              }}
+            />
+          </motion.g>
+        ))}
+        
+        {/* Gradient definition */}
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#10b981" />
+            <stop offset="100%" stopColor="#059669" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
 function HomePage() {
   const [expandedStep, setExpandedStep] = useState<number | null>(null);
   const [hoveredStat, setHoveredStat] = useState<string | null>(null);
+  const [hoveredIndustry, setHoveredIndustry] = useState<string | null>(null);
+  const videoSectionRef = useRef<HTMLDivElement>(null);
+  const [isVideoInView, setIsVideoInView] = useState(false);
+  
+  // Parallax scroll effect
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
-  const growthFramework = [
+  // Auto-play video when in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVideoInView(entry.isIntersecting);
+      },
+      { threshold: 0.5 }
+    );
+
+    if (videoSectionRef.current) {
+      observer.observe(videoSectionRef.current);
+    }
+
+    return () => {
+      if (videoSectionRef.current) {
+        observer.unobserve(videoSectionRef.current);
+      }
+    };
+  }, []);
+
+  const processSteps = [
     {
-      title: 'DEEP ANALYSIS',
-      details: [
-        'Full Business System Analysis',
-        'Market Positioning & Competitor Insights',
-        'Lead & Sales Process Optimization',
-        'AI Readiness & Tech Stack Evaluation'
-      ]
+      number: "1",
+      title: "AI-Powered Lead Research",
+      description: "Our proprietary AI analyzes thousands of data points to identify your ideal prospects with surgical precision."
     },
     {
-      title: 'CUSTOM SOLUTIONS',
-      details: [
-        'AI-Powered Lead Targeting',
-        'Automated Multi-Touch Outreach',
-        'Dynamic Sales Playbooks',
-        'Conversion-Optimized Content & Assets'
-      ]
+      number: "2",
+      title: "Hyper-Personalized Outreach",
+      description: "Multi-channel campaigns that speak directly to each prospect's unique pain points and business needs."
     },
     {
-      title: 'IMPLEMENTATION',
-      details: [
-        'CRM & Tech Stack Integration',
-        'AI-Driven Sales Enablement',
-        'Real-Time Performance Tracking',
-        'Continuous Optimization & Support'
-      ]
+      number: "3",
+      title: "Intelligent Qualification",
+      description: "AI-driven conversations that qualify leads and book meetings with decision-makers automatically."
+    },
+    {
+      number: "4",
+      title: "Sales Intelligence Delivery",
+      description: "Comprehensive prospect insights delivered to your team before every meeting for higher close rates."
+    },
+    {
+      number: "5",
+      title: "Continuous Optimization",
+      description: "Machine learning algorithms that improve targeting and messaging with every interaction."
     }
   ];
 
-  const marketStats = [
+  const industries = [
     {
-      id: 'adoption',
-      value: '75%',
-      label: 'AI Adoption Rate',
-      description: '75% of small and medium-sized businesses (SMBs) are at least experimenting with AI, with growing businesses leading in adoption at 83%. SALESFORCE',
-      image: 'https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=1800&auto=format&fit=crop'
+      name: "MSP",
+      title: "Managed Service Providers",
+      video: "/videos/Growth2.mp4",
+      description: "Specialized solutions for MSPs to automate client acquisition and scale operations"
     },
     {
-      id: 'growth',
-      value: '2.1x',
-      label: 'Revenue Growth',
-      description: 'Over the past three years, AI leaders have achieved 1.5 times higher revenue growth compared to non-adopters, underscoring the financial benefits of AI integration. BOSTON CONSULTING GROUP',
-      image: 'https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=1800&auto=format&fit=crop'
+      name: "SAP",
+      title: "SAP Partners",
+      video: "/videos/Growth3.mp4",
+      description: "Custom growth systems for SAP implementation partners and consultancies"
     },
     {
-      id: 'productivity',
-      value: '67%',
-      label: 'Sales Quota Challenges',
-      description: "67% of sales representatives don't expect to meet their quotas this year, with non-selling tasks consuming 70% of their time—a gap AI can help bridge. SALESFORCE",
-      image: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=1800&auto=format&fit=crop'
+      name: "IT",
+      title: "IT Services",
+      video: "/videos/Growth4.mp4",
+      description: "Comprehensive solutions for IT service companies to generate enterprise leads"
+    }
+  ];
+
+  const results = [
+    {
+      metric: "300%",
+      label: "Revenue Increased",
+      description: "Average revenue growth for our clients within 12 months"
     },
     {
-      id: 'opportunity',
-      value: '84%',
-      label: 'Competitive Advantage',
-      description: '84% of businesses believe that AI will give them a competitive advantage, yet many have not fully integrated AI into their operations, risking falling behind',
-      image: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=1800&auto=format&fit=crop'
+      metric: "500+",
+      label: "Booked meetings with Fortune 500",
+      description: "Our qualifying agent streamlines the process of booking clients and understanding their needs"
+    },
+    {
+      metric: "87%",
+      label: "Close Rate Improvement",
+      description: "Higher conversion rates through AI-powered sales intelligence"
+    }
+  ];
+
+  const caseStudies = [
+    {
+      company: "Eternal Soft Solutions",
+      headline: "Connected Eternal Soft Solutions with Fortune 500 Company",
+      description: "We hooked them up with a Fortune 500 company which sustained them for long periods of time, resulting in an 8x reduction in deal length due to high qualification processes",
+      results: ["8x faster deal closure", "Fortune 500 partnership", "Sustained revenue growth"]
+    },
+    {
+      company: "Bond Media",
+      headline: "Opportunity Generated with Fortune 500 Companies",
+      description: "Involving developers including complex AI machine learning tasks",
+      results: ["Fortune 500 opportunities", "Complex AI implementation", "Advanced ML solutions"]
+    },
+    {
+      company: "Apexion",
+      headline: "Advanced Data Solutions for Renewable Energy Partners",
+      description: "We've helped with various data points for their renewable energy partners and built out AI client acquisition systems which incorporate levels of data higher than data scientists can even obtain",
+      results: ["Advanced data analytics", "AI acquisition systems", "Superior data insights"]
+    },
+    {
+      company: "Marx",
+      headline: "Enterprise-Level AI System Implementation",
+      description: "We delivered for an enterprise client one of the largest projects - a very complex AI system which saves them hundreds of millions in long term costs",
+      results: ["Hundreds of millions saved", "Enterprise AI system", "Long-term cost reduction"]
+    },
+    {
+      company: "QSolar",
+      headline: "Revolutionary Client Acquisition Software",
+      description: "We're helping build a custom client acquisition software bespoke to QSolar which will revolutionize the way they gain clients due to AI imaging machine learning technologies and advanced automation systems",
+      results: ["Custom acquisition software", "AI imaging technology", "Advanced automation"]
     }
   ];
 
   return (
     <div className="min-h-screen bg-white relative">
-      {/* Background Pattern */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full opacity-5">
-          <div className="absolute top-[10%] left-[5%] w-64 h-64 rounded-full bg-emerald-500 blur-[100px]" />
-          <div className="absolute top-[40%] right-[10%] w-96 h-96 rounded-full bg-blue-600 blur-[120px]" />
-          <div className="absolute bottom-[15%] left-[15%] w-80 h-80 rounded-full bg-teal-500 blur-[100px]" />
-          <div className="absolute top-[60%] right-[25%] w-72 h-72 rounded-full bg-emerald-600 blur-[90px]" />
-        </div>
-      </div>
+      {/* Parallax Background Gradients */}
+      <motion.div 
+        className="fixed inset-0 z-0 pointer-events-none"
+        style={{ y }}
+      >
+        <div className="absolute top-[20%] left-[10%] w-96 h-96 rounded-full bg-gradient-to-br from-emerald-400/10 to-green-500/10 blur-3xl" />
+        <div className="absolute top-[60%] right-[15%] w-80 h-80 rounded-full bg-gradient-to-br from-emerald-500/10 to-teal-400/10 blur-3xl" />
+        <div className="absolute bottom-[10%] left-[30%] w-72 h-72 rounded-full bg-gradient-to-br from-green-400/10 to-emerald-600/10 blur-3xl" />
+      </motion.div>
 
-      {/* Hero Section - Dark */}
-      <section className="relative h-screen flex items-end bg-slate-900 overflow-hidden">
+      {/* Hero Section - Redesigned */}
+      <section className="relative min-h-screen flex flex-col bg-slate-900 overflow-hidden">
         {/* Video Background */}
         <div className="absolute inset-0 z-0">
           <video
@@ -95,448 +319,310 @@ function HomePage() {
           >
             <source src="/videos/Growth7.mp4" type="video/mp4" />
           </video>
-          {/* Adding a darker overlay on top of the video */}
-          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
         
         <AbstractShapes variant="hero" className="absolute inset-0 z-10" />
         
-        <div className="relative z-20 w-full">
+        {/* Header with Logo and CTA */}
+        <div className="relative z-20 w-full px-8 py-6 flex justify-between items-center">
+          <h1 className="text-3xl font-bold text-white">Imperium</h1>
+          <Link
+            to="/schedule"
+            className="px-6 py-2.5 text-sm font-medium text-white bg-emerald-600 rounded-full hover:bg-emerald-700 transition-colors"
+          >
+            Schedule Meeting
+          </Link>
+        </div>
+        
+        {/* Main Hero Content */}
+        <div className="relative z-20 flex-1 flex flex-col justify-center px-8 md:px-12 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-3xl pl-8 md:pl-12 lg:pl-16 mb-24"
+            className="max-w-3xl"
           >
-            <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 text-shadow-xl leading-tight tracking-tight">
+            <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
               MSPs Are Losing 
-              <span className="block mt-2 bg-gradient-to-r from-green-400 via-emerald-300 to-teal-400 bg-clip-text text-transparent drop-shadow-lg">
+              <span className="block mt-2 bg-gradient-to-r from-green-400 via-emerald-300 to-teal-400 bg-clip-text text-transparent">
                 67% of Revenue
               </span>
-              <span className="block mt-2 text-white text-shadow-xl">
+              <span className="block mt-2 text-white">
                 To Manual Processes
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-white max-w-2xl drop-shadow-lg font-medium leading-relaxed backdrop-blur-sm bg-black/10 p-4 rounded-lg border-l-4 border-emerald-400">
+            <p className="text-xl md:text-2xl text-white max-w-2xl font-medium leading-relaxed">
               <span className="text-emerald-300 font-bold">Imperium Growth</span> delivers AI-powered client acquisition systems specifically for MSPs and IT service providers. We don't just book meetings—we build complete revenue engines that <span className="underline decoration-emerald-400 decoration-2">guarantee results</span>.
             </p>
           </motion.div>
+          
+          {/* Hero Graphic - Connected Pillars */}
+          <div className="mt-16">
+            <HeroGraphic />
+          </div>
         </div>
       </section>
 
-      {/* Video Section - Light Background */}
-      <section className="relative py-24 bg-transparent">
+      {/* AI Revenue Engine Video Section - Completely Redesigned */}
+      <section ref={videoSectionRef} className="relative py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-xl">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/EZx5sHGMNFQ?rel=0"
-              title="AI Automation Tutorial"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Partner Section - Full Width */}
-      <section className="w-full bg-transparent py-24 pb-48">
-        <div className="max-w-[2000px] mx-auto">
-          <div className="max-w-3xl mb-20 px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Market Stats:</h2>
-            <p className="text-xl text-gray-600">The AI adoption gap between leaders and laggards is widening, with early adopters seeing significant revenue growth while others struggle with productivity challenges.</p>
-          </div>
-
-          <div className="mt-12 px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 gap-y-24">
-              {marketStats.map((stat, index) => (
-                <div key={index} className="group relative">
-                  <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
-                    {/* Replace gradient background with actual images */}
-                    <div className="absolute inset-0">
-                      {index === 0 && (
-                        <img 
-                          src="/images/Growth/pexels-ian-panelo-3571551.jpg" 
-                          alt="AI Adoption Rate" 
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                      {index === 1 && (
-                        <img 
-                          src="/images/Growth/pexels-sohi-807598.jpg" 
-                          alt="Revenue Growth" 
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                      {index === 2 && (
-                        <img 
-                          src="/images/Growth/pexels-asphotograpy-1002703.jpg" 
-                          alt="Sales Quota Challenges" 
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                      {index === 3 && (
-                        <img 
-                          src="/images/Growth/pexels-gochrisgoxyz-1643409.jpg" 
-                          alt="Competitive Advantage" 
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                      
-                      {/* Overlay to ensure text readability */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
-                    </div>
-                    
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent">
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <div className="text-5xl font-bold text-white mb-3 group-hover:scale-105 transition-transform duration-300">
-                          {stat.value}
-                        </div>
-                        <div className="text-lg font-medium text-white group-hover:scale-105 transition-transform duration-300">
-                          {stat.label}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* Plus icon outside the box */}
-                  <div className="absolute -bottom-12 right-0 w-10 h-10 text-emerald-700 group-hover:opacity-0 transition-opacity duration-300">
-                    <Plus className="w-full h-full" />
-                  </div>
-                  {/* Hover text */}
-                  <div className="absolute left-0 right-0 top-full pt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mb-24 z-10">
-                    <p className="text-gray-600 text-base pb-12">
-                      {stat.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Mission Section */}
-      <section className="relative py-24 bg-gray-50">
-        <div className="max-w-[2000px] mx-auto relative">
-          {/* Large quotation mark background - making it much larger */}
-          <div className="absolute right-[10%] top-0 text-[500px] leading-none text-gray-200 opacity-60 font-serif">
-            "
-          </div>
-          
-          <div className="max-w-3xl mb-16 px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-gray-900">Our Mission</h2>
-          </div>
-          
-          <div className="flex justify-center">
-            <div className="max-w-4xl relative z-10 px-4 sm:px-6 lg:px-8">
-              <p className="text-2xl text-gray-800 leading-relaxed text-left">
-                We empower MSPs and IT service providers with AI-driven client acquisition systems that deliver predictable, scalable growth. Unlike traditional agencies, we don't just book meetings—we build revenue engines, automating outreach, optimizing sales, and eliminating bottlenecks. With intelligent automation and precision targeting, we guarantee results. Your growth is inevitable with Imperium Growth.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section - Growth Framework */}
-      <section className="relative pt-24 pb-24 bg-transparent w-full overflow-hidden">
-        {/* Remove video background */}
-        
-        <AbstractShapes variant="section1" />
-        <div className="max-w-[2000px] mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row items-start gap-16 px-4 sm:px-6 lg:px-8">
-            <div className="md:w-1/3">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                How We Do It?
-              </h2>
-              <p className="text-xl text-gray-600">
-                Comprehensive AI-powered solutions designed to accelerate your business growth and maximize revenue potential.
-              </p>
-            </div>
-            
-            <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {growthFramework.map((step, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative"
-                >
-                  <div className="relative h-[580px] rounded-[2rem] overflow-hidden transition-all duration-500 group-hover:scale-105">
-                    {/* Replace gradient background with actual images */}
-                    <div className="absolute inset-0">
-                      {index === 0 && (
-                        <img 
-                          src="/images/Growth/pexels-david-alberto-carmona-coto-434794-1151418.jpg" 
-                          alt="Deep Analysis" 
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                      {index === 1 && (
-                        <img 
-                          src="/images/Growth/pexels-mdsnmdsnmdsn-1216345.jpg" 
-                          alt="Custom Solutions" 
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                      {index === 2 && (
-                        <img 
-                          src="/images/Growth/pexels-pixabay-432786.jpg" 
-                          alt="Implementation" 
-                          className="w-full h-full object-cover"
-                        />
-                      )}
-                      
-                      {/* Darker overlay for text readability */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/40 via-[#1a4147]/40 to-[#0f2e3a]/40" />
-                      
-                      {/* Add stronger vignette effect */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
-                    </div>
-                    
-                    {/* Keep the soft light overlays for visual effect */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-white/10" />
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_theme(colors.emerald.400/15),transparent_50%)]" />
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_theme(colors.teal.400/15),transparent_50%)]" />
-                    
-                    {/* Subtle border glow */}
-                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent" />
-                    
-                    {/* Content container */}
-                    <div className="relative z-10 p-8 h-full flex flex-col">
-                      <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 via-white to-emerald-200 mt-6 mb-10 text-center tracking-wide">
-                        {step.title}
-                      </h3>
-                      
-                      <div className="space-y-5 flex-grow flex flex-col justify-center">
-                        {step.details.map((detail, idx) => (
-                          <Link
-                            key={idx}
-                            to={`/solutions#${step.title.toLowerCase().replace(/\s+/g, '-')}`}
-                            className="block group/item"
-                          >
-                            <div 
-                              className="w-[85%] ml-0 px-4 py-5 border border-emerald-300/30 rounded-xl bg-black/30 backdrop-blur-sm hover:bg-white hover:border-white transition-all duration-300 group-hover:border-white/50 shadow-lg shadow-black/20"
-                            >
-                              <span className="text-sm text-white text-left block break-words px-2 group-hover/item:text-[#1e4d56] transition-colors duration-300">
-                                {detail}
-                              </span>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-          
-          {/* Why we exist section */}
-          <div className="mt-24 px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-2xl"
-            >
-              <h3 className="text-4xl font-bold text-gray-900 mb-4">
-                Why we exist?
-              </h3>
-              <p className="text-xl text-gray-600">
-                We realized the need for growth solutions which actually work and are AI-native. Most businesses struggled with fragmented tools and strategies that fail to deliver measurable results. Imperium was founded to bridge this gap, providing integrated AI solutions that transform how companies approach growth.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Full-screen Video Section */}
-      <section className="relative h-screen flex items-center bg-slate-900 overflow-hidden">
-        {/* Video Background */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src="/videos/Growth1.mp4" type="video/mp4" />
-          </video>
-        </div>
-        
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
-        
-        {/* White paper reference - top left */}
-        <div className="absolute top-12 left-16 z-20 max-w-4xl text-left">
-          <h2 className="text-white font-bold text-3xl">
-            White Paper: Industry Leader Interviews
-          </h2>
-        </div>
-        
-        {/* Key Findings Section */}
-        <div className="absolute bottom-32 left-16 z-20 w-[85%]">
-          <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
-            Key Findings:
-            
-            {/* Animation indicator - moved closer */}
-            <div className="ml-4 flex items-center space-x-3">
-              <motion.div 
-                className="w-8 h-[3px] bg-white/30 rounded-full overflow-hidden"
-                initial={{ opacity: 0.5 }}
-              >
-                <motion.div 
-                  className="h-full bg-emerald-400"
-                  animate={{ 
-                    width: ["0%", "100%", "100%", "0%"],
-                    opacity: [0.5, 1, 1, 0.5]
-                  }}
-                  transition={{
-                    duration: 8,
-                    times: [0, 0.1, 0.9, 1],
-                    repeat: Infinity,
-                    repeatDelay: 16
-                  }}
-                />
-              </motion.div>
-              
-              <motion.div 
-                className="w-8 h-[3px] bg-white/30 rounded-full overflow-hidden"
-                initial={{ opacity: 0.5 }}
-              >
-                <motion.div 
-                  className="h-full bg-emerald-400"
-                  animate={{ 
-                    width: ["0%", "100%", "100%", "0%"],
-                    opacity: [0.5, 1, 1, 0.5]
-                  }}
-                  transition={{
-                    duration: 8,
-                    times: [0, 0.1, 0.9, 1],
-                    repeat: Infinity,
-                    repeatDelay: 16,
-                    delay: 8
-                  }}
-                />
-              </motion.div>
-              
-              <motion.div 
-                className="w-8 h-[3px] bg-white/30 rounded-full overflow-hidden"
-                initial={{ opacity: 0.5 }}
-              >
-                <motion.div 
-                  className="h-full bg-emerald-400"
-                  animate={{ 
-                    width: ["0%", "100%", "100%", "0%"],
-                    opacity: [0.5, 1, 1, 0.5]
-                  }}
-                  transition={{
-                    duration: 8,
-                    times: [0, 0.1, 0.9, 1],
-                    repeat: Infinity,
-                    repeatDelay: 16,
-                    delay: 16
-                  }}
-                />
-              </motion.div>
-            </div>
-          </h3>
-          
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="h-[200px] w-full"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
           >
-            {/* Revolving text animation - synchronized with tabs */}
-            <motion.div
-              className="relative w-full"
-              initial={{ opacity: 1 }}
-            >
-              {/* First sentence - synchronized with first tab */}
-              <motion.p
-                className="text-[40px] text-white leading-relaxed absolute w-full pr-48"
-                initial={{ opacity: 0 }}
-                animate={{ 
-                  opacity: [0, 1, 1, 0]
-                }}
-                transition={{
-                  duration: 8,
-                  times: [0, 0.1, 0.9, 1],
-                  repeat: Infinity,
-                  repeatDelay: 16
-                }}
-                style={{ wordSpacing: '0.1em', letterSpacing: '0.01em' }}
-              >
-                Misdirected Investments: Companies wanted to act but
-                lacked a cohesive strategy for identifying, acquiring,
-                and nurturing the best-fit ventures.
-              </motion.p>
-              
-              {/* Second sentence - synchronized with second tab */}
-              <motion.p
-                className="text-[40px] text-white leading-relaxed absolute w-full pr-48"
-                initial={{ opacity: 0 }}
-                animate={{ 
-                  opacity: [0, 1, 1, 0]
-                }}
-                transition={{
-                  duration: 8,
-                  times: [0, 0.1, 0.9, 1],
-                  repeat: Infinity,
-                  repeatDelay: 16,
-                  delay: 8
-                }}
-                style={{ wordSpacing: '0.1em', letterSpacing: '0.01em' }}
-              >
-                Fragmented Approach: Organizations struggled with
-                disconnected tools and processes that created
-                inefficiencies and missed opportunities.
-              </motion.p>
-              
-              {/* Third sentence - synchronized with third tab */}
-              <motion.p
-                className="text-[40px] text-white leading-relaxed absolute w-full pr-48"
-                initial={{ opacity: 0 }}
-                animate={{ 
-                  opacity: [0, 1, 1, 0]
-                }}
-                transition={{
-                  duration: 8,
-                  times: [0, 0.1, 0.9, 1],
-                  repeat: Infinity,
-                  repeatDelay: 16,
-                  delay: 16
-                }}
-                style={{ wordSpacing: '0.1em', letterSpacing: '0.01em' }}
-              >
-                AI Implementation Gap: Despite high interest in AI,
-                most companies lack the expertise to properly
-                integrate it into their growth strategies.
-              </motion.p>
-            </motion.div>
+            <p className="text-2xl text-gray-800 font-medium">
+              Watch how we transform businesses with custom AI-powered growth systems
+            </p>
           </motion.div>
           
-          {/* White paper link */}
-          <Link 
-            to="/resources/100m-ai-sales-playbook" 
-            className="inline-flex items-center mt-4 text-emerald-300 hover:text-emerald-200 transition-colors group"
-            onClick={() => window.scrollTo(0, 0)}
-          >
-            <span className="text-lg font-medium">Check out our white paper for detailed insights</span>
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          <div className="aspect-video w-full max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
+            {isVideoInView && (
+              <video
+                autoPlay
+                muted
+                loop
+                className="w-full h-full object-cover"
+              >
+                <source src="/videos/Imperiumanimation.mp4" type="video/mp4" />
+              </video>
+            )}
+          </div>
         </div>
       </section>
 
-      {/* Resources Section */}
-      <section className="w-full bg-transparent py-16">
+      {/* Process Section - Redesigned with Five Pillars */}
+      <section className="relative py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-start gap-16">
+            {/* Left side - Keep existing graphic */}
+            <div className="lg:w-1/2">
+              <div className="sticky top-24">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8 }}
+                  className="relative"
+                >
+                  {/* Process visualization */}
+                  <div className="relative h-[500px] flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-green-50 rounded-3xl"></div>
+                    <HeroGraphic />
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+            
+            {/* Right side - Five Pillars content */}
+            <div className="lg:w-1/2">
+              <h2 className="text-4xl font-bold text-gray-900 mb-8">
+                The Five Pillars
+              </h2>
+              
+              <div className="space-y-6 mb-12">
+                {processSteps.map((step, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="flex gap-4"
+                  >
+                    <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
+                      <span className="text-emerald-700 font-bold text-lg">{step.number}</span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
+                      <p className="text-gray-600">{step.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              
+              <div className="space-y-6 p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+                <p className="text-gray-700 leading-relaxed">
+                  All you need to worry about is approving reports and highly qualified opportunities we pass over to your calendar
+                </p>
+                <p className="text-gray-700 leading-relaxed">
+                  The reports we give you are all custom towards minimizing your workload - you just have to handle the face-to-face meetings
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What We Build Section - New */}
+      <section className="relative py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              We build custom bespoke growth software solutions
+            </h2>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-5xl mx-auto"
+          >
+            <SoftwareDashboard />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Industries We Serve Section - New */}
+      <section className="relative py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-12"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Industries We Serve</h2>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {industries.map((industry, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative group"
+                onMouseEnter={() => setHoveredIndustry(industry.name)}
+                onMouseLeave={() => setHoveredIndustry(null)}
+              >
+                <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg bg-gray-900">
+                  {/* Video that plays on hover */}
+                  <video
+                    className="absolute inset-0 w-full h-full object-cover"
+                    muted
+                    loop
+                    playsInline
+                    ref={(el) => {
+                      if (el) {
+                        if (hoveredIndustry === industry.name) {
+                          el.play();
+                        } else {
+                          el.pause();
+                          el.currentTime = 0;
+                        }
+                      }
+                    }}
+                  >
+                    <source src={industry.video} type="video/mp4" />
+                  </video>
+                  
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                  
+                  {/* Content */}
+                  <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                    <h3 className="text-2xl font-bold text-white mb-2">{industry.title}</h3>
+                    <p className="text-gray-200 text-sm">{industry.description}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Results Section - New */}
+      <section className="relative py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-12"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Proven Results</h2>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {results.map((result, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="text-center p-8 bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl"
+              >
+                <div className="text-5xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-4">
+                  {result.metric}
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{result.label}</h3>
+                <p className="text-gray-600">{result.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Case Studies Section - Updated */}
+      <section className="relative py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-12"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Case Studies</h2>
+          </motion.div>
+          
+          <div className="space-y-8">
+            {caseStudies.map((study, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100"
+              >
+                <div className="flex flex-col lg:flex-row gap-8">
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{study.company}</h3>
+                    <h4 className="text-xl text-emerald-600 mb-4">{study.headline}</h4>
+                    <p className="text-gray-600 mb-6">{study.description}</p>
+                    <div className="flex flex-wrap gap-4">
+                      {study.results.map((result, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          <CheckCircle className="w-5 h-5 text-emerald-500" />
+                          <span className="text-gray-700">{result}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Link
+              to="/case-studies"
+              className="inline-flex items-center px-8 py-3 text-base font-medium text-white bg-gradient-to-r from-emerald-600 to-green-600 rounded-lg hover:opacity-90 transition-opacity"
+            >
+              View All Case Studies <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Resources Section - Keep existing */}
+      <section className="w-full bg-white py-16">
         <div className="max-w-[2000px] mx-auto">
           <div className="px-4 sm:px-6 lg:px-8">
             <div className="flex items-start gap-4 mb-8">
@@ -554,14 +640,12 @@ function HomePage() {
               >
                 <div className="flex items-center gap-6 py-6 border-t border-gray-100 transition-all duration-300 hover:bg-gradient-to-r hover:from-green-50/50 hover:to-transparent">
                   <div className="w-32 h-32 ml-6 rounded-xl overflow-hidden relative group-hover:shadow-lg group-hover:shadow-green-400/20 transition-all duration-300">
-                    {/* Real image from Growth folder */}
                     <div className="absolute inset-0">
                       <img 
                         src="/images/Growth/pexels-lauripoldre-30894193.jpg" 
                         alt="AI-Driven CRM Integration" 
                         className="w-full h-full object-cover"
                       />
-                      {/* Overlay to ensure visual consistency */}
                       <div className="absolute inset-0 bg-gradient-to-br from-emerald-800/40 via-emerald-700/30 to-blue-900/40"></div>
                     </div>
                   </div>
@@ -586,14 +670,12 @@ function HomePage() {
               >
                 <div className="flex items-center gap-6 py-6 border-t border-gray-100 transition-all duration-300 hover:bg-gradient-to-r hover:from-green-50/50 hover:to-transparent">
                   <div className="w-32 h-32 ml-6 rounded-xl overflow-hidden relative group-hover:shadow-lg group-hover:shadow-green-400/20 transition-all duration-300">
-                    {/* Real image from Growth folder */}
                     <div className="absolute inset-0">
                       <img 
                         src="/images/Growth/pexels-aditya-aiyar-615049-1407305.jpg" 
                         alt="$100M AI Sales Playbook" 
                         className="w-full h-full object-cover"
                       />
-                      {/* Overlay to ensure visual consistency */}
                       <div className="absolute inset-0 bg-gradient-to-br from-emerald-800/40 via-emerald-700/30 to-blue-900/40"></div>
                     </div>
                   </div>
@@ -618,14 +700,12 @@ function HomePage() {
               >
                 <div className="flex items-center gap-6 py-6 border-t border-b border-gray-100 transition-all duration-300 hover:bg-gradient-to-r hover:from-green-50/50 hover:to-transparent">
                   <div className="w-32 h-32 ml-6 rounded-xl overflow-hidden relative group-hover:shadow-lg group-hover:shadow-green-400/20 transition-all duration-300">
-                    {/* Real image from Growth folder */}
                     <div className="absolute inset-0">
                       <img 
                         src="/images/Growth/pexels-minan1398-1650627.jpg" 
                         alt="AI Lead Generation Blueprint" 
                         className="w-full h-full object-cover"
                       />
-                      {/* Overlay to ensure visual consistency */}
                       <div className="absolute inset-0 bg-gradient-to-br from-emerald-800/40 via-emerald-700/30 to-blue-900/40"></div>
                     </div>
                   </div>

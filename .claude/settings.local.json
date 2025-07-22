@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__firecrawl__firecrawl_map",
+      "mcp__firecrawl__firecrawl_scrape",
+      "mcp__firecrawl__firecrawl_extract",
+      "mcp__firecrawl__firecrawl_deep_research",
+      "Bash(mkdir:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(chmod:*)"
+    ],
+    "deny": []
+  }
+}
