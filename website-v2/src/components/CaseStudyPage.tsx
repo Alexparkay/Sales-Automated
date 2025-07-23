@@ -32,35 +32,35 @@ const CaseStudyPage = () => {
     const caseStudies: CaseStudy[] = [
       {
         id: 1,
-        title: "Fortune 500 Supermarket Chain: AI Negotiation Management System Reduces Costs by 35%",
+        title: "Large Supermarket Chain: AI System Cuts Negotiation Costs by 35%",
         client: "Major European Supermarket Chain",
         industry: "Retail & Supply Chain",
-        challenge: "One of Europe's largest supermarket chains was struggling with inefficient negotiation processes with suppliers, leading to significant cost overruns and missed opportunities. Manual negotiation tracking, lack of market demand insights, and poor understanding of supplier dynamics resulted in millions in unnecessary costs annually.",
-        solution: "We developed an AI-powered negotiation management system that analyzes market trends, supplier behavior patterns, and demand forecasting to optimize negotiation strategies and reduce inaccuracies.",
-        detailedSolution: "Our comprehensive solution included: (1) AI-powered market analysis engine that processes real-time commodity prices, seasonal demand patterns, and supplier performance metrics, (2) Predictive negotiation modeling that forecasts optimal negotiation timing and strategies, (3) Automated contract analysis and risk assessment, (4) Real-time dashboards for procurement teams with actionable insights, (5) Integration with existing ERP systems for seamless workflow.",
+        challenge: "A large supermarket chain was losing money on supplier negotiations. Their manual process was slow and they couldn't track market prices well. This led to paying too much and missing good deals.",
+        solution: "We built an AI system that watches market trends and supplier patterns. It helps their team know when to negotiate and what prices to expect.",
+        detailedSolution: "Our solution included: (1) AI system that tracks real-time prices and seasonal patterns, (2) Smart suggestions for when and how to negotiate, (3) Automatic contract review, (4) Simple dashboards for the procurement team, (5) Easy connection to their existing systems.",
         implementationSteps: [
-          "Conducted comprehensive audit of existing negotiation processes and supplier relationships",
-          "Deployed data collection systems across all supplier touchpoints and market data sources",
-          "Built custom AI models trained on 5+ years of historical negotiation and market data",
-          "Implemented real-time monitoring and alert systems for procurement teams",
-          "Trained procurement staff on the new AI-powered negotiation tools and strategies",
-          "Established continuous optimization feedback loops for ongoing model improvement"
+          "Looked at their current negotiation process and supplier relationships",
+          "Set up data collection from suppliers and market sources", 
+          "Built AI models using 5+ years of their negotiation history",
+          "Added real-time alerts for the procurement team",
+          "Trained staff on the new AI tools",
+          "Set up ongoing improvements based on results"
         ],
         results: [
-          "35% reduction in procurement costs within first year",
-          "60% improvement in negotiation accuracy and timing",
-          "45% reduction in contract processing time",
-          "€18M annual savings achieved across all supplier categories",
-          "98% user adoption rate among procurement teams"
+          "35% reduction in procurement costs in the first year",
+          "60% better negotiation timing and accuracy", 
+          "45% faster contract processing",
+          "€18M saved annually across all suppliers",
+          "98% of procurement team actively uses the system"
         ],
         metrics: [
-          { label: "Cost Reduction", value: "35%", description: "Annual procurement cost savings" },
-          { label: "Processing Speed", value: "45%", description: "Faster contract negotiations" },
-          { label: "Annual Savings", value: "€18M", description: "Total cost savings achieved" },
-          { label: "Accuracy Improvement", value: "60%", description: "Better negotiation outcomes" }
+          { label: "Cost Reduction", value: "35%", description: "Annual procurement savings" },
+          { label: "Processing Speed", value: "45%", description: "Faster negotiations" },
+          { label: "Annual Savings", value: "€18M", description: "Total money saved" },
+          { label: "Accuracy", value: "60%", description: "Better negotiation results" }
         ],
-        image: "https://i.ibb.co/6rW8B9x/image.png",
-        tags: ["Negotiation Management", "Cost Reduction", "Fortune 500", "Supply Chain"]
+        image: "/images/Growth/pexels-asphotograpy-1002703.jpg",
+        tags: ["Negotiation Management", "Cost Reduction", "Large Business", "Supply Chain"]
       },
       {
         id: 2,
@@ -91,8 +91,8 @@ const CaseStudyPage = () => {
           { label: "Deal Size", value: "250%", description: "Average contract value increase" },
           { label: "Revenue Impact", value: "$12M", description: "Additional revenue generated" }
         ],
-        image: "https://i.ibb.co/X2dGf32/image.png",
-        tags: ["Solar Energy", "Lead Generation", "B2B Sales", "Energy Analysis"]
+                  image: "/images/Growth/pexels-airin-party-252379-767240.jpg",
+          tags: ["Solar Energy", "Lead Generation", "B2B Sales", "Energy Analysis"]
       },
       {
         id: 3,
@@ -123,8 +123,8 @@ const CaseStudyPage = () => {
           { label: "Admin Overhead", value: "80%", description: "Reduced manual work" },
           { label: "Patient Satisfaction", value: "35%", description: "Improved patient experience" }
         ],
-        image: "https://i.ibb.co/jGMmCns/image.png",
-        tags: ["Healthcare", "Operations", "Private Transition", "Patient Experience"]
+                  image: "/images/Growth/pexels-gochrisgoxyz-1643409.jpg",
+          tags: ["Healthcare", "Operations", "Private Transition", "Patient Experience"]
       },
       {
         id: 4,
@@ -155,8 +155,8 @@ const CaseStudyPage = () => {
           { label: "Sales Cycle", value: "55%", description: "Faster deal closure" },
           { label: "Pipeline Value", value: "$25M", description: "Additional qualified pipeline" }
         ],
-        image: "https://i.ibb.co/P9Nrvj4/image.png",
-        tags: ["ERP", "Buying Signals", "Enterprise Sales", "B2B Technology"]
+                  image: "/images/Growth/pexels-ian-panelo-3571551.jpg",
+          tags: ["ERP", "Buying Signals", "Enterprise Sales", "B2B Technology"]
       },
       {
         id: 5,
@@ -187,8 +187,8 @@ const CaseStudyPage = () => {
           { label: "Profit Margin", value: "200%", description: "Better project profitability" },
           { label: "Client Satisfaction", value: "60%", description: "Improved client experience" }
         ],
-        image: "https://i.ibb.co/yQzC6cZ/image.png",
-        tags: ["Web Design", "AI Generation", "Process Automation", "Digital Agency"]
+                  image: "/images/Growth/pexels-lauripoldre-30894193.jpg",
+          tags: ["Web Design", "AI Generation", "Process Automation", "Digital Agency"]
       },
       {
         id: 6,
@@ -219,8 +219,8 @@ const CaseStudyPage = () => {
           { label: "Response Rate", value: "200%", description: "Better outreach results" },
           { label: "Pipeline Quality", value: "150%", description: "More qualified opportunities" }
         ],
-        image: "https://i.ibb.co/8DqQcTj/image.png",
-        tags: ["Private Equity", "Due Diligence", "Deal Flow", "Investment Management"]
+                  image: "/images/Growth/pexels-minan1398-1650627.jpg",
+          tags: ["Private Equity", "Due Diligence", "Deal Flow", "Investment Management"]
       }
     ];
 
@@ -263,11 +263,14 @@ const CaseStudyPage = () => {
         <div className="max-w-1200 mx-auto flex items-center justify-between">
           <div className="flex items-center">
             <img 
-              src="/images/logo.png" 
+              src="/images/Black Imperium Logo.png" 
               alt="Imperium Growth Logo" 
-              className="h-10 mr-md"
+              className="h-16 md:h-20 cursor-pointer"
+              onClick={() => {
+                window.history.pushState({}, '', '/');
+                window.location.reload();
+              }}
             />
-            <span className="font-inter text-xl font-bold text-gray-900">Imperium Growth</span>
           </div>
           <button 
             onClick={() => {
@@ -293,7 +296,7 @@ const CaseStudyPage = () => {
                 </span>
               ))}
             </div>
-            <h1 className="font-inter text-4xl lg:text-5xl font-bold text-gray-900 mb-lg leading-tight">
+            <h1 className="neuton-regular text-4xl lg:text-5xl text-gray-900 mb-lg leading-tight">
               {caseStudy.title}
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-lg mb-xl">
@@ -317,20 +320,20 @@ const CaseStudyPage = () => {
           <div className="space-y-2xl">
             {/* Challenge */}
             <div>
-              <h2 className="font-inter text-2xl font-bold text-gray-900 mb-lg">The Challenge</h2>
+              <h2 className="neuton-regular text-2xl text-gray-900 mb-lg">The Challenge</h2>
               <p className="text-lg text-gray-600 leading-relaxed">{caseStudy.challenge}</p>
             </div>
 
             {/* Solution Overview */}
             <div>
-              <h2 className="font-inter text-2xl font-bold text-gray-900 mb-lg">Our Solution</h2>
+              <h2 className="neuton-regular text-2xl text-gray-900 mb-lg">Our Solution</h2>
               <p className="text-lg text-gray-600 leading-relaxed mb-lg">{caseStudy.solution}</p>
               <p className="text-base text-gray-600 leading-relaxed">{caseStudy.detailedSolution}</p>
             </div>
 
             {/* Implementation Steps */}
             <div>
-              <h2 className="font-inter text-2xl font-bold text-gray-900 mb-lg">Implementation Process</h2>
+              <h2 className="neuton-regular text-2xl text-gray-900 mb-lg">Implementation Process</h2>
               <div className="space-y-md">
                 {caseStudy.implementationSteps.map((step, index) => (
                   <div key={index} className="flex items-start">
@@ -345,7 +348,7 @@ const CaseStudyPage = () => {
 
             {/* Key Metrics */}
             <div>
-              <h2 className="font-inter text-2xl font-bold text-gray-900 mb-lg">Key Metrics</h2>
+              <h2 className="neuton-regular text-2xl text-gray-900 mb-lg">Key Metrics</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-lg mb-lg">
                 {caseStudy.metrics.map((metric, index) => (
                   <div key={index} className="text-center bg-gray-50 rounded-lg p-lg">
@@ -359,7 +362,7 @@ const CaseStudyPage = () => {
 
             {/* Results Achieved */}
             <div>
-              <h2 className="font-inter text-2xl font-bold text-gray-900 mb-lg">Results Achieved</h2>
+              <h2 className="neuton-regular text-2xl text-gray-900 mb-lg">Results Achieved</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
                 {caseStudy.results.map((result, index) => (
                   <div key={index} className="bg-gray-50 rounded-lg p-lg">
@@ -388,7 +391,7 @@ const CaseStudyPage = () => {
 
           {/* CTA Section */}
           <div className="mt-2xl text-center bg-gray-50 rounded-xl p-xl">
-            <h2 className="font-inter text-2xl font-bold text-gray-900 mb-md">
+            <h2 className="neuton-regular text-2xl text-gray-900 mb-md">
               Ready for Your AI Transformation?
             </h2>
             <p className="text-lg text-gray-600 mb-lg">

@@ -2,7 +2,7 @@ const FinalCTA = () => {
   return (
     <section className="w-full px-lg py-2xl bg-dark-bg">
       <div className="max-w-1200 mx-auto text-center">
-        <h2 className="font-inter text-4xl lg:text-5xl font-bold text-dark-text mb-md">
+        <h2 className="neuton-regular text-4xl lg:text-5xl text-dark-text mb-md">
           Ready to Start Your
           <br />
           <span className="text-accent">AI Transformation Journey?</span>

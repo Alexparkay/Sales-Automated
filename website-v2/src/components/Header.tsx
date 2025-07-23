@@ -7,8 +7,8 @@ const Header = () => {
 
   const navLinks = [
     { href: "#work", label: "Projects" },
-    { href: "#people-love", label: "Testimonials" },
-    { href: "#clients", label: "Clients" },
+    { href: "#people-love", label: "Solutions" },
+    { href: "#clients", label: "Partners" },
     { href: "#new-pricing", label: "Pricing" },
   ];
 
@@ -20,17 +20,24 @@ const Header = () => {
     elem?.scrollIntoView({
       behavior: "smooth",
     });
-    setIsOpen(false);
+    setIsOpen(false); // Close mobile menu after clicking
+  };
+
+  const handleBookCall = () => {
+    window.open('https://calendly.com/alex-imperium-growth/30min?back=1&month=2025-07', '_blank');
+    setIsOpen(false); // Close mobile menu after clicking
   };
 
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
         if (window.scrollY > lastScrollY && window.scrollY > 100) {
-          // Scrolling down
-          setIsVisible(false);
+          // Scrolling down - hide header but keep it accessible
+          if (!isOpen) { // Only hide if menu is not open
+            setIsVisible(false);
+          }
         } else {
-          // Scrolling up
+          // Scrolling up - always show header
           setIsVisible(true);
         }
         setLastScrollY(window.scrollY);
@@ -43,87 +50,131 @@ const Header = () => {
         window.removeEventListener('scroll', controlNavbar);
       };
     }
-  }, [lastScrollY]);
+  }, [lastScrollY, isOpen]);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.mobile-menu-container') && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = 'hidden';
+      // Ensure header stays visible when menu is open
+      setIsVisible(true);
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   return (
-    <header className={`w-full px-lg py-md bg-white sticky top-0 z-50 border-b border-gray-200 transition-transform duration-300 ${isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'}`}>
-      <div className="max-w-1200 mx-auto flex items-center justify-between">
-        {/* Logo - Left side */}
-        <div className="flex items-center">
-          <img 
-            src="/images/logo.png" 
-            alt="Imperium Growth Logo" 
-            className="h-8 cursor-pointer"
-            onClick={() => window.location.href = '/'}
-          />
-        </div>
-        
-        {/* Desktop Navigation - Right side */}
-        <div className="hidden md:flex items-center space-x-lg">
-          <nav className="flex items-center space-x-lg mr-lg">
-            {navLinks.map((link) => (
-              <a 
-                key={link.href}
-                href={link.href} 
-                onClick={handleScroll}
-                className="font-inter text-body-lg text-gray-600 hover:text-accent-dark transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+    <>
+      <header className={`w-full px-lg py-md bg-white sticky top-0 z-50 border-b border-gray-200 transition-transform duration-300 ${isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'}`}>
+        <div className="max-w-1200 mx-auto flex items-center justify-between">
+          {/* Logo - Left side */}
+          <div className="flex items-center">
+            <img 
+              src="/images/Black Imperium Logo.png" 
+              alt="Imperium Growth Logo" 
+              className="h-16 md:h-20 cursor-pointer"
+              onClick={() => {
+                window.location.href = '/';
+                setIsOpen(false);
+              }}
+            />
+          </div>
           
-          {/* CTA Button */}
-          <a href="#contact" onClick={handleScroll}>
-            <button className="inline-flex items-center px-md py-xs bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors">
-              <img 
-                src="/images/alex.jpeg" 
-                alt="Alex Kaymakanov" 
-                className="w-6 h-6 rounded-full mr-xs object-cover"
-              />
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-xs animate-pulse"></div>
-              Book a quick call
+          {/* Desktop Navigation - Right side */}
+          <div className="hidden md:flex items-center space-x-lg">
+            <nav className="flex items-center space-x-lg mr-lg">
+              {navLinks.map((link) => (
+                <a 
+                  key={link.href}
+                  href={link.href} 
+                  onClick={handleScroll}
+                  className="font-inter text-body-lg text-gray-600 hover:text-accent-dark transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+            
+            {/* CTA Button */}
+            <button 
+              onClick={handleBookCall}
+              className="inline-flex items-center px-md py-xs bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors"
+            >
+              Book a call
             </button>
-          </a>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="mobile-menu-container md:hidden">
+            <button 
+              className="flex flex-col justify-center items-center w-8 h-8 space-y-1 relative z-50" 
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+              <span className={`w-6 h-0.5 bg-gray-900 transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`w-6 h-0.5 bg-gray-900 transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`w-6 h-0.5 bg-gray-900 transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+            </button>
+          </div>
         </div>
+      </header>
 
-        {/* Mobile menu button */}
-        <button className="md:hidden flex flex-col space-y-1.5" onClick={() => setIsOpen(!isOpen)}>
-          <span className={`w-6 h-0.5 bg-gray-900 transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-          <span className={`w-6 h-0.5 bg-gray-900 transition-opacity duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
-          <span className={`w-6 h-0.5 bg-gray-900 transition-transform duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isVisible && isOpen && (
-        <div className="md:hidden mt-md bg-white">
-          <nav className="flex flex-col items-center space-y-md py-md">
-            {navLinks.map((link) => (
-              <a 
-                key={link.href}
-                href={link.href}
-                onClick={handleScroll}
-                className="font-inter text-body-lg text-gray-800 hover:text-accent-dark transition-colors"
+      {/* Mobile Menu Overlay - Separate from header for better positioning */}
+      {isOpen && (
+        <div className="fixed inset-0 z-40 md:hidden">
+          {/* Full screen white background */}
+          <div className="absolute inset-0 bg-white"></div>
+          
+          {/* Fixed close button at top right */}
+          <div className="absolute top-4 right-4 z-50">
+            <button 
+              className="flex flex-col justify-center items-center w-10 h-10 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors" 
+              onClick={() => setIsOpen(false)}
+              aria-label="Close menu"
+            >
+              <span className="w-6 h-0.5 bg-gray-900 rotate-45 translate-y-0.5"></span>
+              <span className="w-6 h-0.5 bg-gray-900 -rotate-45 -translate-y-0.5"></span>
+            </button>
+          </div>
+          
+          {/* Menu content positioned below header */}
+          <div className="relative pt-20 h-full">
+            <nav className="flex flex-col items-center py-lg space-y-lg">
+              {navLinks.map((link) => (
+                <a 
+                  key={link.href}
+                  href={link.href}
+                  onClick={handleScroll}
+                  className="font-inter text-xl text-gray-800 hover:text-accent-dark transition-colors py-md px-lg rounded-lg hover:bg-gray-50"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <button 
+                onClick={handleBookCall}
+                className="inline-flex items-center mt-lg px-xl py-lg bg-gray-900 text-white text-lg font-medium rounded-lg hover:bg-gray-800 transition-colors"
               >
-                {link.label}
-              </a>
-            ))}
-            <a href="#contact" onClick={handleScroll}>
-              <button className="inline-flex items-center mt-md px-md py-xs bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors">
-                <img 
-                  src="/images/alex.jpeg" 
-                  alt="Alex Kaymakanov" 
-                  className="w-6 h-6 rounded-full mr-xs object-cover"
-                />
-                <div className="w-2 h-2 bg-green-500 rounded-full mr-xs animate-pulse"></div>
-                Book a quick call
+                Book a call
               </button>
-            </a>
-          </nav>
+            </nav>
+          </div>
         </div>
       )}
-    </header>
+    </>
   );
 };
 

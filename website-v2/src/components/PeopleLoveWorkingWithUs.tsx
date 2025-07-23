@@ -2,273 +2,343 @@ import { useState } from 'react';
 
 const PeopleLoveWorkingWithUs = () => {
   const [showMore, setShowMore] = useState(false);
+  const [showAllMobile, setShowAllMobile] = useState(false);
 
   const initialTestimonials = [
     {
       id: 1,
       type: "video",
-      name: "Cory Miller",
-      company: "fit.com",
-      videoThumbnail: "https://i.ibb.co/8DqQcTj/image.png",
-      videoUrl: "" // Can be populated with actual video URL
+      name: "Anthony M",
+      company: "Bond Media",
+      videoThumbnail: "custom-video-1",
+      videoUrl: "",
+      industry: "Digital Marketing",
+      primaryColor: "from-green-600 to-green-800",
+      accentColor: "bg-green-600"
     },
     {
       id: 2,
       type: "text",
-      title: "Outstanding work.",
-      content: "We're impressed of the quality of their AI solutions and quick response times. The team always responded within hours whenever we need changes to be made on the AI models itself.",
-      name: "Chris Current",
-      jobTitle: "CEO of Agent First",
+      title: "Fast response and helpful AI tools.",
+      content: "We built our qualifying agent and they helped us get it working perfectly. The team was quick to respond and gave us real value with AI. Now we're planning more projects together.",
+      name: "Anthony M",
+      jobTitle: "CEO of Bond Media",
       avatar: "https://i.ibb.co/3zdWc7M/image.png"
     },
     {
       id: 3,
       type: "video",
-      name: "Chris Lawrence",
-      company: "Swap.fm",
-      videoThumbnail: "https://i.ibb.co/jGMmCns/image.png",
-      videoUrl: "" // Can be populated with actual video URL
+      name: "Mark Q",
+      company: "Q Solar & Rebel Group",
+      videoThumbnail: "custom-video-2",
+      videoUrl: "",
+      industry: "Solar Energy & Private Equity",
+      primaryColor: "from-green-500 to-green-700",
+      accentColor: "bg-green-500"
     },
     {
       id: 4,
       type: "text",
-      title: "The Imperium Growth team was open minded and resolved every issue quickly.",
-      content: "Our AI implementation received great feedback & the performance metrics have increased. Everything was delivered on time!",
-      name: "Monika Staroga",
-      jobTitle: "Head of Marketing at VIACOM",
+      title: "Great partnership across multiple projects.",
+      content: "We've worked together on several projects - from private equity tools to energy solutions for buildings. Really solid work and quick response times on everything we've done together.",
+      name: "Mark Q",
+      jobTitle: "Director at Q Solar & CEO of Rebel Group",
       avatar: "https://i.ibb.co/nMSwZMb/image.png"
     },
     {
       id: 5,
       type: "text",
-      title: "The team was very creative and provided us with a very high quality outcome of their work.",
-      content: "They responded quickly to our remarks and proved to be focused on details.\n\nWe consider them as professionals.",
-      name: "Tomasz Siciński",
-      jobTitle: "CEO of Proven, Digital Twins",
+      title: "Solid ERP system that works well.",
+      content: "The team built an ERP system for our company that made our operations much smoother. They paid attention to details and knew their stuff throughout the whole project.",
+      name: "Nirav",
+      jobTitle: "Managing Director at Eternal Soft Solutions",
       avatar: "https://i.ibb.co/F8z0zQR/image.png"
     },
     {
       id: 6,
       type: "video",
-      name: "Dorota Pietrzak",
-      company: "Anstoy Online",
-      videoThumbnail: "https://i.ibb.co/P9Nrvj4/image.png",
-      videoUrl: "" // Can be populated with actual video URL
-    },
-    {
-      id: 7,
-      type: "text",
-      title: "The Imperium Growth team was insightful and I had an excellent experience working with them.",
-      content: "The team were able to deliver something fast that also looked good. They're responsive and they performed very well.",
-      name: "Isabella Sobieski",
-      jobTitle: "Head of Marketing at Nickelodeon",
-      avatar: "https://i.ibb.co/yQzC6cZ/image.png"
-    },
-    {
-      id: 8,
-      type: "video",
-      name: "Charlie Sumner",
-      company: "Wholesale Central",
-      videoThumbnail: "https://i.ibb.co/FbfV3r3/image.png",
-      videoUrl: "" // Can be populated with actual video URL
+      name: "Nirav",
+      company: "Eternal Soft Solutions",
+      videoThumbnail: "custom-video-3",
+      videoUrl: "",
+      industry: "Software Solutions",
+      primaryColor: "from-green-700 to-green-900",
+      accentColor: "bg-green-700"
     }
   ];
 
   const additionalTestimonials = [
     {
+      id: 7,
+      type: "text",
+      title: "Good solutions for business needs.",
+      content: "As a product manager, they helped us manage our team well and built a solution that worked for our business needs. Their project management was really good.",
+      name: "Aishwarya S",
+      jobTitle: "Independent Product Manager - Enterprise Funds",
+      avatar: "https://i.ibb.co/3zdWc7M/image.png"
+    },
+    {
+      id: 8,
+      type: "video",
+      name: "Aishwarya S",
+      company: "Enterprise Solutions",
+      videoThumbnail: "custom-video-4",
+      videoUrl: "",
+      industry: "Enterprise Product Management",
+      primaryColor: "from-green-400 to-green-600",
+      accentColor: "bg-green-400"
+    },
+    {
       id: 9,
       type: "video",
-      name: "Sarah Chen",
-      company: "TechFlow Solutions",
-      videoThumbnail: "https://i.ibb.co/8DqQcTj/image.png",
-      videoUrl: ""
+      name: "Prashant S",
+      company: "AI Architecture Firm",
+      videoThumbnail: "custom-video-5",
+      videoUrl: "",
+      industry: "AI Architecture & Development",
+      primaryColor: "from-green-800 to-green-900",
+      accentColor: "bg-green-800"
     },
     {
       id: 10,
       type: "text",
-      title: "Incredible results in record time.",
-      content: "The AI transformation exceeded our expectations. We saw immediate improvements in productivity and our ROI was evident within the first month of implementation.",
-      name: "Michael Rodriguez",
-      jobTitle: "CTO at DataStream Inc",
-      avatar: "https://i.ibb.co/3zdWc7M/image.png"
+      title: "Smart AI system for our market needs.",
+      content: "We used their AI skills to create a negotiation system for one of our biggest markets. The AI setup worked really well for our clients and did better than we expected.",
+      name: "Prashant S",
+      jobTitle: "AI Architecture Specialist",
+      avatar: "https://i.ibb.co/nMSwZMb/image.png"
     },
     {
       id: 11,
       type: "video",
-      name: "Emma Thompson",
-      company: "InnovateCorp",
-      videoThumbnail: "https://i.ibb.co/jGMmCns/image.png",
-      videoUrl: ""
+      name: "Leo M",
+      company: "Apexion Solutions",
+      videoThumbnail: "custom-video-6",
+      videoUrl: "",
+      industry: "Solar Energy Data",
+      primaryColor: "from-green-300 to-green-500",
+      accentColor: "bg-green-300"
     },
     {
       id: 12,
       type: "text",
-      title: "Professional, efficient, and results-driven.",
-      content: "Working with Imperium Growth transformed our approach to customer service. The AI chatbot implementation reduced response times by 80% and improved customer satisfaction significantly.",
-      name: "David Park",
-      jobTitle: "Operations Manager at ServicePro",
-      avatar: "https://i.ibb.co/nMSwZMb/image.png"
+      title: "Great solar energy data solutions.",
+      content: "Working with them on energy needs for office companies has been really good. They helped us get and improve key data for solar projects. The results have been solid and we're happy with their work.",
+      name: "Leo M",
+      jobTitle: "Co-founder of Apexion Solutions",
+      avatar: "https://i.ibb.co/F8z0zQR/image.png"
     }
   ];
 
+  const allTestimonials = [...initialTestimonials, ...additionalTestimonials];
+  const displayedTestimonials = showMore ? allTestimonials : [...initialTestimonials, ...additionalTestimonials.slice(0, 2)];
+  const mobileDisplayedTestimonials = showAllMobile ? initialTestimonials : initialTestimonials.slice(0, 2);
+
   const handleVideoClick = (testimonial: any) => {
     if (testimonial.videoUrl) {
-      // Open video in modal or redirect to video URL
+      // Open video in new tab or modal
       window.open(testimonial.videoUrl, '_blank');
     } else {
-      console.log(`Video for ${testimonial.name} - URL not provided yet`);
+      console.log('Video not available yet for:', testimonial.name);
     }
   };
 
-  const handleShowMore = () => {
-    setShowMore(true);
-  };
-
-  return (
-    <section className="w-full px-lg pt-3xl py-2xl pb-3xl bg-white">
-      <div className="max-w-1200 mx-auto">
-        <div className="text-left mb-xl">
-          <h2 className="font-inter text-4xl lg:text-5xl font-bold text-gray-900 mb-md">
-            People love working with us
-          </h2>
+  const renderCustomVideoVisual = (testimonial: any) => {
+    return (
+      <div className={`relative aspect-[3/4] bg-gradient-to-br ${testimonial.primaryColor} rounded-xl overflow-hidden transform rotate-1 hover:rotate-0 transition-all duration-500 group-hover:scale-[1.02] cursor-pointer`}>
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-6 left-6 w-20 h-20 border-2 border-white rounded-full"></div>
+          <div className="absolute top-12 right-8 w-16 h-16 border border-white rounded-lg transform rotate-45"></div>
+          <div className="absolute bottom-12 left-12 w-12 h-12 border border-white rounded-full"></div>
+          <div className="absolute bottom-6 right-6 w-24 h-24 border border-white rounded-lg transform -rotate-12"></div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
-          {initialTestimonials.map((testimonial) => (
-            <div key={testimonial.id} className="group">
-              {testimonial.type === "video" ? (
-                // Video Testimonial
-                <div 
-                  className="relative aspect-[3/4] rounded-xl overflow-hidden cursor-pointer group-hover:shadow-lg transition-all duration-300"
-                  onClick={() => handleVideoClick(testimonial)}
-                >
-                  <img 
-                    src={testimonial.videoThumbnail} 
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Play button overlay */}
-                  <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center group-hover:bg-opacity-30 transition-all duration-300">
-                    <div className="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center">
-                      <svg className="w-6 h-6 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
-                    </div>
-                  </div>
-                  {/* Name overlay */}
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="font-inter font-bold text-lg">{testimonial.name}</h3>
-                    <p className="text-sm opacity-90">{testimonial.company}</p>
-                  </div>
-                </div>
-              ) : (
-                // Text Testimonial
-                <div className="bg-gray-50 rounded-xl p-lg h-full flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-inter font-semibold text-lg text-gray-900 mb-md leading-tight">
-                      {testimonial.title}
-                    </h3>
-                    <p className="text-gray-600 text-base leading-relaxed mb-lg whitespace-pre-line">
-                      {testimonial.content}
-                    </p>
-                  </div>
-                  
-                  <div className="flex items-center">
-                    <img 
-                      src={testimonial.avatar} 
-                      alt={testimonial.name}
-                      className="w-12 h-12 rounded-full object-cover mr-md"
-                    />
-                    <div>
-                      <h4 className="font-inter font-semibold text-gray-900 text-sm">{testimonial.name}</h4>
-                      <p className="text-gray-600 text-sm">{testimonial.jobTitle}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
+        {/* Video Interface Mockup */}
+        <div className="absolute inset-4 bg-black/90 backdrop-blur-sm rounded-lg shadow-2xl transform -rotate-1">
+          {/* Video Player Header */}
+          <div className="h-10 bg-gray-900 rounded-t-lg flex items-center px-4 border-b border-gray-700">
+            <div className="flex space-x-2">
+              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
             </div>
-          ))}
+            <div className="ml-4 text-xs text-gray-400 font-mono">Video Testimonial</div>
+            <div className="ml-auto">
+              <div className="w-4 h-4 border border-gray-600 rounded-sm"></div>
+            </div>
+          </div>
+          
+          {/* Video Content Area */}
+          <div className="relative h-full p-4 flex flex-col justify-center items-center">
+            {/* Play Button */}
+            <div className="relative mb-6">
+              <div className="w-20 h-20 bg-white/20 rounded-full backdrop-blur-sm border-2 border-white/40 flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
+                <div className="w-0 h-0 border-l-[12px] border-l-white border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
+              </div>
+              {/* Pulse rings */}
+              <div className="absolute inset-0 w-20 h-20 border-2 border-white/30 rounded-full animate-ping"></div>
+              <div className="absolute inset-2 w-16 h-16 border border-white/20 rounded-full animate-ping animation-delay-75"></div>
+            </div>
+            
+            {/* Speaker Info */}
+            <div className="text-center text-white">
+              <h3 className="text-lg font-semibold mb-1">{testimonial.name}</h3>
+              <p className="text-sm opacity-80 mb-2">{testimonial.company}</p>
+              <div className="text-xs opacity-60 px-3 py-1 bg-white/10 rounded-full">
+                {testimonial.industry}
+              </div>
+            </div>
+            
+            {/* Progress Bar */}
+            <div className="absolute bottom-6 left-4 right-4">
+              <div className="h-1 bg-gray-700 rounded-full overflow-hidden">
+                <div className={`h-full ${testimonial.accentColor} rounded-full w-0 group-hover:w-1/3 transition-all duration-1000`}></div>
+              </div>
+              <div className="flex justify-between text-xs text-gray-400 mt-1">
+                <span>0:00</span>
+                <span>2:34</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Floating UI Elements */}
+        <div className="absolute top-4 right-4 w-8 h-8 bg-white/20 rounded-lg backdrop-blur-sm border border-white/30 flex items-center justify-center transform rotate-12">
+          <div className="w-3 h-3 bg-white/60 rounded-full"></div>
+        </div>
+        
+        <div className="absolute bottom-4 left-4 w-6 h-6 bg-white/20 rounded-full backdrop-blur-sm border border-white/30 transform -rotate-12"></div>
+        
+        {/* Video Quality Indicator */}
+        <div className="absolute top-6 left-6 px-2 py-1 bg-black/50 backdrop-blur-sm rounded text-white text-xs font-mono">
+          4K HD
+        </div>
+        
+        {/* Live Indicator */}
+        <div className="absolute top-6 right-6 flex items-center space-x-1 px-2 py-1 bg-red-500/80 backdrop-blur-sm rounded text-white text-xs">
+          <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+          <span>LIVE</span>
+        </div>
+      </div>
+    );
+  };
+
+  const renderTestimonial = (testimonial: any, isMobile = false) => (
+    <div key={testimonial.id} className="group">
+      {testimonial.type === "video" ? (
+        // Video Testimonial with Custom Visual
+        <div 
+          className={`relative cursor-pointer group-hover:shadow-lg transition-all duration-300 ${isMobile ? 'max-w-sm mx-auto' : ''}`}
+          onClick={() => handleVideoClick(testimonial)}
+        >
+          {renderCustomVideoVisual(testimonial)}
+        </div>
+      ) : (
+        // Text Testimonial
+        <div className={`bg-white rounded-xl p-lg shadow-card hover:shadow-xl transition-all duration-300 h-full ${isMobile ? 'max-w-sm mx-auto' : ''}`}>
+          <div className="mb-md">
+            <h3 className={`neuton-regular ${isMobile ? 'text-base' : 'text-lg'} text-gray-900 mb-sm leading-tight`}>
+              "{testimonial.title}"
+            </h3>
+            <p className={`font-inter ${isMobile ? 'text-sm' : 'text-base'} text-gray-600 leading-relaxed`}>
+              {testimonial.content}
+            </p>
+          </div>
+          <div className="flex items-center">
+            <img 
+              src={testimonial.avatar} 
+              alt={testimonial.name}
+              className={`${isMobile ? 'w-10 h-10' : 'w-12 h-12'} rounded-full object-cover mr-sm`}
+            />
+            <div>
+              <div className={`font-inter ${isMobile ? 'text-sm' : 'text-base'} font-medium text-gray-900`}>
+                {testimonial.name}
+              </div>
+              <div className={`font-inter ${isMobile ? 'text-xs' : 'text-sm'} text-gray-500`}>
+                {testimonial.jobTitle}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <section id="people-love" className="w-full px-lg py-2xl bg-gray-50">
+      <div className="max-w-1200 mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-xl">
+          <h2 className="neuton-regular text-4xl lg:text-5xl text-gray-900 mb-md">
+            What Our Clients Say
+          </h2>
+          <p className="font-inter text-lg text-gray-600 max-w-2xl mx-auto">
+            Real feedback from startups, growing companies, and established businesses we've helped.
+          </p>
         </div>
 
-        {/* See More Button - only show if not expanded */}
-        {!showMore && (
-          <div className="text-center mt-xl">
-            <button 
-              onClick={handleShowMore}
-              className="inline-flex items-center px-lg py-md text-accent-dark font-medium hover:text-accent transition-colors"
-            >
-              See More
-              <svg 
-                className="w-4 h-4 ml-2" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
+        {/* Desktop Layout */}
+        <div className="hidden md:block">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg auto-rows-fr mb-xl">
+            {displayedTestimonials.map((testimonial) => renderTestimonial(testimonial))}
+          </div>
+          
+          {/* Show More Button for Desktop */}
+          {!showMore && (
+            <div className="text-center">
+              <button 
+                onClick={() => setShowMore(true)}
+                className="px-xl py-md bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-          </div>
-        )}
+                See More Testimonials
+              </button>
+            </div>
+          )}
+          
+          {/* Show Less Button for Desktop */}
+          {showMore && (
+            <div className="text-center">
+              <button 
+                onClick={() => setShowMore(false)}
+                className="px-xl py-md bg-gray-100 text-gray-900 font-medium rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Show Less
+              </button>
+            </div>
+          )}
+        </div>
 
-        {/* Additional Testimonials */}
-        {showMore && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mt-xl">
-            {additionalTestimonials.map((testimonial) => (
-              <div key={testimonial.id} className="group">
-                {testimonial.type === "video" ? (
-                  // Video Testimonial
-                  <div 
-                    className="relative aspect-[3/4] rounded-xl overflow-hidden cursor-pointer group-hover:shadow-lg transition-all duration-300"
-                    onClick={() => handleVideoClick(testimonial)}
-                  >
-                    <img 
-                      src={testimonial.videoThumbnail} 
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                    />
-                    {/* Play button overlay */}
-                    <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center group-hover:bg-opacity-30 transition-all duration-300">
-                      <div className="w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center">
-                        <svg className="w-6 h-6 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z"/>
-                        </svg>
-                      </div>
-                    </div>
-                    {/* Name overlay */}
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="font-inter font-bold text-lg">{testimonial.name}</h3>
-                      <p className="text-sm opacity-90">{testimonial.company}</p>
-                    </div>
-                  </div>
-                ) : (
-                  // Text Testimonial
-                  <div className="bg-gray-50 rounded-xl p-lg h-full flex flex-col justify-between">
-                    <div>
-                      <h3 className="font-inter font-semibold text-lg text-gray-900 mb-md leading-tight">
-                        {testimonial.title}
-                      </h3>
-                      <p className="text-gray-600 text-base leading-relaxed mb-lg whitespace-pre-line">
-                        {testimonial.content}
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-center">
-                      <img 
-                        src={testimonial.avatar} 
-                        alt={testimonial.name}
-                        className="w-12 h-12 rounded-full object-cover mr-md"
-                      />
-                      <div>
-                        <h4 className="font-inter font-semibold text-gray-900 text-sm">{testimonial.name}</h4>
-                        <p className="text-gray-600 text-sm">{testimonial.jobTitle}</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+        {/* Mobile Layout */}
+        <div className="md:hidden">
+          <div className="grid grid-cols-1 gap-lg mb-xl">
+            {mobileDisplayedTestimonials.map((testimonial) => renderTestimonial(testimonial, true))}
           </div>
-        )}
+          
+          {/* Show More Button for Mobile */}
+          {!showAllMobile && initialTestimonials.length > 2 && (
+            <div className="text-center">
+              <button 
+                onClick={() => setShowAllMobile(true)}
+                className="px-xl py-md bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                See More Testimonials
+              </button>
+            </div>
+          )}
+          
+          {/* Show Less Button for Mobile */}
+          {showAllMobile && (
+            <div className="text-center">
+              <button 
+                onClick={() => setShowAllMobile(false)}
+                className="px-xl py-md bg-gray-100 text-gray-900 font-medium rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Show Less
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

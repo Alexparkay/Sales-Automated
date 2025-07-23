@@ -3,8 +3,8 @@ const NewPricingSection = () => {
     <section className="w-full px-lg py-2xl bg-white">
       <div className="max-w-1200 mx-auto">
         <div className="text-left mb-xl">
-          <h2 className="font-inter text-4xl lg:text-5xl font-bold text-gray-900 mb-md">
-            Book an AI consultation or custom implementation
+          <h2 className="neuton-regular text-4xl lg:text-5xl text-gray-900 mb-md">
+            AI Transformation Services & Custom Implementation
           </h2>
         </div>
         
@@ -19,8 +19,8 @@ const NewPricingSection = () => {
                   <span className="text-white text-sm">🤖</span>
                 </div>
                 <div>
-                  <h3 className="font-inter text-2xl font-bold text-white">Book a consulting call with Alex</h3>
-                  <p className="text-3xl font-bold text-white">£250 <span className="text-sm font-normal text-gray-300">/ hour</span></p>
+                  <h3 className="neuton-regular text-2xl text-white">Book a consulting call with Alex</h3>
+                  <p className="text-3xl font-bold text-white">£150 <span className="text-sm font-normal text-gray-300">/ hour</span></p>
                 </div>
               </div>
             
@@ -44,7 +44,7 @@ const NewPricingSection = () => {
               </div>
               
               <p className="text-accent text-sm font-medium">
-                Note: We provide personalized AI guidance based on our experience with 400+ AI implementations across multiple industries.
+                Note: We provide personalized AI guidance based on our experience with 20+ AI implementations across multiple industries.
               </p>
               
               <div className="flex items-center">
@@ -88,7 +88,7 @@ const NewPricingSection = () => {
                 <span className="text-white text-sm">🚀</span>
               </div>
               <div>
-                <h3 className="font-inter text-2xl font-bold text-gray-900">Book with Alex (Custom)</h3>
+                <h3 className="neuton-regular text-2xl text-gray-900">Book with Alex (Custom)</h3>
                 <p className="text-3xl font-bold text-gray-900">Custom Quote</p>
               </div>
             </div>
@@ -113,7 +113,7 @@ const NewPricingSection = () => {
               </div>
               
               <p className="text-accent text-sm font-medium">
-                Guarantee: We deliver measurable results with our proven AI implementation methodology, backed by 400+ successful transformations.
+                Guarantee: We deliver measurable results with our proven AI implementation methodology, backed by 20+ successful transformations.
               </p>
               
               <div className="flex items-center">
@@ -156,7 +156,7 @@ const NewPricingSection = () => {
             <div className="w-8 h-8 bg-accent rounded mr-md flex items-center justify-center">
               <span className="text-white text-sm">🎁</span>
             </div>
-            <h3 className="font-inter text-2xl font-bold text-gray-900">
+            <h3 className="neuton-regular text-2xl text-gray-900">
               Bonus: AI Success Stories
             </h3>
           </div>

@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://imperiumgrowth.com/sitemap.xml
+
+# AI Transformation focused crawling
+Crawl-delay: 1
+
+# Priority pages for search engines
+# AI Transformation Services
+# Enterprise AI Solutions  
+# AI Strategy Consulting
+# Custom AI Implementation
+
+# Contact information
+# Email: alex@imperiumgrowth.com
+# Website: https://imperiumgrowth.com 

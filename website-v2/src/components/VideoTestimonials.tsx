@@ -27,7 +27,7 @@ const VideoTestimonials = () => {
     <section className="w-full px-lg py-2xl bg-white">
       <div className="max-w-1200 mx-auto">
         <div className="text-left mb-xl">
-          <h2 className="font-inter text-h2 text-gray-900 mb-md">
+          <h2 className="neuton-regular text-h2 text-gray-900 mb-md">
             Meet the Team
           </h2>
            <p className="text-body-lg text-gray-600">

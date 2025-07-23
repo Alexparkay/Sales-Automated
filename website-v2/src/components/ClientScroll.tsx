@@ -1,48 +1,72 @@
 const ClientScroll = () => {
+  // All 14 partner logos in your specified order
   const clients = [
-    { name: "Microsoft", logo: "https://i.ibb.co/bF0DF2S/1.png" },
-    { name: "Google", logo: "https://i.ibb.co/5KhC3Ff/2.png" },
-    { name: "Amazon", logo: "https://i.ibb.co/3s4y4K5/3.png" },
-    { name: "Meta", logo: "https://i.ibb.co/mHq3d2m/4.png" },
-    { name: "Tesla", logo: "https://i.ibb.co/Jm2S60W/5.png" },
-    { name: "Apple", logo: "https://i.ibb.co/gDFRzJ6/6.png" },
-    { name: "Netflix", logo: "https://i.ibb.co/tZ2M9zL/7.png" },
-    { name: "Spotify", logo: "https://i.ibb.co/XyP4V2v/8.png" }
+    { name: "Aldi", logo: "/images/partners/Aldi_logo.png" },
+    { name: "Apexion", logo: "/images/partners/Apexion_logo.png" },
+    { name: "BondMedia", logo: "/images/partners/BondMedia_logo.png" },
+    { name: "Eternal", logo: "/images/partners/Eternal.png" },
+    { name: "HeTone", logo: "/images/partners/HeTone_logo.png" },
+    { name: "ICTC", logo: "/images/partners/ICTC_logo.png" },
+    { name: "Luxwall", logo: "/images/partners/Luxwall_Black_Horizontal_Tag.png" },
+    { name: "Marx", logo: "/images/partners/marx.png" },
+    { name: "Qsolar", logo: "/images/partners/Qsolar_logo.png" },
+    { name: "Bondscale", logo: "/images/partners/bondscale.png" },
+    { name: "SAP", logo: "/images/partners/SAP-Emblem.png" },
+    { name: "SCG", logo: "/images/partners/SCG_logo.png" },
+    { name: "Stefannini", logo: "/images/partners/Stefannini.png" },
+    { name: "Vysiion", logo: "/images/partners/vysiion.png" }
   ];
 
+  console.log(`🔧 DEBUG: Total clients: ${clients.length}`);
+  console.log('🔧 DEBUG: All clients:', clients.map((c, i) => `${i+1}. ${c.name}`).join(', '));
+
+  // Get custom size class for specific logos
+  const getLogoSizeClass = (clientName: string) => {
+    switch (clientName) {
+      case "Apexion":
+        return "logo-xl"; // A little bit larger than large
+      case "Bondscale":
+        return "logo-xl"; // A little bit larger than large
+      case "ICTC":
+        return "logo-small"; // Small but a little larger
+      case "Luxwall":
+        return "logo-small"; // Small but a little larger
+      case "SAP":
+        return "logo-small"; // Stays smaller
+      default:
+        return "logo-large"; // Regular large size
+    }
+  };
+
   return (
-    <section className="w-screen overflow-hidden bg-white py-lg border-t border-b border-gray-100 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-      <div className="flex animate-scroll-fast items-center whitespace-nowrap">
-        {/* First set */}
-        {clients.map((client, index) => (
-          <div key={`first-${index}`} className="flex-shrink-0 mx-2xl">
-            <img 
-              src={client.logo} 
-              alt={client.name} 
-              className="h-8 opacity-40 hover:opacity-70 transition-opacity grayscale hover:grayscale-0" 
-            />
-          </div>
-        ))}
-        {/* Duplicate set for seamless loop */}
-        {clients.map((client, index) => (
-          <div key={`second-${index}`} className="flex-shrink-0 mx-2xl">
-            <img 
-              src={client.logo} 
-              alt={client.name} 
-              className="h-8 opacity-40 hover:opacity-70 transition-opacity grayscale hover:grayscale-0" 
-            />
-          </div>
-        ))}
-        {/* Third set for extra smoothness */}
-        {clients.map((client, index) => (
-          <div key={`third-${index}`} className="flex-shrink-0 mx-2xl">
-            <img 
-              src={client.logo} 
-              alt={client.name} 
-              className="h-8 opacity-40 hover:opacity-70 transition-opacity grayscale hover:grayscale-0" 
-            />
-          </div>
-        ))}
+    <section className="w-screen overflow-hidden bg-white py-md relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+      <div className="scroll-container">
+        <div className="scroll-content">
+          {/* First complete set */}
+          {clients.map((client, index) => (
+            <div key={`first-${index}`} className="logo-wrapper">
+              <img 
+                src={client.logo} 
+                alt={client.name} 
+                className={`logo-base ${getLogoSizeClass(client.name)}`}
+                onLoad={() => console.log(`🟢 LOADED First ${index + 1}/14: ${client.name}`)}
+                onError={() => console.error(`🔴 ERROR First ${client.name}`)}
+              />
+            </div>
+          ))}
+          {/* Second complete set for seamless loop */}
+          {clients.map((client, index) => (
+            <div key={`second-${index}`} className="logo-wrapper">
+              <img 
+                src={client.logo} 
+                alt={client.name} 
+                className={`logo-base ${getLogoSizeClass(client.name)}`}
+                onLoad={() => console.log(`🟢 LOADED Second ${index + 1}/14: ${client.name}`)}
+                onError={() => console.error(`🔴 ERROR Second ${client.name}`)}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

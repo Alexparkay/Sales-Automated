@@ -12,16 +12,40 @@ import ClientScroll from './components/ClientScroll'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import CaseStudyPage from './components/CaseStudyPage'
+import PrivacyPolicy from './components/PrivacyPolicy'
+import TermsOfService from './components/TermsOfService'
+import VideoIntro from './components/VideoIntro'
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
+  const [showVideoIntro, setShowVideoIntro] = useState(false);
+  const [isFirstVisit, setIsFirstVisit] = useState(true);
 
   useEffect(() => {
+    // Check if this is truly the first visit to the website
+    const hasVisitedBefore = localStorage.getItem('imperiumVisited');
+    const path = window.location.pathname;
+    
+    // Only show intro on the very first visit to the website (when on home page and never visited before)
+    if (path === '/' && !hasVisitedBefore) {
+      setShowVideoIntro(true);
+      setIsFirstVisit(true);
+      // Mark that the user has visited the website
+      localStorage.setItem('imperiumVisited', 'true');
+    } else {
+      setShowVideoIntro(false);
+      setIsFirstVisit(false);
+    }
+
     // Handle URL routing
     const handleRouting = () => {
-      const path = window.location.pathname;
-      if (path.startsWith('/case-study/')) {
+      const currentPath = window.location.pathname;
+      if (currentPath.startsWith('/case-study/')) {
         setCurrentView('case-study');
+      } else if (currentPath === '/privacy') {
+        setCurrentView('privacy-policy');
+      } else if (currentPath === '/terms') {
+        setCurrentView('terms-of-service');
       } else {
         setCurrentView('home');
       }
@@ -36,6 +60,11 @@ function App() {
       window.removeEventListener('popstate', handleRouting);
     };
   }, []);
+
+  // Handle video intro completion
+  const handleVideoIntroComplete = () => {
+    setShowVideoIntro(false);
+  };
 
   // Override the default case study click handler
   useEffect(() => {
@@ -56,8 +85,19 @@ function App() {
     return <CaseStudyPage />;
   }
 
+  if (currentView === 'privacy-policy') {
+    return <PrivacyPolicy />;
+  }
+
+  if (currentView === 'terms-of-service') {
+    return <TermsOfService />;
+  }
+
   return (
     <div className="min-h-screen bg-white">
+      {showVideoIntro && (
+        <VideoIntro onComplete={handleVideoIntroComplete} />
+      )}
       <Header />
       <main>
         {/* 1. Hero Section */}
