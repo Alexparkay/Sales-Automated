@@ -12,9 +12,15 @@ const Hero = () => {
           We're your dedicated AI transformation partner, delivering custom AI solutions, consulting, and complete system builds that revolutionize how your business operates and grows.
         </p>
         
-        {/* CTA Button */}
-        <button className="px-2xl py-xl bg-gray-900 text-white font-medium text-lg rounded-lg hover:bg-gray-800 transition-colors shadow-button">
-          Start Your AI Transformation
+        {/* CTA Button with Alex's profile */}
+        <button className="inline-flex items-center px-xl py-md bg-gray-900 text-white font-medium text-base rounded-lg hover:bg-gray-800 transition-colors shadow-button">
+          <img 
+            src="/images/alex.jpeg" 
+            alt="Alex Kaymakanov" 
+            className="w-8 h-8 rounded-full mr-md object-cover"
+          />
+          <div className="w-3 h-3 bg-green-500 rounded-full mr-md animate-pulse"></div>
+          Book a call with Alex
         </button>
       </div>
     </section>

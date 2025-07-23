@@ -10,25 +10,29 @@ const WhyWeMakeADifference = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
           {/* Top Left - Dark card with industry tags */}
-          <div className="bg-gray-900 rounded-xl p-xl text-white relative overflow-hidden h-[28rem]">
-            <div className="flex flex-wrap gap-sm mb-lg">
-              <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">Healthcare</span>
-              <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">Media</span>
-              <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">E-commerce</span>
-              <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">Banking</span>
-              <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">Creator economy</span>
-              <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">Sports & Fitness</span>
+          <div className="bg-gray-900 rounded-xl p-xl text-white relative overflow-hidden h-[28rem] bg-leaves-1 bg-cover bg-center">
+            {/* Semi-transparent overlay to maintain readability */}
+            <div className="absolute inset-0 bg-gray-900/85 rounded-xl"></div>
+            <div className="relative z-10">
+              <div className="flex flex-wrap gap-sm mb-lg">
+                <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">Healthcare</span>
+                <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">Media</span>
+                <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">E-commerce</span>
+                <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">Banking</span>
+                <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">Creator economy</span>
+                <span className="px-md py-xs bg-gray-700 text-white text-sm rounded-full">Sports & Fitness</span>
+              </div>
+              
+              <h3 className="text-2xl font-bold mb-md">
+                25 years of <span className="text-accent">cross-industry</span>
+                <br />
+                experience in AI transformation
+              </h3>
+              
+              <p className="text-gray-300 text-base">
+                We delivered over 400 AI projects for dozens of industries from banking, TV channels all the way to predictive analytics.
+              </p>
             </div>
-            
-            <h3 className="text-2xl font-bold mb-md">
-              25 years of <span className="text-accent">cross-industry</span>
-              <br />
-              experience in AI transformation
-            </h3>
-            
-            <p className="text-gray-300 text-base">
-              We delivered over 400 AI projects for dozens of industries from banking, TV channels all the way to predictive analytics.
-            </p>
           </div>
 
           {/* Top Right - Conversion statistics */}
@@ -99,32 +103,36 @@ const WhyWeMakeADifference = () => {
           </div>
 
           {/* Bottom Right - Person with AI decisions */}
-          <div className="bg-gray-900 rounded-xl p-xl text-white relative overflow-hidden h-[28rem]">
-            <div className="absolute right-4 top-4">
-              <div className="bg-accent text-gray-900 px-md py-xs rounded-full text-xs font-medium mb-xs">
-                Why is it better?
+          <div className="bg-gray-900 rounded-xl p-xl text-white relative overflow-hidden h-[28rem] bg-leaves-2 bg-cover bg-center">
+            {/* Semi-transparent overlay to maintain readability */}
+            <div className="absolute inset-0 bg-gray-900/85 rounded-xl"></div>
+            <div className="relative z-10">
+              <div className="absolute right-4 top-4">
+                <div className="bg-accent text-white px-md py-xs rounded-full text-xs font-medium mb-xs">
+                  Why is it better?
+                </div>
+                <div className="bg-accent text-white px-md py-xs rounded-full text-xs font-medium mb-xs">
+                  Clearer CTA
+                </div>
+                <div className="bg-accent text-white px-md py-xs rounded-full text-xs font-medium">
+                  Simplified messaging
+                </div>
               </div>
-              <div className="bg-accent text-gray-900 px-md py-xs rounded-full text-xs font-medium mb-xs">
-                Clearer CTA
+              
+              <div className="mt-xl">
+                <h3 className="text-xl font-bold mb-md">
+                  AI decisions.
+                  <br />
+                  <span className="text-accent">Explained.</span>
+                </h3>
+                <p className="text-gray-300 text-sm">
+                  All the AI transformation decisions are explained in a comprehensive document when you receive the first strategy draft.
+                </p>
               </div>
-              <div className="bg-accent text-gray-900 px-md py-xs rounded-full text-xs font-medium">
-                Simplified messaging
-              </div>
+              
+              {/* Simplified person silhouette representation */}
+              <div className="absolute bottom-4 right-4 w-16 h-16 bg-gray-700 rounded-full opacity-30"></div>
             </div>
-            
-            <div className="mt-xl">
-              <h3 className="text-xl font-bold mb-md">
-                AI decisions.
-                <br />
-                <span className="text-accent">Explained.</span>
-              </h3>
-              <p className="text-gray-300 text-sm">
-                All the AI transformation decisions are explained in a comprehensive document when you receive the first strategy draft.
-              </p>
-            </div>
-            
-            {/* Simplified person silhouette representation */}
-            <div className="absolute bottom-4 right-4 w-16 h-16 bg-gray-700 rounded-full opacity-30"></div>
           </div>
         </div>
       </div>

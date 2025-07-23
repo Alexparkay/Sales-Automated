@@ -10,6 +10,13 @@ interface CaseStudy {
   results: string[];
   image: string;
   tags: string[];
+  detailedSolution: string;
+  implementationSteps: string[];
+  metrics: {
+    label: string;
+    value: string;
+    description: string;
+  }[];
 }
 
 const CaseStudyPage = () => {
@@ -21,41 +28,200 @@ const CaseStudyPage = () => {
     const pathParts = window.location.pathname.split('/');
     const id = parseInt(pathParts[pathParts.length - 1]);
     
-    // Mock case study data (in a real app, this would come from an API)
+    // Detailed case study data
     const caseStudies: CaseStudy[] = [
       {
         id: 1,
-        title: "Fortune 500 Manufacturing: 40% Cost Reduction Through AI Process Automation",
-        client: "Global Manufacturing Corporation",
-        industry: "Manufacturing",
-        challenge: "Manual quality control processes were causing production delays and inconsistent product quality, resulting in millions in losses annually.",
-        solution: "We implemented computer vision AI systems for real-time quality control, predictive maintenance algorithms, and automated workflow optimization.",
+        title: "Fortune 500 Supermarket Chain: AI Negotiation Management System Reduces Costs by 35%",
+        client: "Major European Supermarket Chain",
+        industry: "Retail & Supply Chain",
+        challenge: "One of Europe's largest supermarket chains was struggling with inefficient negotiation processes with suppliers, leading to significant cost overruns and missed opportunities. Manual negotiation tracking, lack of market demand insights, and poor understanding of supplier dynamics resulted in millions in unnecessary costs annually.",
+        solution: "We developed an AI-powered negotiation management system that analyzes market trends, supplier behavior patterns, and demand forecasting to optimize negotiation strategies and reduce inaccuracies.",
+        detailedSolution: "Our comprehensive solution included: (1) AI-powered market analysis engine that processes real-time commodity prices, seasonal demand patterns, and supplier performance metrics, (2) Predictive negotiation modeling that forecasts optimal negotiation timing and strategies, (3) Automated contract analysis and risk assessment, (4) Real-time dashboards for procurement teams with actionable insights, (5) Integration with existing ERP systems for seamless workflow.",
+        implementationSteps: [
+          "Conducted comprehensive audit of existing negotiation processes and supplier relationships",
+          "Deployed data collection systems across all supplier touchpoints and market data sources",
+          "Built custom AI models trained on 5+ years of historical negotiation and market data",
+          "Implemented real-time monitoring and alert systems for procurement teams",
+          "Trained procurement staff on the new AI-powered negotiation tools and strategies",
+          "Established continuous optimization feedback loops for ongoing model improvement"
+        ],
         results: [
-          "40% reduction in production costs",
-          "60% decrease in quality control time",
-          "95% improvement in defect detection accuracy",
-          "$12M annual savings achieved"
+          "35% reduction in procurement costs within first year",
+          "60% improvement in negotiation accuracy and timing",
+          "45% reduction in contract processing time",
+          "€18M annual savings achieved across all supplier categories",
+          "98% user adoption rate among procurement teams"
+        ],
+        metrics: [
+          { label: "Cost Reduction", value: "35%", description: "Annual procurement cost savings" },
+          { label: "Processing Speed", value: "45%", description: "Faster contract negotiations" },
+          { label: "Annual Savings", value: "€18M", description: "Total cost savings achieved" },
+          { label: "Accuracy Improvement", value: "60%", description: "Better negotiation outcomes" }
         ],
         image: "https://i.ibb.co/6rW8B9x/image.png",
-        tags: ["Process Automation", "Cost Reduction", "Computer Vision"]
+        tags: ["Negotiation Management", "Cost Reduction", "Fortune 500", "Supply Chain"]
       },
       {
         id: 2,
-        title: "FinTech Startup: AI-Powered Customer Acquisition Increased Conversions by 300%",
-        client: "NextGen Financial Services",
-        industry: "Financial Technology",
-        challenge: "Low conversion rates and high customer acquisition costs were limiting growth potential in a competitive market.",
-        solution: "Developed intelligent lead scoring, personalized recommendation engines, and automated nurture campaigns using machine learning.",
+        title: "Commercial Solar Enterprise: AI-Powered Energy Consumption Analysis Increases Conversions 4x",
+        client: "Leading Commercial Solar Solutions Provider",
+        industry: "Renewable Energy & B2B Sales",
+        challenge: "A major commercial solar company was struggling to identify the most valuable pain points for potential clients. Traditional sales approaches weren't uncovering the critical energy consumption inefficiencies that would drive purchasing decisions, resulting in low conversion rates and lengthy sales cycles.",
+        solution: "We created an AI system that analyzes commercial facilities' energy consumption patterns to identify the most valuable pain points that competitors couldn't find, enabling hyper-personalized outreach strategies.",
+        detailedSolution: "Our solution combined: (1) Advanced energy consumption analysis using satellite imagery, utility data, and building characteristics, (2) AI-powered pain point identification that discovers hidden energy inefficiencies, (3) Personalized ROI calculators for each prospect based on their specific energy profile, (4) Automated outreach sequences with custom energy audit reports, (5) Predictive lead scoring based on energy saving potential.",
+        implementationSteps: [
+          "Analyzed 10,000+ commercial facilities to identify energy consumption patterns",
+          "Built proprietary AI models for energy inefficiency detection using multiple data sources",
+          "Developed automated energy audit report generation system",
+          "Created personalized outreach templates based on specific pain points discovered",
+          "Integrated with CRM and sales automation tools for seamless workflow",
+          "Trained sales team on leveraging AI-generated insights for consultative selling"
+        ],
         results: [
-          "300% increase in conversion rates",
-          "50% reduction in customer acquisition cost",
-          "85% improvement in lead quality",
-          "2x faster sales cycle completion"
+          "400% increase in conversion rates from outreach campaigns",
+          "65% reduction in sales cycle length",
+          "85% improvement in lead qualification accuracy",
+          "250% increase in average deal size",
+          "$12M additional revenue in first 18 months"
+        ],
+        metrics: [
+          { label: "Conversion Rate", value: "4x", description: "Increase in sales conversions" },
+          { label: "Sales Cycle", value: "65%", description: "Reduction in time to close" },
+          { label: "Deal Size", value: "250%", description: "Average contract value increase" },
+          { label: "Revenue Impact", value: "$12M", description: "Additional revenue generated" }
         ],
         image: "https://i.ibb.co/X2dGf32/image.png",
-        tags: ["Customer Acquisition", "FinTech", "Machine Learning"]
+        tags: ["Solar Energy", "Lead Generation", "B2B Sales", "Energy Analysis"]
       },
-      // Add more case studies as needed...
+      {
+        id: 3,
+        title: "Healthcare Network: AI Operations Streamlining Reduces Patient Processing Time by 60%",
+        client: "Regional Healthcare Network",
+        industry: "Healthcare & Medical Services",
+        challenge: "A healthcare network was transitioning from government work to private practice while struggling with inefficient internal operations. Manual patient processing, scheduling conflicts, and poor resource allocation were creating bottlenecks and reducing patient satisfaction during their critical transition period.",
+        solution: "We developed a comprehensive AI-powered operations system that streamlined patient care workflows, optimized resource allocation, and automated administrative processes while building a new website to support their private practice transition.",
+        detailedSolution: "Our integrated approach included: (1) AI-powered patient scheduling and resource optimization system, (2) Automated administrative workflow management, (3) Predictive staffing and capacity planning, (4) Modern website with patient portal and online booking capabilities, (5) AI-driven patient triage and care coordination, (6) Performance analytics dashboard for continuous operational improvement.",
+        implementationSteps: [
+          "Conducted comprehensive operational audit of existing healthcare workflows",
+          "Designed and built modern, mobile-responsive website with patient portal integration",
+          "Implemented AI scheduling system with conflict detection and resource optimization",
+          "Deployed automated patient intake and triage processes",
+          "Created staff training programs for new digital workflows and systems",
+          "Established KPI monitoring and continuous improvement processes"
+        ],
+        results: [
+          "60% reduction in patient processing time",
+          "45% improvement in appointment scheduling efficiency",
+          "80% reduction in administrative overhead",
+          "35% increase in patient satisfaction scores",
+          "50% reduction in appointment no-shows through automated reminders"
+        ],
+        metrics: [
+          { label: "Processing Time", value: "60%", description: "Faster patient handling" },
+          { label: "Scheduling Efficiency", value: "45%", description: "Better appointment management" },
+          { label: "Admin Overhead", value: "80%", description: "Reduced manual work" },
+          { label: "Patient Satisfaction", value: "35%", description: "Improved patient experience" }
+        ],
+        image: "https://i.ibb.co/jGMmCns/image.png",
+        tags: ["Healthcare", "Operations", "Private Transition", "Patient Experience"]
+      },
+      {
+        id: 4,
+        title: "Enterprise ERP Solutions: AI-Driven Buying Signals Increase Enterprise Conversion by 250%",
+        client: "U.S.-Based Enterprise ERP Solutions Provider",
+        industry: "Enterprise Software & B2B Technology",
+        challenge: "A leading ERP solutions provider was struggling to identify qualified enterprise prospects and demonstrate clear value propositions. Without detailed buying signals and cost-benefit analysis, their sales team couldn't effectively engage with high-value enterprise clients, resulting in low conversion rates and long sales cycles.",
+        solution: "We built an AI system that identifies detailed buying signals, analyzes tech stacks, and automatically calculates exact cost savings and migration impacts, enabling pre-qualified outreach with compelling value propositions.",
+        detailedSolution: "Our comprehensive solution featured: (1) AI-powered tech stack analysis and compatibility assessment, (2) Automated buying signal detection from multiple data sources, (3) ROI and cost savings calculators specific to each prospect's current setup, (4) Migration impact analysis and timeline predictions, (5) Personalized business case generation for each enterprise prospect, (6) Integration with CRM for seamless sales workflow automation.",
+        implementationSteps: [
+          "Analyzed 50,000+ enterprise prospects to identify optimal buying signal patterns",
+          "Built proprietary tech stack analysis engine using multiple data sources",
+          "Developed automated cost-benefit analysis tools for different ERP scenarios",
+          "Created personalized business case templates based on industry and company size",
+          "Integrated with existing CRM and marketing automation platforms",
+          "Trained sales team on leveraging AI-generated insights for enterprise sales"
+        ],
+        results: [
+          "250% increase in enterprise conversion rates",
+          "70% improvement in reply rates to outreach campaigns",
+          "55% reduction in sales cycle length",
+          "180% increase in average contract value",
+          "$25M additional pipeline generated in first year"
+        ],
+        metrics: [
+          { label: "Conversion Rate", value: "250%", description: "Enterprise sales improvement" },
+          { label: "Reply Rate", value: "70%", description: "Better outreach engagement" },
+          { label: "Sales Cycle", value: "55%", description: "Faster deal closure" },
+          { label: "Pipeline Value", value: "$25M", description: "Additional qualified pipeline" }
+        ],
+        image: "https://i.ibb.co/P9Nrvj4/image.png",
+        tags: ["ERP", "Buying Signals", "Enterprise Sales", "B2B Technology"]
+      },
+      {
+        id: 5,
+        title: "Website Design Agency: AI-Powered Website Generation Reduces Delivery Time by 80%",
+        client: "Premium Website Design Agency",
+        industry: "Digital Agency & Web Development",
+        challenge: "A successful website design agency was struggling with lengthy delivery times for lower-ticket clients while maintaining their high-quality standards. Manual design processes, time-intensive client consultations, and custom development were creating bottlenecks that limited their ability to serve smaller clients profitably.",
+        solution: "We developed an AI-powered website generation system with natural language interface that maintains their quality standards while dramatically reducing delivery times for lower-ticket clients through intelligent automation and inspiration sourcing.",
+        detailedSolution: "Our innovative solution included: (1) AI-powered design generation that maintains agency quality standards, (2) Natural language chat interface for client requirements gathering, (3) Automated inspiration sourcing from top websites and design trends, (4) Intelligent template customization based on industry and client preferences, (5) Streamlined approval and revision workflows, (6) Quality assurance automation to ensure brand consistency.",
+        implementationSteps: [
+          "Analyzed 500+ high-quality websites to train AI design generation models",
+          "Built natural language processing system for client requirement interpretation",
+          "Developed automated inspiration sourcing and design adaptation algorithms",
+          "Created streamlined client onboarding and approval workflows",
+          "Implemented quality assurance checks and brand consistency validation",
+          "Trained team on new AI-assisted design processes and client management"
+        ],
+        results: [
+          "80% reduction in website delivery time",
+          "400% increase in lower-ticket client capacity",
+          "60% improvement in client satisfaction scores",
+          "200% increase in profit margins on smaller projects",
+          "90% reduction in revision cycles through better initial designs"
+        ],
+        metrics: [
+          { label: "Delivery Time", value: "80%", description: "Faster project completion" },
+          { label: "Client Capacity", value: "400%", description: "More clients served" },
+          { label: "Profit Margin", value: "200%", description: "Better project profitability" },
+          { label: "Client Satisfaction", value: "60%", description: "Improved client experience" }
+        ],
+        image: "https://i.ibb.co/yQzC6cZ/image.png",
+        tags: ["Web Design", "AI Generation", "Process Automation", "Digital Agency"]
+      },
+      {
+        id: 6,
+        title: "Private Equity Firm: AI Due Diligence System Accelerates Deal Flow by 300%",
+        client: "Leading Private Equity Investment Firm",
+        industry: "Private Equity & Investment Management",
+        challenge: "A prominent private equity firm was facing significant bottlenecks in their deal sourcing and due diligence processes. Manual screening of potential acquisition targets, lengthy pre-qualification procedures, and inefficient outreach strategies were limiting their ability to identify and close on high-value opportunities in competitive markets.",
+        solution: "We developed a comprehensive AI-powered due diligence and deal sourcing system that automates company screening, pre-qualification workflows, and outreach strategies using vast amounts of publicly available data.",
+        detailedSolution: "Our sophisticated solution integrated: (1) AI-powered data aggregation engine that processes thousands of public data sources including financial filings, news, patents, and industry reports, (2) Automated company screening and scoring system based on investment criteria, (3) Intelligent pre-qualification workflows that assess acquisition readiness and fit, (4) Advanced outreach automation with personalized messaging based on company-specific insights, (5) Real-time market intelligence and competitive analysis, (6) Predictive modeling for deal success probability.",
+        implementationSteps: [
+          "Conducted comprehensive analysis of existing deal sourcing and due diligence workflows",
+          "Built proprietary data aggregation system accessing 500+ public data sources",
+          "Developed AI scoring algorithms trained on historical successful deals and market patterns",
+          "Created automated pre-qualification frameworks tailored to firm's investment thesis",
+          "Implemented intelligent outreach systems with personalized messaging capabilities",
+          "Trained investment team on new AI-assisted deal sourcing and evaluation processes"
+        ],
+        results: [
+          "300% acceleration in deal flow identification and initial screening",
+          "75% reduction in time spent on manual due diligence research",
+          "200% improvement in outreach response rates from target companies",
+          "150% increase in qualified deal opportunities in pipeline",
+          "65% reduction in time from initial contact to letter of intent"
+        ],
+        metrics: [
+          { label: "Deal Flow", value: "300%", description: "Faster deal identification" },
+          { label: "Due Diligence", value: "75%", description: "Less manual research time" },
+          { label: "Response Rate", value: "200%", description: "Better outreach results" },
+          { label: "Pipeline Quality", value: "150%", description: "More qualified opportunities" }
+        ],
+        image: "https://i.ibb.co/8DqQcTj/image.png",
+        tags: ["Private Equity", "Due Diligence", "Deal Flow", "Investment Management"]
+      }
     ];
 
     const foundCaseStudy = caseStudies.find(cs => cs.id === id);
@@ -77,7 +243,10 @@ const CaseStudyPage = () => {
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Case Study Not Found</h1>
           <button 
-            onClick={() => window.history.back()}
+            onClick={() => {
+              window.history.pushState({}, '', '/');
+              window.location.reload();
+            }}
             className="px-lg py-md bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
           >
             Go Back
@@ -92,12 +261,22 @@ const CaseStudyPage = () => {
       {/* Header */}
       <header className="w-full px-lg py-md bg-white border-b border-gray-200">
         <div className="max-w-1200 mx-auto flex items-center justify-between">
-          <img src="/logo.png" alt="Imperium Growth Logo" className="h-8" />
+          <div className="flex items-center">
+            <img 
+              src="/images/logo.png" 
+              alt="Imperium Growth Logo" 
+              className="h-10 mr-md"
+            />
+            <span className="font-inter text-xl font-bold text-gray-900">Imperium Growth</span>
+          </div>
           <button 
-            onClick={() => window.history.back()}
+            onClick={() => {
+              window.history.pushState({}, '', '/');
+              window.location.reload();
+            }}
             className="px-lg py-sm bg-gray-900 text-white font-medium rounded-md hover:bg-gray-800 transition-colors"
           >
-            Back to Projects
+            Back to Case Studies
           </button>
         </div>
       </header>
@@ -136,16 +315,49 @@ const CaseStudyPage = () => {
 
           {/* Content Sections */}
           <div className="space-y-2xl">
+            {/* Challenge */}
             <div>
               <h2 className="font-inter text-2xl font-bold text-gray-900 mb-lg">The Challenge</h2>
               <p className="text-lg text-gray-600 leading-relaxed">{caseStudy.challenge}</p>
             </div>
 
+            {/* Solution Overview */}
             <div>
               <h2 className="font-inter text-2xl font-bold text-gray-900 mb-lg">Our Solution</h2>
-              <p className="text-lg text-gray-600 leading-relaxed">{caseStudy.solution}</p>
+              <p className="text-lg text-gray-600 leading-relaxed mb-lg">{caseStudy.solution}</p>
+              <p className="text-base text-gray-600 leading-relaxed">{caseStudy.detailedSolution}</p>
             </div>
 
+            {/* Implementation Steps */}
+            <div>
+              <h2 className="font-inter text-2xl font-bold text-gray-900 mb-lg">Implementation Process</h2>
+              <div className="space-y-md">
+                {caseStudy.implementationSteps.map((step, index) => (
+                  <div key={index} className="flex items-start">
+                    <div className="w-8 h-8 bg-accent text-gray-900 rounded-full flex items-center justify-center font-bold text-sm mr-md flex-shrink-0 mt-1">
+                      {index + 1}
+                    </div>
+                    <p className="text-gray-600 leading-relaxed">{step}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Key Metrics */}
+            <div>
+              <h2 className="font-inter text-2xl font-bold text-gray-900 mb-lg">Key Metrics</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-lg mb-lg">
+                {caseStudy.metrics.map((metric, index) => (
+                  <div key={index} className="text-center bg-gray-50 rounded-lg p-lg">
+                    <div className="text-3xl font-bold text-accent-dark mb-sm">{metric.value}</div>
+                    <div className="text-sm font-semibold text-gray-900 mb-xs">{metric.label}</div>
+                    <div className="text-xs text-gray-600">{metric.description}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Results Achieved */}
             <div>
               <h2 className="font-inter text-2xl font-bold text-gray-900 mb-lg">Results Achieved</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
@@ -161,6 +373,19 @@ const CaseStudyPage = () => {
             </div>
           </div>
 
+          {/* Back to Case Studies Button */}
+          <div className="mt-2xl text-center">
+            <button 
+              onClick={() => window.location.href = '/'}
+              className="inline-flex items-center px-lg py-md bg-gray-900 text-white hover:bg-gray-800 transition-colors font-medium rounded-lg"
+            >
+              <svg className="w-5 h-5 mr-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Case Studies
+            </button>
+          </div>
+
           {/* CTA Section */}
           <div className="mt-2xl text-center bg-gray-50 rounded-xl p-xl">
             <h2 className="font-inter text-2xl font-bold text-gray-900 mb-md">
@@ -169,7 +394,13 @@ const CaseStudyPage = () => {
             <p className="text-lg text-gray-600 mb-lg">
               Let's discuss how we can deliver similar results for your business.
             </p>
-            <button className="px-xl py-lg bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors">
+            <button className="inline-flex items-center px-xl py-lg bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors">
+              <img 
+                src="/images/alex.jpeg" 
+                alt="Alex Kaymakanov" 
+                className="w-10 h-10 rounded-full mr-md object-cover"
+              />
+              <div className="w-2 h-2 bg-green-500 rounded-full mr-sm animate-pulse"></div>
               Schedule a Consultation
             </button>
           </div>

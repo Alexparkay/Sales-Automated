@@ -2,44 +2,52 @@ const CaseStudiesPreview = () => {
   const caseStudies = [
     {
       id: 1,
-      title: "Fortune 500 Manufacturing: 40% Cost Reduction Through AI Process Automation",
+      title: "Fortune 500 Supermarket Chain: AI Negotiation Management System Reduces Costs by 35%",
       image: "https://i.ibb.co/6rW8B9x/image.png",
-      tags: ["Process Automation", "Cost Reduction"],
+      tags: ["Negotiation Management", "Cost Reduction", "Fortune 500"],
       size: "large" // Takes up 2 columns
     },
     {
       id: 2,
-      title: "FinTech Startup: AI-Powered Customer Acquisition Increased Conversions by 300%",
+      title: "Commercial Solar Enterprise: AI-Powered Energy Consumption Analysis Increases Conversions 4x",
       image: "https://i.ibb.co/X2dGf32/image.png",
-      tags: ["Customer Acquisition", "FinTech"],
+      tags: ["Solar Energy", "Lead Generation", "B2B Sales"],
       size: "medium"
     },
     {
       id: 3,
-      title: "Healthcare Network: Predictive Analytics Reduced Patient Wait Times by 60%",
+      title: "Healthcare Network: AI Operations Streamlining Reduces Patient Processing Time by 60%",
       image: "https://i.ibb.co/jGMmCns/image.png",
-      tags: ["Healthcare", "Predictive Analytics"],
+      tags: ["Healthcare", "Operations", "Private Transition"],
       size: "medium"
     },
     {
       id: 4,
-      title: "E-commerce Giant: AI Recommendation Engine Boosted Revenue by $50M Annually",
+      title: "Enterprise ERP Solutions: AI-Driven Buying Signals Increase Enterprise Conversion by 250%",
       image: "https://i.ibb.co/P9Nrvj4/image.png",
-      tags: ["E-commerce", "Recommendation Engine"],
+      tags: ["ERP", "Buying Signals", "Enterprise Sales"],
       size: "large"
     },
     {
       id: 5,
-      title: "SaaS Platform: Intelligent Automation Cut Support Costs by 70%",
+      title: "Website Design Agency: AI-Powered Website Generation Reduces Delivery Time by 80%",
       image: "https://i.ibb.co/yQzC6cZ/image.png",
-      tags: ["SaaS", "Support Automation"],
+      tags: ["Web Design", "AI Generation", "Process Automation"],
+      size: "medium"
+    },
+    {
+      id: 6,
+      title: "Private Equity Firm: AI Due Diligence System Accelerates Deal Flow by 300%",
+      image: "https://i.ibb.co/8DqQcTj/image.png",
+      tags: ["Private Equity", "Due Diligence", "Deal Flow"],
       size: "medium"
     }
   ];
 
   const handleCaseStudyClick = (id: number) => {
-    // Navigate to individual case study page
-    window.location.href = `/case-study/${id}`;
+    // Navigate to individual case study page using custom event
+    const event = new CustomEvent('navigateToCase', { detail: { id } });
+    window.dispatchEvent(event);
   };
 
   const getGridClasses = (size: string, index: number) => {

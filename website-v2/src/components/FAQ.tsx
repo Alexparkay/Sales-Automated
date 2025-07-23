@@ -61,7 +61,7 @@ const FAQ = () => {
             <div className="bg-gray-50 rounded-xl p-xl">
               <div className="text-center mb-lg">
                 <img 
-                  src="https://i.ibb.co/8DqQcTj/image.png" 
+                  src="/images/alex.jpeg" 
                   alt="Alex Kaymakanov"
                   className="w-24 h-24 rounded-full object-cover mx-auto mb-md"
                 />

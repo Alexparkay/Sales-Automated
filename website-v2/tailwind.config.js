@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'electric-lime': '#D3FF00',
+        'electric-lime': '#079268',
         'cod-gray': '#1E1E1E',
         'black': '#000000',
         'white': '#FFFFFF',
@@ -18,8 +18,8 @@ export default {
           800: '#1F2937', // Primary text
           900: '#111827'  // Dark section backgrounds
         },
-        'accent': '#D3FF00',
-        'accent-dark': '#A8D80D',
+        'accent': '#079268',
+        'accent-dark': '#065d52',
         'dark-bg': '#1E1E1E',
         'dark-text': '#FFFFFF',
         'dark-text-secondary': '#B0B0B0',
@@ -46,7 +46,7 @@ export default {
       },
       boxShadow: {
         'card': '0px 4px 10px rgba(0, 0, 0, 0.05)',
-        'button': '0px 2px 5px rgba(211, 255, 0, 0.4)',
+        'button': '0px 2px 5px rgba(7, 146, 104, 0.4)',
       },
       spacing: {
         '2xs': '4px',
@@ -59,6 +59,13 @@ export default {
       },
       maxWidth: {
         '1200': '1200px',
+      },
+      backgroundImage: {
+        'leaves-1': "url('/images/Growth/pexels-aditya-aiyar-615049-1407305.jpg')",
+        'leaves-2': "url('/images/Growth/pexels-lauripoldre-30894193.jpg')",
+        'leaves-3': "url('/images/Growth/pexels-minan1398-1650627.jpg')",
+        'leaves-4': "url('/images/Growth/pexels-ian-panelo-3571551.jpg')",
+        'gradient-radial': 'radial-gradient(circle, var(--tw-gradient-stops))',
       }
     },
   },

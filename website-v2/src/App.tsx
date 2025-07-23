@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Header from './components/Header'
 import Hero from './components/Hero'
 import CaseStudiesPreview from './components/CaseStudiesPreview'
@@ -10,8 +11,51 @@ import FinalCTA from './components/FinalCTA'
 import ClientScroll from './components/ClientScroll'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
+import CaseStudyPage from './components/CaseStudyPage'
 
 function App() {
+  const [currentView, setCurrentView] = useState('home');
+
+  useEffect(() => {
+    // Handle URL routing
+    const handleRouting = () => {
+      const path = window.location.pathname;
+      if (path.startsWith('/case-study/')) {
+        setCurrentView('case-study');
+      } else {
+        setCurrentView('home');
+      }
+    };
+
+    handleRouting();
+    
+    // Listen for popstate events (back/forward button)
+    window.addEventListener('popstate', handleRouting);
+    
+    return () => {
+      window.removeEventListener('popstate', handleRouting);
+    };
+  }, []);
+
+  // Override the default case study click handler
+  useEffect(() => {
+    const handleCaseStudyNavigation = (event: CustomEvent) => {
+      const id = event.detail.id;
+      window.history.pushState({}, '', `/case-study/${id}`);
+      setCurrentView('case-study');
+    };
+
+    window.addEventListener('navigateToCase', handleCaseStudyNavigation as EventListener);
+    
+    return () => {
+      window.removeEventListener('navigateToCase', handleCaseStudyNavigation as EventListener);
+    };
+  }, []);
+
+  if (currentView === 'case-study') {
+    return <CaseStudyPage />;
+  }
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -19,8 +63,8 @@ function App() {
         {/* 1. Hero Section */}
         <div id="hero"><Hero /></div>
         
-        {/* 2. Client Scroll (brands) */}
-        <div id="clients"><ClientScroll /></div>
+        {/* 2. Client Scroll (brands) - Full Width */}
+        <ClientScroll />
         
         {/* 3. Case Studies */}
         <div id="work"><CaseStudiesPreview /></div>

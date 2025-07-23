@@ -11,24 +11,36 @@ const ClientScroll = () => {
   ];
 
   return (
-    <section className="w-full py-lg bg-white overflow-hidden">
-      <div className="flex animate-scroll-fast space-x-2xl items-center">
+    <section className="w-screen overflow-hidden bg-white py-lg border-t border-b border-gray-100 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+      <div className="flex animate-scroll-fast items-center whitespace-nowrap">
         {/* First set */}
         {clients.map((client, index) => (
-          <div key={`first-${index}`} className="flex-shrink-0">
-            <img src={client.logo} alt={client.name} className="h-12 opacity-60 hover:opacity-100 transition-opacity" />
+          <div key={`first-${index}`} className="flex-shrink-0 mx-2xl">
+            <img 
+              src={client.logo} 
+              alt={client.name} 
+              className="h-8 opacity-40 hover:opacity-70 transition-opacity grayscale hover:grayscale-0" 
+            />
           </div>
         ))}
         {/* Duplicate set for seamless loop */}
         {clients.map((client, index) => (
-          <div key={`second-${index}`} className="flex-shrink-0">
-            <img src={client.logo} alt={client.name} className="h-12 opacity-60 hover:opacity-100 transition-opacity" />
+          <div key={`second-${index}`} className="flex-shrink-0 mx-2xl">
+            <img 
+              src={client.logo} 
+              alt={client.name} 
+              className="h-8 opacity-40 hover:opacity-70 transition-opacity grayscale hover:grayscale-0" 
+            />
           </div>
         ))}
         {/* Third set for extra smoothness */}
         {clients.map((client, index) => (
-          <div key={`third-${index}`} className="flex-shrink-0">
-            <img src={client.logo} alt={client.name} className="h-12 opacity-60 hover:opacity-100 transition-opacity" />
+          <div key={`third-${index}`} className="flex-shrink-0 mx-2xl">
+            <img 
+              src={client.logo} 
+              alt={client.name} 
+              className="h-8 opacity-40 hover:opacity-70 transition-opacity grayscale hover:grayscale-0" 
+            />
           </div>
         ))}
       </div>
