@@ -139,26 +139,26 @@ const CaseStudiesPreview = () => {
         {/* Mobile: Show 2 initially with see more button */}
         <div className="md:hidden">
           <div className="grid grid-cols-1 gap-lg">
-            {displayedCaseStudies.map((study, index) => (
+            {displayedCaseStudies.map((caseStudy) => (
               <div 
-                key={study.id} 
+                key={caseStudy.id} 
                 className="group cursor-pointer"
-                onClick={() => handleCaseStudyClick(study.id)}
+                onClick={() => handleCaseStudyClick(caseStudy.id)}
               >
                 <div className="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-xl transition-all duration-300">
                   <div className="aspect-video overflow-hidden">
                     <img 
-                      src={study.image} 
-                      alt={study.title}
+                      src={caseStudy.image} 
+                      alt={caseStudy.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
                   <div className="p-lg">
                     <h3 className="neuton-regular text-lg text-gray-900 mb-sm group-hover:text-accent-dark transition-colors leading-tight">
-                      {study.title}
+                      {caseStudy.title}
                     </h3>
                     <div className="flex flex-wrap gap-xs">
-                      {study.tags.map((tag, tagIndex) => (
+                      {caseStudy.tags.map((tag, tagIndex) => (
                         <span key={tagIndex} className="px-sm py-xs bg-gray-50 text-gray-600 text-xs rounded-full">
                           {tag}
                         </span>

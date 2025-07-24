@@ -1,25 +1,26 @@
-import { useState, useEffect } from 'react';
-import Header from './components/Header'
-import Hero from './components/Hero'
-import CaseStudiesPreview from './components/CaseStudiesPreview'
-import WhyWeMakeADifference from './components/WhyWeMakeADifference'
-import PeopleLoveWorkingWithUs from './components/PeopleLoveWorkingWithUs'
-import WhyWeDiffer from './components/WhyWeDiffer'
-import NewPricingSection from './components/NewPricingSection'
-import MainCTA from './components/MainCTA'
-import FinalCTA from './components/FinalCTA'
-import ClientScroll from './components/ClientScroll'
-import FAQ from './components/FAQ'
-import Footer from './components/Footer'
-import CaseStudyPage from './components/CaseStudyPage'
-import PrivacyPolicy from './components/PrivacyPolicy'
-import TermsOfService from './components/TermsOfService'
-import VideoIntro from './components/VideoIntro'
+import { useEffect, useState } from 'react';
+import VideoIntro from './components/VideoIntro';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import ClientScroll from './components/ClientScroll';
+import WhyWeMakeADifference from './components/WhyWeMakeADifference';
+import CaseStudiesPreview from './components/CaseStudiesPreview';
+import PeopleLoveWorkingWithUs from './components/PeopleLoveWorkingWithUs';
+import NewPricingSection from './components/NewPricingSection';
+import BonusProductExposure from './components/BonusProductExposure';
+import WhyWeDiffer from './components/WhyWeDiffer';
+import MainCTA from './components/MainCTA';
+import FAQ from './components/FAQ';
+import Footer from './components/Footer';
+import CaseStudyPage from './components/CaseStudyPage';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
+  const [caseStudy, setCaseStudy] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [showVideoIntro, setShowVideoIntro] = useState(false);
-  const [isFirstVisit, setIsFirstVisit] = useState(true);
 
   useEffect(() => {
     // Check if this is truly the first visit to the website
@@ -29,12 +30,10 @@ function App() {
     // Only show intro on the very first visit to the website (when on home page and never visited before)
     if (path === '/' && !hasVisitedBefore) {
       setShowVideoIntro(true);
-      setIsFirstVisit(true);
       // Mark that the user has visited the website
       localStorage.setItem('imperiumVisited', 'true');
     } else {
       setShowVideoIntro(false);
-      setIsFirstVisit(false);
     }
 
     // Handle URL routing
