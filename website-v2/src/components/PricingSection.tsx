@@ -30,7 +30,7 @@ const PricingSection = () => {
             >
               <div className="relative mr-md">
                 <img 
-                  src="/images/alex.jpeg" 
+                  src="/images/Alex.jpeg" 
                   alt="Alex Kaymakanov - AI Transformation Expert" 
                   className="w-6 h-6 rounded-full object-cover"
                 />

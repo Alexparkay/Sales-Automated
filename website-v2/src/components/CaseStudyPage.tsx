@@ -398,9 +398,9 @@ const CaseStudyPage = () => {
               Let's discuss how we can deliver similar results for your business.
             </p>
             <button className="inline-flex items-center px-xl py-lg bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors">
-              <img 
-                src="/images/alex.jpeg" 
-                alt="Alex Kaymakanov" 
+                              <img
+                  src="/images/Alex.jpeg"
+                  alt="Alex Kaymakanov" 
                 className="w-10 h-10 rounded-full mr-md object-cover"
               />
               <div className="w-2 h-2 bg-green-500 rounded-full mr-sm animate-pulse"></div>

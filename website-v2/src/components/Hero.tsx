@@ -22,9 +22,9 @@ const Hero = () => {
           className="inline-flex items-center px-lg md:px-xl py-sm md:py-md bg-black text-white font-medium text-sm md:text-base rounded-lg hover:bg-gray-800 transition-colors shadow-button relative"
         >
           <div className="relative mr-sm md:mr-md">
-            <img 
-              src="/images/alex.jpeg" 
-              alt="Alex Kaymakanov - AI Solutions Expert" 
+                          <img
+                src="/images/Alex.jpeg"
+                alt="Alex Kaymakanov - AI Solutions Expert" 
               className="w-6 h-6 md:w-8 md:h-8 rounded-full object-cover"
             />
             {/* Pulsing circle positioned at top right of profile picture */}

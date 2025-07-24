@@ -28,7 +28,7 @@ const WhyWeDiffer = () => {
               >
                 <div className="relative mr-md">
                   <img 
-                    src="/images/alex.jpeg" 
+                    src="/images/Alex.jpeg" 
                     alt="Alex Kaymakanov - AI Solutions Expert" 
                     className="w-10 h-10 rounded-full object-cover"
                   />

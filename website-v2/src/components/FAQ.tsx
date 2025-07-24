@@ -60,9 +60,9 @@ const FAQ = () => {
           <div className="lg:col-span-1">
             <div className="bg-gray-50 rounded-xl p-xl">
               <div className="text-center mb-lg">
-                <img 
-                  src="/images/alex.jpeg" 
-                  alt="Alex Kaymakanov"
+                              <img
+                src="/images/Alex.jpeg"
+                alt="Alex Kaymakanov"
                   className="w-24 h-24 rounded-full object-cover mx-auto mb-md"
                 />
                 <h3 className="neuton-regular text-xl text-gray-900 mb-xs">

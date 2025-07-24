@@ -146,7 +146,7 @@ const WhyWeMakeADifference = () => {
               {/* Profile representation */}
               <div className="absolute bottom-4 right-4 w-16 h-16 rounded-full overflow-hidden opacity-80 border-2 border-accent">
                 <img 
-                  src="/images/alex.jpeg" 
+                  src="/images/Alex.jpeg" 
                   alt="Alex Kaymakanov - AI Solutions Expert" 
                   className="w-full h-full object-cover"
                 />
