@@ -50,15 +50,15 @@ const PeopleLoveWorkingWithUs = () => {
       type: "text",
       title: "Solid ERP system that works well.",
       content: "The team built an ERP system for our company that made our operations much smoother. They paid attention to details and knew their stuff throughout the whole project.",
-      name: "Nirav",
-      jobTitle: "Managing Director at Eternal Soft Solutions",
+      name: "Nirav S",
+      jobTitle: "Managing Director at Eternal Solutions",
       avatar: "https://i.ibb.co/F8z0zQR/image.png"
     },
     {
       id: 6,
       type: "video",
-      name: "Nirav",
-      company: "Eternal Soft Solutions",
+      name: "Nirav S",
+      company: "Eternal Solutions",
       videoThumbnail: "custom-video-3",
       videoUrl: "",
       industry: "Software Solutions",
@@ -132,7 +132,7 @@ const PeopleLoveWorkingWithUs = () => {
 
   const allTestimonials = [...initialTestimonials, ...additionalTestimonials];
   const displayedTestimonials = showMore ? allTestimonials : [...initialTestimonials, ...additionalTestimonials.slice(0, 2)];
-  const mobileDisplayedTestimonials = showAllMobile ? initialTestimonials : initialTestimonials.slice(0, 2);
+  const mobileDisplayedTestimonials = showAllMobile ? allTestimonials : initialTestimonials.slice(0, 2);
 
   const handleVideoClick = (testimonial: any) => {
     if (testimonial.videoUrl) {
@@ -316,7 +316,7 @@ const PeopleLoveWorkingWithUs = () => {
           </div>
           
           {/* Show More Button for Mobile */}
-          {!showAllMobile && initialTestimonials.length > 2 && (
+          {!showAllMobile && allTestimonials.length > 2 && (
             <div className="text-center">
               <button 
                 onClick={() => setShowAllMobile(true)}

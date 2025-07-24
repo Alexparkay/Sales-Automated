@@ -7,8 +7,8 @@ const Header = () => {
 
   const navLinks = [
     { href: "#work", label: "Projects" },
-    { href: "#people-love", label: "Solutions" },
-    { href: "#clients", label: "Partners" },
+    { href: "#why-difference", label: "Solutions" },
+    { href: "#people-love", label: "Partners" },
     { href: "#new-pricing", label: "Pricing" },
   ];
 
@@ -16,14 +16,41 @@ const Header = () => {
     e.preventDefault();
     const href = e.currentTarget.href;
     const targetId = href.replace(/.*#/, "");
-    const elem = document.getElementById(targetId);
-    elem?.scrollIntoView({
-      behavior: "smooth",
-    });
-    setIsOpen(false); // Close mobile menu after clicking
+    
+    console.log('Navigation clicked:', targetId); // Debug log
+    
+    // Close mobile menu first
+    setIsOpen(false);
+    
+    // Longer delay to ensure menu is fully closed and DOM is ready
+    setTimeout(() => {
+      const elem = document.getElementById(targetId);
+      console.log('Element found:', elem); // Debug log
+      
+      if (elem) {
+        // Get the header height to offset scroll position
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 80;
+        
+        // Calculate scroll position with offset
+        const elementPosition = elem.offsetTop;
+        const offsetPosition = elementPosition - headerHeight - 20; // Extra 20px padding
+        
+        // Scroll to position
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        
+        console.log('Scrolled to:', targetId, 'Position:', offsetPosition); // Debug log
+      } else {
+        console.error('Element not found:', targetId);
+      }
+    }, 300); // Increased delay
   };
 
   const handleBookCall = () => {
+    console.log('Book a call clicked - opening Calendly'); // Debug log
     window.open('https://calendly.com/alex-imperium-growth/30min?back=1&month=2025-07', '_blank');
     setIsOpen(false); // Close mobile menu after clicking
   };

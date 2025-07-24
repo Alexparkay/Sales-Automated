@@ -105,7 +105,8 @@ const Footer = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   window.history.pushState({}, '', '/privacy');
-                  window.location.reload();
+                  // Trigger a popstate event to update the app state
+                  window.dispatchEvent(new PopStateEvent('popstate'));
                 }}
                 className="font-inter text-sm md:text-body-md text-gray-600 hover:text-accent-dark transition-colors"
               >
@@ -116,7 +117,8 @@ const Footer = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   window.history.pushState({}, '', '/terms');
-                  window.location.reload();
+                  // Trigger a popstate event to update the app state
+                  window.dispatchEvent(new PopStateEvent('popstate'));
                 }}
                 className="font-inter text-sm md:text-body-md text-gray-600 hover:text-accent-dark transition-colors"
               >

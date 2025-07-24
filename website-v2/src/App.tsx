@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import VideoIntro from './components/VideoIntro';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -78,15 +79,30 @@ function App() {
   }, []);
 
   if (currentView === 'case-study') {
-    return <CaseStudyPage />;
+    return (
+      <>
+        <CaseStudyPage />
+        <Analytics />
+      </>
+    );
   }
 
   if (currentView === 'privacy-policy') {
-    return <PrivacyPolicy />;
+    return (
+      <>
+        <PrivacyPolicy />
+        <Analytics />
+      </>
+    );
   }
 
   if (currentView === 'terms-of-service') {
-    return <TermsOfService />;
+    return (
+      <>
+        <TermsOfService />
+        <Analytics />
+      </>
+    );
   }
 
   return (
@@ -100,7 +116,7 @@ function App() {
         <div id="hero"><Hero /></div>
         
         {/* 2. Client Scroll (brands) - Full Width */}
-        <ClientScroll />
+        <div id="clients"><ClientScroll /></div>
         
         {/* 3. Case Studies */}
         <div id="work"><CaseStudiesPreview /></div>
@@ -125,6 +141,7 @@ function App() {
         
         <Footer />
       </main>
+      <Analytics />
     </div>
   )
 }

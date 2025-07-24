@@ -37,7 +37,7 @@ const MainCTA = () => {
                   {/* Pulsing circle positioned at top right of profile picture */}
                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                 </div>
-                Start Your AI Project →
+                Start Your AI Project<span className="hidden md:inline"> →</span>
               </button>
             </div>
             

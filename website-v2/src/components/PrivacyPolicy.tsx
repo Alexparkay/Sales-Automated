@@ -4,7 +4,10 @@ const PrivacyPolicy = () => {
       <div className="max-w-4xl mx-auto px-lg py-2xl">
         <div className="mb-xl">
           <button 
-            onClick={() => window.location.href = '/'}
+            onClick={() => {
+              window.history.pushState({}, '', '/');
+              window.dispatchEvent(new PopStateEvent('popstate'));
+            }}
             className="mb-lg px-lg py-md bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
           >
             ← Back to Website
