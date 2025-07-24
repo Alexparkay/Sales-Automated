@@ -78,7 +78,7 @@ const CaseStudiesPreview = () => {
     window.dispatchEvent(event);
   };
 
-  const getGridClasses = (size: string, index: number) => {
+  const getGridClasses = (size: string) => {
     switch (size) {
       case "large":
         return "md:col-span-2 md:row-span-1";
@@ -98,10 +98,10 @@ const CaseStudiesPreview = () => {
         {/* Desktop: Show all case studies */}
         <div className="hidden md:block">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-lg auto-rows-fr">
-            {caseStudies.map((study, index) => (
+            {caseStudies.map((study) => (
               <div 
                 key={study.id} 
-                className={`group cursor-pointer ${getGridClasses(study.size, index)}`}
+                className={`group cursor-pointer ${getGridClasses(study.size)}`}
                 onClick={() => handleCaseStudyClick(study.id)}
               >
                 <div className="bg-white rounded-xl overflow-hidden mb-md shadow-card hover:shadow-xl transition-all duration-300 h-full">

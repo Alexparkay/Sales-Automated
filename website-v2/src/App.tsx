@@ -7,7 +7,6 @@ import WhyWeMakeADifference from './components/WhyWeMakeADifference';
 import CaseStudiesPreview from './components/CaseStudiesPreview';
 import PeopleLoveWorkingWithUs from './components/PeopleLoveWorkingWithUs';
 import NewPricingSection from './components/NewPricingSection';
-import BonusProductExposure from './components/BonusProductExposure';
 import WhyWeDiffer from './components/WhyWeDiffer';
 import MainCTA from './components/MainCTA';
 import FAQ from './components/FAQ';
@@ -18,8 +17,6 @@ import TermsOfService from './components/TermsOfService';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
-  const [caseStudy, setCaseStudy] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [showVideoIntro, setShowVideoIntro] = useState(false);
 
   useEffect(() => {
