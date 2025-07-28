@@ -14,7 +14,8 @@ const PeopleLoveWorkingWithUs = () => {
       name: "Anthony M",
       company: "Bond Media",
       videoThumbnail: "custom-video-1",
-      videoUrl: "/Testemonials/Anthony Testamonial.mp4",
+      youtubeId: "YOUR_ANTHONY_YOUTUBE_ID", // Replace with actual YouTube video ID
+      videoUrl: "/Testemonials/Anthony Testamonial.mp4", // Keep as fallback
       industry: "Digital Marketing",
       primaryColor: "from-green-600 to-green-800",
       accentColor: "bg-green-600"
@@ -34,7 +35,8 @@ const PeopleLoveWorkingWithUs = () => {
       name: "M-A-R-C",
       company: "Q Solar & Rebel Group",
       videoThumbnail: "custom-video-2",
-      videoUrl: "/Testemonials/Marc Testemonial-1.mp4",
+      youtubeId: "YOUR_MARC_YOUTUBE_ID", // Replace with actual YouTube video ID
+      videoUrl: "/Testemonials/Marc Testemonial-1.mp4", // Keep as fallback
       industry: "Solar Energy & Private Equity",
       primaryColor: "from-green-500 to-green-700",
       accentColor: "bg-green-500"
@@ -63,7 +65,8 @@ const PeopleLoveWorkingWithUs = () => {
       name: "Leo M",
       company: "Apexion Solutions",
       videoThumbnail: "custom-video-6",
-      videoUrl: "/Testemonials/Leo Testamonial.mp4",
+      youtubeId: "YOUR_LEO_YOUTUBE_ID", // Replace with actual YouTube video ID
+      videoUrl: "/Testemonials/Leo Testamonial.mp4", // Keep as fallback
       industry: "Solar Energy Data",
       primaryColor: "from-green-300 to-green-500",
       accentColor: "bg-green-300"
@@ -223,49 +226,83 @@ const PeopleLoveWorkingWithUs = () => {
   // Completely separate Anthony video implementation
   const renderAnthonyVideo = (testimonial: any) => {
     const showVideo = videoPausedTimes[testimonial.id] !== undefined;
+    const hasYouTube = testimonial.youtubeId && testimonial.youtubeId !== "YOUR_ANTHONY_YOUTUBE_ID";
     
     return (
       <div className="relative min-h-[400px] bg-black rounded-xl overflow-hidden cursor-pointer group flex items-center justify-center">
-        {/* Single video element for Anthony */}
-        <video
-          ref={(el) => { 
-            videoRefs.current[testimonial.id] = el;
-          }}
-          className={`w-full h-full object-cover object-center scale-110 ${showVideo ? 'block' : 'hidden'}`}
-          style={{ objectPosition: 'center', minHeight: '400px' }}
-          controls={true}
-          preload="auto"
-          playsInline
-          muted={false}
-          onPlay={() => {
-            pauseAllOtherVideos(testimonial.id);
-            setPlayingVideos(prev => ({...prev, [testimonial.id]: true}));
-          }}
-          onPause={() => {
-            setPlayingVideos(prev => ({...prev, [testimonial.id]: false}));
-          }}
-          onEnded={() => {
-            setPlayingVideos(prev => ({...prev, [testimonial.id]: false}));
-          }}
-        >
-          <source src={testimonial.videoUrl} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-
-        {/* Show thumbnail when video hasn't been started */}
-        {!showVideo && (
+        {hasYouTube ? (
+          // YouTube embed version
           <>
-            <img 
-              src="/Testemonials/Anthony Thumnail.jpeg"
-              alt="Anthony M testimonial thumbnail"
-              className="w-full h-full object-cover object-center"
-              style={{ minHeight: '400px' }}
-            />
-            
-            {/* Play button overlay */}
-            <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
-              <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
-            </div>
+            {showVideo ? (
+              <iframe
+                className="w-full h-full object-cover object-center scale-110"
+                style={{ objectPosition: 'center', minHeight: '400px' }}
+                src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=1&mute=0&controls=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1`}
+                title={`${testimonial.name} testimonial`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <>
+                <img 
+                  src="/Testemonials/Anthony Thumnail.jpeg"
+                  alt="Anthony M testimonial thumbnail"
+                  className="w-full h-full object-cover object-center"
+                  style={{ minHeight: '400px' }}
+                />
+                
+                {/* Play button overlay */}
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
+                  <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
+                </div>
+              </>
+            )}
+          </>
+        ) : (
+          // Original video element fallback
+          <>
+            <video
+              ref={(el) => { 
+                videoRefs.current[testimonial.id] = el;
+              }}
+              className={`w-full h-full object-cover object-center scale-110 ${showVideo ? 'block' : 'hidden'}`}
+              style={{ objectPosition: 'center', minHeight: '400px' }}
+              controls={true}
+              preload="auto"
+              playsInline
+              muted={false}
+              onPlay={() => {
+                pauseAllOtherVideos(testimonial.id);
+                setPlayingVideos(prev => ({...prev, [testimonial.id]: true}));
+              }}
+              onPause={() => {
+                setPlayingVideos(prev => ({...prev, [testimonial.id]: false}));
+              }}
+              onEnded={() => {
+                setPlayingVideos(prev => ({...prev, [testimonial.id]: false}));
+              }}
+            >
+              <source src={testimonial.videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            {/* Show thumbnail when video hasn't been started */}
+            {!showVideo && (
+              <>
+                <img 
+                  src="/Testemonials/Anthony Thumnail.jpeg"
+                  alt="Anthony M testimonial thumbnail"
+                  className="w-full h-full object-cover object-center"
+                  style={{ minHeight: '400px' }}
+                />
+                
+                {/* Play button overlay */}
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
+                  <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
+                </div>
+              </>
+            )}
           </>
         )}
       </div>
@@ -307,54 +344,82 @@ const PeopleLoveWorkingWithUs = () => {
         return name === "Leo M" ? "mt-1" : "";
       };
 
+      const hasYouTube = testimonial.youtubeId && !testimonial.youtubeId.includes("YOUR_");
+
       return (
         <div className="relative min-h-[400px] bg-black rounded-xl overflow-hidden cursor-pointer group flex items-center justify-center">
-          {/* Original complex video element for Leo/Marc only */}
-          <video
-            ref={(el) => { 
-              videoRefs.current[testimonial.id] = el;
-              // Simple restoration without complex logic
-              if (el && videoPausedTimes[testimonial.id] !== undefined && videoPausedTimes[testimonial.id] > 0) {
-                el.currentTime = videoPausedTimes[testimonial.id];
-              }
-            }}
-            className={`w-full h-full object-cover object-center ${getVideoScale(testimonial.name)} ${getVideoPosition(testimonial.name)} ${hasBeenStarted ? 'block' : 'hidden'}`}
-            style={{ objectPosition: 'center', minHeight: '400px' }}
-            controls={isPlaying}
-            preload="metadata"
-            playsInline
-            muted={false}
-            onPlay={() => handleVideoPlay(testimonial)}
-            onPause={() => handleVideoPause(testimonial)}
-            onEnded={() => handleVideoEnded(testimonial)}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <source src={testimonial.videoUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-
-          {/* Show thumbnail only when never started */}
-          {!hasBeenStarted && thumbnailPath && (
+          {hasYouTube ? (
+            // YouTube embed version
             <>
-              <img 
-                src={thumbnailPath}
-                alt={`${testimonial.name} testimonial thumbnail`}
-                className="w-full h-full object-cover object-center"
-                style={{ minHeight: '400px' }}
-              />
-              
-              {/* Simple triangle play button overlay */}
-              <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
-                <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
-              </div>
+              {hasBeenStarted ? (
+                <iframe
+                  className={`w-full h-full object-cover object-center ${getVideoScale(testimonial.name)} ${getVideoPosition(testimonial.name)}`}
+                  style={{ objectPosition: 'center', minHeight: '400px' }}
+                  src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=1&mute=0&controls=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1`}
+                  title={`${testimonial.name} testimonial`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <>
+                  <img 
+                    src={thumbnailPath || "/Testemonials/Anthony Thumnail.jpeg"}
+                    alt={`${testimonial.name} testimonial thumbnail`}
+                    className="w-full h-full object-cover object-center"
+                    style={{ minHeight: '400px' }}
+                  />
+                  
+                  {/* Play button overlay */}
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
+                    <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
+                  </div>
+                </>
+              )}
             </>
-          )}
+          ) : (
+            // Original complex video element for Leo/Marc only (fallback)
+            <>
+              <video
+                ref={(el) => { 
+                  videoRefs.current[testimonial.id] = el;
+                  // Simple restoration without complex logic
+                  if (el && videoPausedTimes[testimonial.id] !== undefined && videoPausedTimes[testimonial.id] > 0) {
+                    el.currentTime = videoPausedTimes[testimonial.id];
+                  }
+                }}
+                className={`w-full h-full object-cover object-center ${getVideoScale(testimonial.name)} ${getVideoPosition(testimonial.name)} ${hasBeenStarted ? 'block' : 'hidden'}`}
+                style={{ objectPosition: 'center', minHeight: '400px' }}
+                controls={isPlaying}
+                preload="metadata"
+                playsInline
+                muted={false}
+                onPlay={() => handleVideoPlay(testimonial)}
+                onPause={() => handleVideoPause(testimonial)}
+                onEnded={() => handleVideoEnded(testimonial)}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <source src={testimonial.videoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
 
-          {/* Show play button overlay when paused (video freeze frame visible underneath) */}
-          {hasBeenStarted && !isPlaying && (
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-all duration-300">
-              <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
-            </div>
+              {/* Show thumbnail only when never started */}
+              {!hasBeenStarted && thumbnailPath && (
+                <>
+                  <img 
+                    src={thumbnailPath}
+                    alt={`${testimonial.name} testimonial thumbnail`}
+                    className="w-full h-full object-cover object-center"
+                    style={{ minHeight: '400px' }}
+                  />
+                  
+                  {/* Play button overlay */}
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
+                    <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
+                  </div>
+                </>
+              )}
+            </>
           )}
         </div>
       );
