@@ -27,8 +27,8 @@ function App() {
     
     // Show intro every time someone visits the homepage
     if (path === '/') {
-      console.log('🎬 Homepage detected - showing Imperium transition video');
-      setShowVideoIntro(true);
+      console.log('🎬 Homepage detected - skipping video intro for deployment');
+      // setShowVideoIntro(true); // Temporarily disabled for Git LFS deployment issue
     } else {
       console.log('🎬 Not homepage - skipping video intro');
       setShowVideoIntro(false);
