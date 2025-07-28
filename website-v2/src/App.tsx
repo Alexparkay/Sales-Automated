@@ -21,20 +21,16 @@ function App() {
   const [showVideoIntro, setShowVideoIntro] = useState(false);
 
   useEffect(() => {
-    // Check if this is truly the first visit to the website
-    const hasVisitedBefore = localStorage.getItem('imperiumVisited');
     const path = window.location.pathname;
     
-    console.log('App useEffect - hasVisitedBefore:', hasVisitedBefore, 'path:', path); // Debug log
+    console.log('🎬 VideoIntro Debug - path:', path);
     
-    // Only show intro on the very first visit to the website (when on home page and never visited before)
-    if (path === '/' && !hasVisitedBefore) {
-      console.log('Setting showVideoIntro to true - first visit detected'); // Debug log
+    // Show intro every time someone visits the homepage
+    if (path === '/') {
+      console.log('🎬 Homepage detected - showing Imperium transition video');
       setShowVideoIntro(true);
-      // Mark that the user has visited the website
-      localStorage.setItem('imperiumVisited', 'true');
     } else {
-      console.log('Not showing video intro - hasVisitedBefore:', hasVisitedBefore, 'path:', path); // Debug log
+      console.log('🎬 Not homepage - skipping video intro');
       setShowVideoIntro(false);
     }
 
@@ -64,17 +60,9 @@ function App() {
 
   // Handle video intro completion
   const handleVideoIntroComplete = () => {
-    console.log('Video intro completed'); // Debug log
+    console.log('🎬 Imperium transition video completed - showing main website');
     setShowVideoIntro(false);
   };
-
-  // Temporary helper for testing - remove in production
-  useEffect(() => {
-    console.log('showVideoIntro state:', showVideoIntro); // Debug log
-    
-    // Uncomment the line below to reset localStorage for testing
-    // localStorage.removeItem('imperiumVisited');
-  }, [showVideoIntro]);
 
   // Override the default case study click handler
   useEffect(() => {

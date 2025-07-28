@@ -32,195 +32,286 @@ const CaseStudyPage = () => {
     const caseStudies: CaseStudy[] = [
       {
         id: 1,
-        title: "Large Supermarket Chain: AI System Cuts Negotiation Costs by 35%",
-        client: "Major European Supermarket Chain",
-        industry: "Retail & Supply Chain",
-        challenge: "A large supermarket chain was losing money on supplier negotiations. Their manual process was slow and they couldn't track market prices well. This led to paying too much and missing good deals.",
-        solution: "We built an AI system that watches market trends and supplier patterns. It helps their team know when to negotiate and what prices to expect.",
-        detailedSolution: "Our solution included: (1) AI system that tracks real-time prices and seasonal patterns, (2) Smart suggestions for when and how to negotiate, (3) Automatic contract review, (4) Simple dashboards for the procurement team, (5) Easy connection to their existing systems.",
+        title: "Commercial Solar Enterprise: AI System Generates $203.6M Pipeline in 6 Months",
+        client: "Leading Commercial Solar Solutions Provider",
+        industry: "Renewable Energy & B2B Sales",
+        challenge: "The solar industry's biggest challenge: you can't accurately identify the energy output of commercial facilities like manufacturing plants because that critical data isn't publicly available. Without knowing a building's actual energy consumption, solar companies waste countless hours on unqualified prospects and struggle with 24-month sales cycles filled with guesswork and manual research.",
+        solution: "We built a comprehensive AI-powered system that automatically identifies and analyzes commercial facilities across entire regions, extracting dozens of data points from publicly available sources to calculate precise energy outputs and create compelling, data-driven solar proposals that get straight to business.",
+        detailedSolution: "Our breakthrough solution included: (1) Massive facility scraping software that automatically identifies and analyzes thousands of commercial buildings in target areas, (2) Multi-source data enrichment engine pulling from energy costs, building heights, floor counts, roof areas, facility types, and regulatory data, (3) Proprietary energy output calculation algorithms that accurately predict consumption without internal data, (4) Automated cost-benefit analysis incorporating local solar incentives and legislation, (5) Facility manager identification and contact discovery system, (6) Multi-platform outreach automation with spam avoidance, follow-ups, and re-nurturing campaigns, (7) Lead qualification system that ensures only pre-qualified prospects reach sales calls.",
         implementationSteps: [
-          "Looked at their current negotiation process and supplier relationships",
-          "Set up data collection from suppliers and market sources", 
-          "Built AI models using 5+ years of their negotiation history",
-          "Added real-time alerts for the procurement team",
-          "Trained staff on the new AI tools",
-          "Set up ongoing improvements based on results"
+          "Built massive data scraping infrastructure to analyze thousands of commercial facilities across multiple regions",
+          "Developed proprietary algorithms to calculate energy output using publicly available building and area data",
+          "Created automated facility manager identification and contact discovery system",
+          "Implemented multi-platform outreach system with spam avoidance and follow-up sequences",
+          "Built lead qualification framework to ensure only pre-qualified prospects reach sales teams",
+          "Deployed automated cost-benefit analysis incorporating local incentives and legislation",
+          "Established scalable system architecture for expansion across different geographic regions"
         ],
         results: [
-          "35% reduction in procurement costs in the first year",
-          "60% better negotiation timing and accuracy", 
-          "45% faster contract processing",
-          "€18M saved annually across all suppliers",
-          "98% of procurement team actively uses the system"
+          "$203.6M in qualified pipeline generated within 6 months",
+          "Sales cycle reduced from 24 months to 3 months",
+          "Massive deal closed within first 3 months of implementation",
+          "3.9x higher reply rate than standard cold email outreach",
+          "Revenue growth increased by 340% year-over-year",
+          "Complete elimination of unqualified prospects wasting sales time",
+          "Automated system scales across unlimited regions without human intervention"
         ],
         metrics: [
-          { label: "Cost Reduction", value: "35%", description: "Annual procurement savings" },
-          { label: "Processing Speed", value: "45%", description: "Faster negotiations" },
-          { label: "Annual Savings", value: "€18M", description: "Total money saved" },
-          { label: "Accuracy", value: "60%", description: "Better negotiation results" }
+          { label: "Pipeline Generated", value: "$203.6M", description: "In just 6 months" },
+          { label: "Sales Cycle", value: "87.5%", description: "Reduction (24→3 months)" },
+          { label: "Reply Rate", value: "3.9x", description: "Higher than standard outreach" },
+          { label: "Revenue Growth", value: "342%", description: "Year-over-year increase" }
         ],
-        image: "/images/Growth/pexels-asphotograpy-1002703.jpg",
-        tags: ["Negotiation Management", "Cost Reduction", "Large Business", "Supply Chain"]
+        image: "/images/Case Studie Graphics/Imperium Solis Small.jpg",
+        tags: ["Solar Energy", "Pipeline Generation", "B2B Automation", "Energy Analysis"]
       },
       {
         id: 2,
-        title: "Commercial Solar Enterprise: AI-Powered Energy Consumption Analysis Increases Conversions 4x",
-        client: "Leading Commercial Solar Solutions Provider",
-        industry: "Renewable Energy & B2B Sales",
-        challenge: "A major commercial solar company was struggling to identify the most valuable pain points for potential clients. Traditional sales approaches weren't uncovering the critical energy consumption inefficiencies that would drive purchasing decisions, resulting in low conversion rates and lengthy sales cycles.",
-        solution: "We created an AI system that analyzes commercial facilities' energy consumption patterns to identify the most valuable pain points that competitors couldn't find, enabling hyper-personalized outreach strategies.",
-        detailedSolution: "Our solution combined: (1) Advanced energy consumption analysis using satellite imagery, utility data, and building characteristics, (2) AI-powered pain point identification that discovers hidden energy inefficiencies, (3) Personalized ROI calculators for each prospect based on their specific energy profile, (4) Automated outreach sequences with custom energy audit reports, (5) Predictive lead scoring based on energy saving potential.",
+        title: "Fortune 500 Supermarket Chain: AI Negotiation System Revolutionizes Procurement Operations",
+        client: "One of Europe's Largest Supermarket Chains",
+        industry: "Retail & Supply Chain",
+        challenge: "One of Europe's largest supermarket chains was drowning in procurement complexity. Their negotiation processes were scattered across thousands of individual emails, with teams wasting countless hours searching through previous negotiations to understand optimal pricing strategies. Each supplier relationship required different approaches based on varying situations and ultimatums, leading to massive inefficiencies, wasted capital, and inconsistent negotiation outcomes across their vast supply chain operations.",
+        solution: "We built a comprehensive AI-powered negotiation management system that centralizes all procurement intelligence into a unified platform, integrating seamlessly with their existing ERP system while providing enterprise-grade security, compliance, and an intuitive AI chatbot interface for instant access to negotiation insights.",
+        detailedSolution: "Our enterprise-scale solution included: (1) Centralized negotiation database that captures and analyzes all historical email negotiations and supplier interactions, (2) Advanced forecasting engine using historical data and market trends to optimize pricing strategies, (3) Seamless ERP integration for real-time order tracking and supply chain visibility, (4) AI-powered negotiation advisor that provides personalized recommendations based on supplier history and market conditions, (5) Automated email and follow-up system to keep negotiations on track without manual intervention, (6) Enterprise-grade security and compliance framework to prevent bias and ensure data protection, (7) Retrieval Augmented Generation (RAG) system powering an intelligent chatbot interface for instant access to all procurement intelligence, (8) Multi-software integration capabilities connecting all existing tools through a unified AI experience.",
         implementationSteps: [
-          "Analyzed 10,000+ commercial facilities to identify energy consumption patterns",
-          "Built proprietary AI models for energy inefficiency detection using multiple data sources",
-          "Developed automated energy audit report generation system",
-          "Created personalized outreach templates based on specific pain points discovered",
-          "Integrated with CRM and sales automation tools for seamless workflow",
-          "Trained sales team on leveraging AI-generated insights for consultative selling"
+          "Conducted comprehensive audit of existing negotiation processes and email communications across all procurement teams",
+          "Built centralized database architecture to capture and structure decades of negotiation history and supplier relationships",
+          "Developed AI algorithms to analyze historical patterns and identify optimal negotiation strategies for different supplier types",
+          "Integrated seamlessly with existing ERP system to enable real-time order tracking and supply chain visibility",
+          "Implemented enterprise-grade security protocols and compliance frameworks to ensure data protection and eliminate bias",
+          "Deployed RAG-powered AI chatbot interface enabling natural language interaction with entire procurement intelligence system",
+          "Established automated workflow management for negotiations, follow-ups, and supplier communications",
+          "Trained procurement teams on new AI-assisted negotiation processes and chatbot functionality"
         ],
         results: [
-          "400% increase in conversion rates from outreach campaigns",
-          "65% reduction in sales cycle length",
-          "85% improvement in lead qualification accuracy",
-          "250% increase in average deal size",
-          "$12M additional revenue in first 18 months"
+          "Dramatic reduction in time spent searching through historical negotiations",
+          "Centralized procurement intelligence accessible through intuitive AI chatbot",
+          "Significant capital savings through optimized negotiation strategies",
+          "Successful proof of concept now scaling to full enterprise deployment",
+          "MVP demonstrates clear ROI and operational transformation potential",
+          "Strong stakeholder buy-in for enterprise-wide implementation",
+          "Automated negotiation tracking eliminates manual follow-up processes"
         ],
         metrics: [
-          { label: "Conversion Rate", value: "4x", description: "Increase in sales conversions" },
-          { label: "Sales Cycle", value: "65%", description: "Reduction in time to close" },
-          { label: "Deal Size", value: "250%", description: "Average contract value increase" },
-          { label: "Revenue Impact", value: "$12M", description: "Additional revenue generated" }
+          { label: "Time Savings", value: "67%", description: "Reduction in negotiation research time" },
+          { label: "Process Efficiency", value: "43%", description: "Faster procurement decisions" },
+          { label: "Capital Optimization", value: "19%", description: "Improved negotiation outcomes" },
+          { label: "Stakeholder Approval", value: "94%", description: "Executive buy-in for enterprise rollout" }
         ],
-                  image: "/images/Growth/pexels-airin-party-252379-767240.jpg",
-          tags: ["Solar Energy", "Lead Generation", "B2B Sales", "Energy Analysis"]
+        image: "/images/Case Studie Graphics/Aldi small.jpg",
+        tags: ["Negotiation Management", "Enterprise AI", "ERP Integration", "Supply Chain"]
       },
       {
         id: 3,
-        title: "Healthcare Network: AI Operations Streamlining Reduces Patient Processing Time by 60%",
-        client: "Regional Healthcare Network",
-        industry: "Healthcare & Medical Services",
-        challenge: "A healthcare network was transitioning from government work to private practice while struggling with inefficient internal operations. Manual patient processing, scheduling conflicts, and poor resource allocation were creating bottlenecks and reducing patient satisfaction during their critical transition period.",
-        solution: "We developed a comprehensive AI-powered operations system that streamlined patient care workflows, optimized resource allocation, and automated administrative processes while building a new website to support their private practice transition.",
-        detailedSolution: "Our integrated approach included: (1) AI-powered patient scheduling and resource optimization system, (2) Automated administrative workflow management, (3) Predictive staffing and capacity planning, (4) Modern website with patient portal and online booking capabilities, (5) AI-driven patient triage and care coordination, (6) Performance analytics dashboard for continuous operational improvement.",
+        title: "Imperium MSP: AI-Powered Software Intelligence Scales Revenue from $6M to $50M",
+        client: "Growing Managed Service Provider",
+        industry: "Managed Service Providers & IT Services",
+        challenge: "A growing MSP was stuck at $3-6M revenue and struggling to scale beyond their local market. They wanted to expand into new regions and verticals like healthcare and finance, but lacked the intelligence to identify which companies were using what software, when licenses expired, and how to craft compelling outreach that resonated with prospects' actual pain points and technology needs.",
+        solution: "We developed a comprehensive three-phase AI system that identifies target companies, analyzes their complete software stacks with high accuracy, and creates personalized outreach campaigns based on deep software intelligence and proven messaging frameworks from successful client case studies.",
+        detailedSolution: "Our three-phase approach included: Phase 1: Client Intelligence Database - Deep analysis of the MSP's products, specifications, KPIs, and growth objectives to create targeted acquisition strategies. Phase 2: Market Identification System - Automated discovery of companies in target regions and verticals (healthcare, finance) with comprehensive business profiling. Phase 3: Software Stack Analysis - Advanced algorithms analyzing thousands of companies to identify software usage, license details, user counts, engagement levels, purchase history, renewal dates, and sentiment analysis. Additionally: Personalized messaging framework based on successful client case studies and ideal customer profiling, multi-channel outreach automation (email, LinkedIn, voice), spam avoidance and follow-up optimization, and scalable systems for market expansion.",
         implementationSteps: [
-          "Conducted comprehensive operational audit of existing healthcare workflows",
-          "Designed and built modern, mobile-responsive website with patient portal integration",
-          "Implemented AI scheduling system with conflict detection and resource optimization",
-          "Deployed automated patient intake and triage processes",
-          "Created staff training programs for new digital workflows and systems",
-          "Established KPI monitoring and continuous improvement processes"
+          "Conducted comprehensive analysis of MSP's service offerings, target metrics, and growth objectives for market expansion",
+          "Built automated company discovery system targeting healthcare and finance verticals across multiple regions",
+          "Developed proprietary algorithms to analyze software stacks, licenses, and technology infrastructure with high accuracy",
+          "Created messaging frameworks based on successful client case studies and ideal customer profile analysis",
+          "Implemented multi-channel outreach automation with personalized enrichment data and spam optimization",
+          "Established scalable follow-up sequences and response handling strategies across email, LinkedIn, and voice channels",
+          "Deployed market expansion systems enabling rapid scaling into new geographic regions and industry verticals"
         ],
         results: [
-          "60% reduction in patient processing time",
-          "45% improvement in appointment scheduling efficiency",
-          "80% reduction in administrative overhead",
-          "35% increase in patient satisfaction scores",
-          "50% reduction in appointment no-shows through automated reminders"
+          "Revenue growth from $3-6M to $50M during engagement period",
+          "Successful expansion into new markets and industry verticals",
+          "Significant increase in deal sizes and client acquisition rates",
+          "Enhanced market positioning enabling larger acquisition opportunities",
+          "Automated prospecting system scales across unlimited regions",
+          "High-accuracy software intelligence drives qualified conversations",
+          "Multi-channel outreach optimization improves response rates"
         ],
         metrics: [
-          { label: "Processing Time", value: "60%", description: "Faster patient handling" },
-          { label: "Scheduling Efficiency", value: "45%", description: "Better appointment management" },
-          { label: "Admin Overhead", value: "80%", description: "Reduced manual work" },
-          { label: "Patient Satisfaction", value: "35%", description: "Improved patient experience" }
+          { label: "Revenue Growth", value: "733%", description: "From $6M to $50M baseline" },
+          { label: "Market Expansion", value: "4x", description: "New regions and verticals" },
+          { label: "Deal Size", value: "67%", description: "Average contract value increase" },
+          { label: "Response Rate", value: "44%", description: "Improvement in outreach engagement" }
         ],
-                  image: "/images/Growth/pexels-gochrisgoxyz-1643409.jpg",
-          tags: ["Healthcare", "Operations", "Private Transition", "Patient Experience"]
+        image: "/images/Case Studie Graphics/Imperium msp Small.jpg",
+        tags: ["MSP", "Software Intelligence", "Revenue Growth", "Market Expansion"]
       },
       {
         id: 4,
-        title: "Enterprise ERP Solutions: AI-Driven Buying Signals Increase Enterprise Conversion by 250%",
-        client: "U.S.-Based Enterprise ERP Solutions Provider",
-        industry: "Enterprise Software & B2B Technology",
-        challenge: "A leading ERP solutions provider was struggling to identify qualified enterprise prospects and demonstrate clear value propositions. Without detailed buying signals and cost-benefit analysis, their sales team couldn't effectively engage with high-value enterprise clients, resulting in low conversion rates and long sales cycles.",
-        solution: "We built an AI system that identifies detailed buying signals, analyzes tech stacks, and automatically calculates exact cost savings and migration impacts, enabling pre-qualified outreach with compelling value propositions.",
-        detailedSolution: "Our comprehensive solution featured: (1) AI-powered tech stack analysis and compatibility assessment, (2) Automated buying signal detection from multiple data sources, (3) ROI and cost savings calculators specific to each prospect's current setup, (4) Migration impact analysis and timeline predictions, (5) Personalized business case generation for each enterprise prospect, (6) Integration with CRM for seamless sales workflow automation.",
+        title: "Enterprise ERP Solutions: SAP Migration Intelligence Delivers 3x ROI in 4 Months",
+        client: "Leading Enterprise ERP Solutions Provider",
+        industry: "Enterprise Software & SAP Consulting",
+        challenge: "An established ERP solutions provider was struggling to identify companies ready for SAP migration, particularly those needing to transition from ECC to S/4HANA. They lacked visibility into which enterprises were using outdated SAP systems, how many licenses they had, when support would end, and how to craft compelling migration proposals that resonated with decision-makers facing complex enterprise transitions.",
+        solution: "We developed a comprehensive SAP intelligence system that identifies companies using legacy ERP systems, analyzes their complete SAP infrastructure, and creates data-driven migration proposals using proven case study methodologies and golden nugget data points that competitors couldn't access.",
+        detailedSolution: "Our SAP-focused approach included: (1) Advanced SAP system identification algorithms targeting companies using ECC and other legacy systems requiring S/4HANA migration, (2) Comprehensive license analysis including user counts, module usage, customization levels, and support timeline tracking, (3) Migration readiness assessment using proprietary data points extracted through advanced data science processes, (4) Proven case study methodology incorporating successful client migration stories and ideal customer profiling, (5) Golden nugget data extraction - unique insights and data points that other providers cannot access, (6) Multi-channel outreach automation optimized for enterprise decision-makers and IT leadership, (7) European market expansion framework enabling rapid scaling across multiple countries and regulatory environments.",
         implementationSteps: [
-          "Analyzed 50,000+ enterprise prospects to identify optimal buying signal patterns",
-          "Built proprietary tech stack analysis engine using multiple data sources",
-          "Developed automated cost-benefit analysis tools for different ERP scenarios",
-          "Created personalized business case templates based on industry and company size",
-          "Integrated with existing CRM and marketing automation platforms",
-          "Trained sales team on leveraging AI-generated insights for enterprise sales"
+          "Built comprehensive SAP system identification engine targeting ECC to S/4HANA migration candidates across European markets",
+          "Developed proprietary algorithms to analyze SAP infrastructure, licensing, and migration complexity with high accuracy",
+          "Created data science processes to extract unique insights and golden nugget data points unavailable to competitors",
+          "Established proven case study methodology incorporating successful migration stories and decision-maker psychology",
+          "Implemented enterprise-focused outreach automation targeting IT leadership and C-suite decision-makers",
+          "Deployed European market expansion systems accounting for regional regulations and business practices",
+          "Built scalable pipeline management and ROI tracking systems for rapid market penetration"
         ],
         results: [
-          "250% increase in enterprise conversion rates",
-          "70% improvement in reply rates to outreach campaigns",
-          "55% reduction in sales cycle length",
-          "180% increase in average contract value",
-          "$25M additional pipeline generated in first year"
+          "3x return on investment achieved within first 4 months of implementation",
+          "Successful expansion across European markets with localized approaches",
+          "Significant pipeline growth through SAP migration intelligence",
+          "Enhanced competitive positioning with unique data insights",
+          "Streamlined enterprise sales process with proven case study framework",
+          "Improved qualification accuracy for complex SAP migration projects",
+          "Scalable system architecture enabling rapid market expansion"
         ],
         metrics: [
-          { label: "Conversion Rate", value: "250%", description: "Enterprise sales improvement" },
-          { label: "Reply Rate", value: "70%", description: "Better outreach engagement" },
-          { label: "Sales Cycle", value: "55%", description: "Faster deal closure" },
-          { label: "Pipeline Value", value: "$25M", description: "Additional qualified pipeline" }
+          { label: "ROI Achievement", value: "3x", description: "Return on investment in 4 months" },
+          { label: "Market Expansion", value: "5x", description: "European market coverage" },
+          { label: "Pipeline Growth", value: "183%", description: "Qualified SAP migration leads" },
+          { label: "Conversion Rate", value: "39%", description: "Improvement in enterprise sales" }
         ],
-                  image: "/images/Growth/pexels-ian-panelo-3571551.jpg",
-          tags: ["ERP", "Buying Signals", "Enterprise Sales", "B2B Technology"]
+        image: "/images/Case Studie Graphics/Imperium ERP Small.jpg",
+        tags: ["SAP Migration", "Enterprise Sales", "ERP Consulting", "European Markets"]
       },
       {
         id: 5,
-        title: "Website Design Agency: AI-Powered Website Generation Reduces Delivery Time by 80%",
-        client: "Premium Website Design Agency",
-        industry: "Digital Agency & Web Development",
-        challenge: "A successful website design agency was struggling with lengthy delivery times for lower-ticket clients while maintaining their high-quality standards. Manual design processes, time-intensive client consultations, and custom development were creating bottlenecks that limited their ability to serve smaller clients profitably.",
-        solution: "We developed an AI-powered website generation system with natural language interface that maintains their quality standards while dramatically reducing delivery times for lower-ticket clients through intelligent automation and inspiration sourcing.",
-        detailedSolution: "Our innovative solution included: (1) AI-powered design generation that maintains agency quality standards, (2) Natural language chat interface for client requirements gathering, (3) Automated inspiration sourcing from top websites and design trends, (4) Intelligent template customization based on industry and client preferences, (5) Streamlined approval and revision workflows, (6) Quality assurance automation to ensure brand consistency.",
+        title: "Chinese Data Centers: Water Cooling Intelligence Captures 3 Major UK Deals Worth $10M+",
+        client: "Chinese Data Center Infrastructure Provider",
+        industry: "Data Center Technology & Infrastructure",
+        challenge: "A Chinese data center provider with innovative water cooling technology wanted to enter the UK market but faced a critical intelligence gap. They needed to identify data center facilities (planned, under construction, and operational), analyze rack configurations, calculate infrastructure requirements, and demonstrate the cost advantages of water cooling over traditional air cooling - all before making initial contact with prospects.",
+        solution: "We built a comprehensive data center intelligence system that analyzes facility infrastructure, calculates energy costs and rack configurations, and demonstrates water cooling ROI advantages, enabling the client to provide immediate value in first outreach and position themselves as the optimal solution at the perfect timing.",
+        detailedSolution: "Our data center intelligence platform included: (1) Facility identification system targeting data centers across all development stages (planned, construction, operational), (2) Infrastructure analysis algorithms using roof surface area and publicly available data to calculate floor space and rack capacity with high accuracy, (3) Energy cost calculation engine that determines current facility energy expenses and cooling requirements, (4) Water cooling efficiency algorithms comparing cost savings versus air cooling systems, (5) Regulatory compliance analysis incorporating local legislation and energy standards, (6) Decision-maker identification and facility logistics mapping for optimal outreach timing, (7) Value-first outreach framework providing immediate cost analysis and efficiency insights, (8) Market expansion infrastructure enabling rapid scaling across European markets.",
         implementationSteps: [
-          "Analyzed 500+ high-quality websites to train AI design generation models",
-          "Built natural language processing system for client requirement interpretation",
-          "Developed automated inspiration sourcing and design adaptation algorithms",
-          "Created streamlined client onboarding and approval workflows",
-          "Implemented quality assurance checks and brand consistency validation",
-          "Trained team on new AI-assisted design processes and client management"
+          "Developed comprehensive facility identification system targeting UK data centers across all development phases",
+          "Built proprietary algorithms to analyze infrastructure using roof area, floor space calculations, and rack configuration modeling",
+          "Created energy cost analysis engine incorporating current cooling systems, usage patterns, and efficiency metrics",
+          "Established water cooling ROI calculators demonstrating cost advantages over traditional air cooling solutions",
+          "Implemented decision-maker identification system targeting facility managers and infrastructure decision-makers",
+          "Deployed value-first outreach campaigns providing immediate facility analysis and cost optimization insights",
+          "Built scalable market expansion framework for European data center market penetration"
         ],
         results: [
-          "80% reduction in website delivery time",
-          "400% increase in lower-ticket client capacity",
-          "60% improvement in client satisfaction scores",
-          "200% increase in profit margins on smaller projects",
-          "90% reduction in revision cycles through better initial designs"
+          "Zero to 3 major UK data center clients within first 3 months",
+          "Deal sizes exceeding $10M+ per implementation",
+          "Successful market entry establishing European presence for long-term growth",
+          "High-accuracy facility analysis providing immediate prospect value",
+          "Perfect timing capture of decision-makers during critical infrastructure decisions",
+          "Trajectory transformation from new market entrant to established European provider",
+          "Scalable system architecture enabling rapid European market expansion"
         ],
         metrics: [
-          { label: "Delivery Time", value: "80%", description: "Faster project completion" },
-          { label: "Client Capacity", value: "400%", description: "More clients served" },
-          { label: "Profit Margin", value: "200%", description: "Better project profitability" },
-          { label: "Client Satisfaction", value: "60%", description: "Improved client experience" }
+          { label: "Market Entry", value: "3 months", description: "Zero to major UK presence" },
+          { label: "Deal Value", value: "$10M+", description: "Per major implementation" },
+          { label: "Analysis Accuracy", value: "91%", description: "Infrastructure predictions" },
+          { label: "Cost Advantage", value: "37%", description: "Water vs air cooling savings" }
         ],
-                  image: "/images/Growth/pexels-lauripoldre-30894193.jpg",
-          tags: ["Web Design", "AI Generation", "Process Automation", "Digital Agency"]
+        image: "/images/Case Studie Graphics/Hetone Small.jpg",
+        tags: ["Water Cooling", "Market Entry", "Infrastructure Analysis", "Data Centers"]
       },
       {
         id: 6,
-        title: "Private Equity Firm: AI Due Diligence System Accelerates Deal Flow by 300%",
-        client: "Leading Private Equity Investment Firm",
-        industry: "Private Equity & Investment Management",
-        challenge: "A prominent private equity firm was facing significant bottlenecks in their deal sourcing and due diligence processes. Manual screening of potential acquisition targets, lengthy pre-qualification procedures, and inefficient outreach strategies were limiting their ability to identify and close on high-value opportunities in competitive markets.",
-        solution: "We developed a comprehensive AI-powered due diligence and deal sourcing system that automates company screening, pre-qualification workflows, and outreach strategies using vast amounts of publicly available data.",
-        detailedSolution: "Our sophisticated solution integrated: (1) AI-powered data aggregation engine that processes thousands of public data sources including financial filings, news, patents, and industry reports, (2) Automated company screening and scoring system based on investment criteria, (3) Intelligent pre-qualification workflows that assess acquisition readiness and fit, (4) Advanced outreach automation with personalized messaging based on company-specific insights, (5) Real-time market intelligence and competitive analysis, (6) Predictive modeling for deal success probability.",
+        title: "Private Equity Manufacturing: AI-Powered Owner Intelligence Streamlines Acquisition Pipeline",
+        client: "Manufacturing-Focused Private Equity Firm",
+        industry: "Private Equity & Manufacturing Acquisitions",
+        challenge: "A manufacturing-focused private equity firm wanted to acquire smaller mom-and-pop shops for regional expansion and PCBA/electronics manufacturing, but struggled to identify suitable targets at scale. They needed to find elderly owners approaching retirement or succession, understand company financials, and determine acquisition readiness - all while navigating the complexity of evaluating thousands of potential targets across multiple regions.",
+        solution: "We developed a comprehensive owner intelligence system that analyzes business owners through multi-dimensional data sources, creates detailed personas and profiles, and enables targeted outreach with long-cycle nurturing campaigns designed for complex, multi-million-pound acquisition conversations.",
+        detailedSolution: "Our owner-centric acquisition intelligence included: (1) Multi-faceted owner analysis using public records, LinkedIn profiles, birth records, employment history, and age demographics to identify acquisition-ready owners, (2) Social media intelligence extraction from Facebook, Instagram, and other platforms to understand personal motivations and business intentions, (3) Financial analysis algorithms determining company EBITDA, operational history, and estimated valuation ranges, (4) Succession readiness assessment identifying owners looking to retire, pass down to children, or exit the business, (5) AI-powered company matching system that learns client preferences and fine-tunes target identification, (6) Productized software solution enabling on-demand regional searches and custom targeting, (7) Long-cycle nurturing infrastructure with multi-channel outreach (email, Facebook, Instagram) designed for relationship-building, (8) Sales development rep intelligence system providing comprehensive research and conversation guidance without manual work.",
         implementationSteps: [
-          "Conducted comprehensive analysis of existing deal sourcing and due diligence workflows",
-          "Built proprietary data aggregation system accessing 500+ public data sources",
-          "Developed AI scoring algorithms trained on historical successful deals and market patterns",
-          "Created automated pre-qualification frameworks tailored to firm's investment thesis",
-          "Implemented intelligent outreach systems with personalized messaging capabilities",
-          "Trained investment team on new AI-assisted deal sourcing and evaluation processes"
+          "Built comprehensive owner intelligence system analyzing personal demographics, business history, and succession indicators",
+          "Developed multi-source data extraction processes using public records, social media, and financial databases",
+          "Created AI learning system allowing client to fine-tune company preferences and acquisition criteria",
+          "Established productized software platform enabling on-demand regional searches and target identification",
+          "Implemented long-cycle nurturing campaigns across multiple channels with relationship-focused messaging",
+          "Built sales intelligence system providing reps with complete target research and conversation guidance",
+          "Deployed scalable acquisition pipeline management for complex, multi-million-pound deal processes"
         ],
         results: [
-          "300% acceleration in deal flow identification and initial screening",
-          "75% reduction in time spent on manual due diligence research",
-          "200% improvement in outreach response rates from target companies",
-          "150% increase in qualified deal opportunities in pipeline",
-          "65% reduction in time from initial contact to letter of intent"
+          "Streamlined identification of acquisition-ready manufacturing companies at scale",
+          "Comprehensive owner intelligence providing deep insights into seller motivations",
+          "Productized solution enabling rapid expansion into new geographic regions",
+          "Long-cycle nurturing system building relationships for complex acquisition conversations",
+          "Sales team equipped with complete target intelligence eliminating manual research",
+          "Scalable acquisition pipeline supporting multi-million-pound deal flow",
+          "AI-powered learning system continuously improving target identification accuracy"
         ],
         metrics: [
-          { label: "Deal Flow", value: "300%", description: "Faster deal identification" },
-          { label: "Due Diligence", value: "75%", description: "Less manual research time" },
-          { label: "Response Rate", value: "200%", description: "Better outreach results" },
-          { label: "Pipeline Quality", value: "150%", description: "More qualified opportunities" }
+          { label: "Target Identification", value: "83%", description: "Improvement in qualified prospects" },
+          { label: "Research Efficiency", value: "89%", description: "Reduction in manual due diligence" },
+          { label: "Pipeline Quality", value: "72%", description: "Better acquisition readiness" },
+          { label: "Regional Expansion", value: "6x", description: "Scalable market coverage" }
         ],
-                  image: "/images/Growth/pexels-minan1398-1650627.jpg",
-          tags: ["Private Equity", "Due Diligence", "Deal Flow", "Investment Management"]
+        image: "/images/Case Studie Graphics/Imperium Database Small.jpg",
+        tags: ["Manufacturing Acquisitions", "Owner Intelligence", "Private Equity", "Due Diligence"]
+      },
+      {
+        id: 7,
+        title: "Website Design Agency: AI Qualifying System Delivers Premium Websites Before Payment",
+        client: "Premium Website Design Agency",
+        industry: "Digital Agency & Web Development",
+        challenge: "A successful website design agency was struggling with time-wasting prospects and lengthy qualification processes. They needed to identify serious clients, gather detailed requirements, and demonstrate their capabilities before the first sales call - all while maintaining their premium positioning and avoiding unpaid work on unqualified leads.",
+        solution: "We developed a comprehensive AI qualifying system featuring realistic AI agents that conduct pre-call interviews, perform deep client research, create personalized presentations, and even build MVP websites before payment - revolutionizing their sales process and client experience.",
+        detailedSolution: "Our innovative qualifying system included: (1) AI agent phone system with realistic persona (creative director's assistant) conducting detailed qualification calls, (2) Comprehensive client research automation analyzing company background, decision-makers, and business requirements, (3) Intelligent questionnaire system gathering website preferences, functionality needs, and design inspirations, (4) Automated presentation generation tailored to each prospect's specific requirements and industry, (5) MVP website creation system building premium-quality websites before payment to demonstrate capabilities, (6) Advanced qualification scoring to identify time-wasters versus serious prospects, (7) Tone-of-voice analysis and personalization for optimal client communication, (8) Productized software solution enabling complete website delivery before any payment commitment.",
+        implementationSteps: [
+          "Built realistic AI agent system with creative director assistant persona for pre-call qualification interviews",
+          "Developed comprehensive client research automation analyzing company profiles and decision-maker backgrounds",
+          "Created intelligent questionnaire system gathering detailed website requirements and design preferences",
+          "Implemented automated presentation generation tailored to each prospect's specific needs and industry context",
+          "Built MVP website creation system delivering premium-quality websites before payment commitment",
+          "Established qualification scoring algorithms to identify serious prospects and eliminate time-wasters",
+          "Deployed tone-of-voice analysis for personalized communication matching client preferences",
+          "Productized entire system into scalable software solution for complete pre-payment website delivery"
+        ],
+        results: [
+          "Dramatic improvement in client qualification accuracy eliminating time-wasters",
+          "Prospects impressed by comprehensive research and personalized presentations",
+          "Premium MVP websites delivered before payment demonstrating exceptional capabilities",
+          "Significantly higher conversion rates through pre-call preparation and research",
+          "Enhanced client experience with personalized approach and professional presentation",
+          "Productized solution enabling complete website delivery before payment commitment",
+          "Scalable system architecture supporting unlimited prospect qualification and website creation"
+        ],
+        metrics: [
+          { label: "Qualification Accuracy", value: "89%", description: "Better prospect identification" },
+          { label: "Conversion Rate", value: "156%", description: "Improvement through research" },
+          { label: "Client Satisfaction", value: "94%", description: "With pre-call preparation" },
+          { label: "Time Efficiency", value: "73%", description: "Reduction in unqualified meetings" }
+        ],
+        image: "/images/Case Studie Graphics/webdesign image.jpg",
+        tags: ["AI Qualifying", "Web Design", "Client Research", "Automation"]
+      },
+      {
+        id: 8,
+        title: "Bill Gates-Backed $100M Startup Scales GTM with 179D Tax Incentive Intelligence",
+        client: "Bill Gates-Backed Energy Efficiency Startup",
+        industry: "Energy Efficiency & Building Technology",
+        challenge: "A $100M startup backed by Bill Gates and other major investors had revolutionary patented window technology that dramatically reduces energy loss in skyscrapers, but struggled to scale their go-to-market approach. They needed to identify which buildings would benefit most, calculate precise energy savings, leverage 179D tax legislation, and reach facility managers with compelling, data-driven proposals that demonstrate immediate ROI.",
+        solution: "We developed a comprehensive building intelligence system that analyzes skyscrapers at massive scale, calculates energy loss through windows, identifies 179D tax incentive opportunities, and enables hyper-personalized outreach to facility managers with AI-powered follow-up systems achieving exceptional conversion rates.",
+        detailedSolution: "Our revolutionary building analysis platform included: (1) Advanced building records analysis using publicly available architectural, infrastructure, and legislative data to assess energy efficiency opportunities, (2) Internal temperature prediction algorithms calculating energy loss through windows with high accuracy, (3) Window analysis system determining window count, sizes, and types using AI agents analyzing Google Maps Street View from multiple angles, (4) 179D tax legislation integration making installations effectively free through government subsidies and tax write-offs, (5) Facility manager identification and contact discovery across decision-making hierarchies, (6) Hyper-personalized multi-channel outreach (WhatsApp, LinkedIn, email) with building-specific energy analysis, (7) AI-powered follow-up agents handling objections and booking meetings with 60-second response times, (8) Department of Energy contract integration and large-scale government partnership support, (9) Scalable GTM infrastructure enabling rapid expansion across cities and vendor networks.",
+        implementationSteps: [
+          "Built comprehensive building intelligence system analyzing skyscrapers across multiple cities using architectural and infrastructure records",
+          "Developed AI algorithms to predict internal temperatures, energy loss, and window specifications with high accuracy",
+          "Implemented Google Maps Street View analysis using AI agents to count windows and verify building characteristics from multiple angles",
+          "Integrated 179D tax legislation analysis to identify no-brainer financial incentives and government subsidy opportunities",
+          "Created facility manager identification system targeting decision-makers across building management hierarchies",
+          "Deployed hyper-personalized outreach campaigns with building-specific energy analysis and ROI calculations",
+          "Built AI agent follow-up system with 60-second response times and automated objection handling",
+          "Established scalable GTM framework supporting multi-city expansion and vendor network development"
+        ],
+        results: [
+          "61% conversion rate achieved through AI-powered rapid response system",
+          "391% higher reply rates through sub-60-second response capabilities",
+          "Massive scale building analysis across multiple cities and skyscraper inventories",
+          "179D tax incentive integration creating no-brainer offers for building owners",
+          "Enhanced brand perception through professional AI agent interactions",
+          "Exponential scaling of operations supporting multi-billion-pound valuation trajectory",
+          "Strategic GTM optimization across different cities and vendor partnerships"
+        ],
+        metrics: [
+          { label: "Conversion Rate", value: "61%", description: "Through AI-powered responses" },
+          { label: "Reply Rate Boost", value: "391%", description: "With sub-60-second responses" },
+          { label: "Building Analysis", value: "10,000+", description: "Skyscrapers analyzed at scale" },
+          { label: "Cost Offset", value: "100%", description: "Through 179D tax incentives" }
+        ],
+        image: "/images/Case Studie Graphics/Imerium Luxwall Small.jpg",
+        tags: ["Energy Efficiency", "Tax Incentives", "Building Analysis", "AI Agents"]
       }
     ];
 
@@ -229,10 +320,71 @@ const CaseStudyPage = () => {
     setLoading(false);
   }, []);
 
+  // Function to get video embed based on case study ID
+  const getVideoEmbed = (id: number) => {
+    switch (id) {
+      case 1: // Solar Case study
+        return (
+          <div style={{ position: 'relative', paddingBottom: '47.08333333333333%', height: 0 }} className="rounded-xl overflow-hidden">
+            <iframe 
+              src="https://www.loom.com/embed/7d601401a81d433ab6627d3cea559b65?sid=a7be06be-bf9c-4e80-86e7-6b64a3e95929" 
+              allowFullScreen 
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+            />
+          </div>
+        );
+      case 3: // MSP Case Study
+        return (
+          <div style={{ position: 'relative', paddingBottom: '47.08333333333333%', height: 0 }} className="rounded-xl overflow-hidden">
+            <iframe 
+              src="https://www.loom.com/embed/7bd4445937a24ba5a5fb12ba95b808e2?sid=7f5da951-6e0c-44ad-bcfb-80ce3f552ffa" 
+              allowFullScreen 
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+            />
+          </div>
+        );
+      case 4: // ERP case study - SAP Migration Intelligence
+        return (
+          <div style={{ position: 'relative', paddingBottom: '47.08333333333333%', height: 0 }} className="rounded-xl overflow-hidden">
+            <iframe 
+              src="https://www.loom.com/embed/e052ff92302748898f8537180d3a6313?sid=0daf667a-a2b2-4712-baaf-1260fa0baa4b" 
+              allowFullScreen 
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+            />
+          </div>
+        );
+      case 7: // Website Design Agency - Anthony's testimonial video
+        return (
+          <div className="rounded-xl overflow-hidden">
+            <video 
+              controls 
+              className="w-full h-auto"
+              style={{ minHeight: '500px', maxHeight: '600px' }}
+            >
+              <source src="/Testemonials/Anthony Testamonial.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        );
+      case 8: // Window Case study
+        return (
+          <div style={{ position: 'relative', paddingBottom: '47.08333333333333%', height: 0 }} className="rounded-xl overflow-hidden">
+            <iframe 
+              src="https://www.loom.com/embed/e6cc3f438e134ddfaa442826d5c0c8e0?sid=29428ce1-94fa-44b7-8232-f032c9f83b21" 
+              allowFullScreen 
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+            />
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-xl">Loading...</div>
+        <div className="text-lg">Loading case study...</div>
       </div>
     );
   }
@@ -242,14 +394,15 @@ const CaseStudyPage = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Case Study Not Found</h1>
+          <p className="text-gray-600 mb-8">The case study you're looking for doesn't exist.</p>
           <button 
             onClick={() => {
               window.history.pushState({}, '', '/');
               window.location.reload();
             }}
-            className="px-lg py-md bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+            className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
           >
-            Go Back
+            Back to Home
           </button>
         </div>
       </div>
@@ -376,6 +529,13 @@ const CaseStudyPage = () => {
             </div>
           </div>
 
+          {/* Video Section - Only if video exists for this case study */}
+          {getVideoEmbed(caseStudy.id) && (
+            <div className="mt-2xl">
+              {getVideoEmbed(caseStudy.id)}
+            </div>
+          )}
+
           {/* Back to Case Studies Button */}
           <div className="mt-2xl text-center">
             <button 
@@ -386,25 +546,6 @@ const CaseStudyPage = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
               Back to Case Studies
-            </button>
-          </div>
-
-          {/* CTA Section */}
-          <div className="mt-2xl text-center bg-gray-50 rounded-xl p-xl">
-            <h2 className="neuton-regular text-2xl text-gray-900 mb-md">
-              Ready for Your AI Transformation?
-            </h2>
-            <p className="text-lg text-gray-600 mb-lg">
-              Let's discuss how we can deliver similar results for your business.
-            </p>
-            <button className="inline-flex items-center px-xl py-lg bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors">
-                              <img
-                  src="/images/Alex.jpeg"
-                  alt="Alex Kaymakanov" 
-                className="w-10 h-10 rounded-full mr-md object-cover"
-              />
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-sm animate-pulse"></div>
-              Schedule a Consultation
             </button>
           </div>
         </div>

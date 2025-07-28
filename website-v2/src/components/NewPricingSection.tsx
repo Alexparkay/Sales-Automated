@@ -20,7 +20,7 @@ const NewPricingSection = () => {
                 </div>
                 <div>
                   <h3 className="neuton-regular text-2xl text-white">Book a consulting call with Alex</h3>
-                  <p className="text-3xl font-bold text-white">£150 <span className="text-sm font-normal text-gray-300">/ hour</span></p>
+                  <p className="text-3xl font-bold text-white">£200 <span className="text-sm font-normal text-gray-300">/ hour</span></p>
                 </div>
               </div>
             
@@ -169,7 +169,7 @@ const NewPricingSection = () => {
             </div>
             <div>
               <p className="text-gray-600">
-                For exceptional results, Alex will create detailed case studies shared across our channels, reaching 370,000+ professionals to showcase your AI transformation success.
+                Connected with our large network of developers in AI, so your project will be able to be completed. We can either refer you to the right people or we can do it in the house.
               </p>
             </div>
           </div>

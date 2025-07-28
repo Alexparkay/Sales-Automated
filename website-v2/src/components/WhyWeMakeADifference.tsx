@@ -9,142 +9,81 @@ const WhyWeMakeADifference = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-lg">
-          {/* Top Left - Audit & Analysis Process */}
-          <div className="bg-gray-900 rounded-xl p-xl text-white relative overflow-hidden h-[28rem] bg-leaves-1 bg-cover bg-center">
+          {/* Box 1 - AI Strategy Built for Your Business */}
+          <div className="bg-gradient-to-br from-gray-900 via-gray-700 to-black rounded-xl p-xl text-white relative overflow-hidden h-[32rem] bg-leaves-1 bg-cover bg-center shadow-2xl">
             {/* Semi-transparent overlay to maintain readability */}
-            <div className="absolute inset-0 bg-gray-900/85 rounded-xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-black/95 rounded-xl"></div>
             <div className="relative z-10">
               <div className="flex flex-wrap gap-sm mb-lg">
-                <span className="px-md py-xs bg-accent text-gray-900 text-sm rounded-full font-medium">1. Audit</span>
-                <span className="px-md py-xs bg-accent text-gray-900 text-sm rounded-full font-medium">2. Plan</span>
-                <span className="px-md py-xs bg-accent text-gray-900 text-sm rounded-full font-medium">3. Build</span>
+                <span className="px-md py-xs bg-gradient-to-r from-accent to-accent-dark text-gray-900 text-sm rounded-full font-medium shadow-lg">Philosophy</span>
               </div>
               
-              <h3 className="neuton-regular text-2xl mb-md">
-                <span className="text-accent">Smart Analysis</span> &
+              <h3 className="neuton-regular text-3xl mb-md leading-tight">
+                <span className="text-accent">AI Strategy</span> Built for
                 <br />
-                Quick Implementation
+                Your Business
               </h3>
               
-              <p className="text-gray-300 text-base leading-relaxed">
-                We start with a simple audit of your current setup. Then we find the best AI opportunities and build solutions that work right away.
+              <p className="text-gray-200 text-lg leading-relaxed">
+                Not generic solutions. Not AI hype. Just intelligent systems that solve your actual problems.
               </p>
             </div>
           </div>
 
-          {/* Top Right - Results & ROI */}
-          <div className="bg-gray-50 rounded-xl p-xl h-[28rem]">
-            <div className="flex items-center mb-md">
-              <div className="w-4 h-4 bg-gray-400 rounded mr-md"></div>
-              <span className="text-3xl font-bold text-gray-900">Week 1</span>
+          {/* Box 2 - We Audit First, Recommend Second */}
+          <div className="bg-gradient-to-br from-slate-100 via-gray-100 to-slate-300 rounded-xl p-xl h-[32rem] shadow-2xl border border-slate-300" style={{background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 30%, #e2e8f0 60%, #cbd5e1 85%, #94a3b8 100%)'}}>
+            <div className="flex flex-wrap gap-sm mb-lg">
+              <span className="px-md py-xs bg-gradient-to-r from-accent to-accent-dark text-white text-sm rounded-full font-medium shadow-lg">Discovery</span>
             </div>
-            <p className="text-gray-600 mb-lg">
-              See real results from day one
-              <br />
-              <span className="text-sm">(No waiting months to see progress)</span>
-            </p>
             
-            <div className="flex items-center mb-md">
-              <div className="w-full bg-accent h-2 rounded mr-md"></div>
-              <span className="text-3xl font-bold text-gray-900">2-4x</span>
-            </div>
-            <p className="text-gray-600 mb-lg">
-              Typical improvement in efficiency
+            <h3 className="neuton-regular text-3xl text-gray-900 mb-md leading-tight">
+              We Audit First,
               <br />
-              <span className="text-sm">(Based on our recent client projects)</span>
-            </p>
-            
-            <h3 className="neuton-regular text-xl text-gray-900 mb-sm">
-              AI That Helps Your
-              <br />
-              Bottom Line
+              <span className="text-accent">Recommend Second</span>
             </h3>
-            <p className="text-gray-600 text-sm">
-              Every solution we build is designed to save you time, reduce costs, or increase revenue. Simple as that.
+            
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Deep business analysis reveals where AI creates the most impact for YOUR specific challenges.
             </p>
           </div>
 
-          {/* Bottom Left - Implementation Timeline */}
-          <div className="bg-gray-50 rounded-xl p-xl h-[28rem]">
-            <div className="mb-lg">
-              {/* Timeline Header */}
-              <div className="text-center mb-md">
-                <div className="bg-accent text-gray-900 px-md py-xs rounded-full text-xs font-medium inline-block">
-                  4-Week Process
-                </div>
-              </div>
-              
-              {/* Simple Timeline Chart */}
-              <div className="bg-white rounded-lg p-md mb-md">
-                <div className="flex items-end justify-between h-20 mb-sm">
-                  <div className="flex flex-col items-center">
-                    <div className="w-3 h-8 bg-accent rounded mb-xs"></div>
-                    <span className="text-xs text-gray-600 text-center">Week 1<br/>Audit</span>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <div className="w-3 h-12 bg-accent rounded mb-xs"></div>
-                    <span className="text-xs text-gray-600 text-center">Week 2<br/>Design</span>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <div className="w-3 h-16 bg-accent rounded mb-xs"></div>
-                    <span className="text-xs text-gray-600 text-center">Week 3<br/>Build</span>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <div className="w-3 h-20 bg-accent rounded mb-xs"></div>
-                    <span className="text-xs text-gray-600 text-center">Week 4<br/>Launch</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="flex justify-between text-xs text-gray-500 px-sm">
-                <span>Start: Quick Assessment</span>
-                <span>End: Working Solution</span>
-              </div>
+          {/* Box 3 - From Consultation to Creation */}
+          <div className="bg-gradient-to-br from-slate-100 via-gray-100 to-slate-300 rounded-xl p-xl h-[32rem] shadow-2xl border border-slate-300" style={{background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 30%, #e2e8f0 60%, #cbd5e1 85%, #94a3b8 100%)'}}>
+            <div className="flex flex-wrap gap-sm mb-lg">
+              <span className="px-md py-xs bg-gradient-to-r from-accent to-accent-dark text-white text-sm rounded-full font-medium shadow-lg">Execution</span>
             </div>
             
-            {/* Title and Description - Moved Lower */}
-            <div className="mt-lg">
-              <h3 className="neuton-regular text-xl text-gray-900 mb-sm">
-                Clear Timeline &
-                <br />
-                Regular Updates
-              </h3>
-              <p className="text-gray-600 text-sm">
-                Know exactly what's happening each week. No surprises, no delays, no confusion.
-              </p>
-            </div>
+            <h3 className="neuton-regular text-3xl text-gray-900 mb-md leading-tight">
+              From Consultation
+              <br />
+              <span className="text-accent">to Creation</span>
+            </h3>
+            
+            <p className="text-gray-700 text-lg leading-relaxed">
+              42+ developers ready to build whatever your business needs - custom, scalable, and delivered fast.
+            </p>
           </div>
 
-          {/* Bottom Right - Alex's Expertise */}
-          <div className="bg-gray-900 rounded-xl p-xl text-white relative overflow-hidden h-[28rem] bg-leaves-2 bg-cover bg-center">
+          {/* Box 4 - ROI You Can Measure */}
+          <div className="bg-gradient-to-br from-gray-900 via-gray-700 to-black rounded-xl p-xl text-white relative overflow-hidden h-[32rem] bg-leaves-2 bg-cover bg-center shadow-2xl">
             {/* Semi-transparent overlay to maintain readability */}
-            <div className="absolute inset-0 bg-gray-900/85 rounded-xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-black/95 rounded-xl"></div>
             <div className="relative z-10 h-full flex flex-col">
-              <div className="flex flex-wrap gap-xs mb-lg">
-                <div className="bg-accent text-gray-900 px-md py-xs rounded-full text-xs font-medium">
-                  Proven Results
-                </div>
-                <div className="bg-accent text-gray-900 px-md py-xs rounded-full text-xs font-medium">
-                  All Business Sizes
-                </div>
-                <div className="bg-accent text-gray-900 px-md py-xs rounded-full text-xs font-medium">
-                  Real Support
-                </div>
+              <div className="flex flex-wrap gap-sm mb-lg">
+                <span className="px-md py-xs bg-gradient-to-r from-accent to-accent-dark text-gray-900 text-sm rounded-full font-medium shadow-lg">Outcomes</span>
               </div>
               
-              <div className="flex-1 flex flex-col justify-center">
-                <h3 className="neuton-regular text-xl mb-md">
-                  Experience That
-                  <br />
-                  <span className="text-accent">Actually Matters.</span>
-                </h3>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  We've helped startups save thousands and big companies save millions. Every project gets the same attention to detail.
-                </p>
-              </div>
+              <h3 className="neuton-regular text-3xl mb-md leading-tight">
+                <span className="text-accent">ROI</span> You Can
+                <br />
+                Measure
+              </h3>
+              <p className="text-gray-200 text-lg leading-relaxed">
+                Growth systems on autopilot. Costs slashed. Processes optimized. Real results, not just impressive demos.
+              </p>
               
               {/* Profile representation */}
-              <div className="absolute bottom-4 right-4 w-16 h-16 rounded-full overflow-hidden opacity-80 border-2 border-accent">
+              <div className="absolute bottom-4 right-4 w-16 h-16 rounded-full overflow-hidden opacity-80 border-2 border-accent shadow-lg">
                 <img 
                   src="/images/Alex.jpeg" 
                   alt="Alex Kaymakanov - AI Solutions Expert" 

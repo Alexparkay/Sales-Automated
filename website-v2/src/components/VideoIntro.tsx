@@ -7,43 +7,48 @@ const VideoIntro = ({ onComplete }: { onComplete: () => void }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    console.log('VideoIntro component mounted'); // Debug log
+    console.log('🎬 VideoIntro component mounted - loading Imperium transition v4'); 
     
     const video = videoRef.current;
     if (video) {
-      console.log('Video element found, attempting to play'); // Debug log
+      console.log('🎬 Video element found, attempting to play Imperium transition'); 
       
       // Handle video loading errors
       const handleVideoError = (error: any) => {
-        console.error('Video loading error:', error);
+        console.error('🚨 Video loading error:', error);
+        console.error('🚨 Failed to load: /images/imperium transition v4.mp4');
         setVideoError(true);
         // If video fails to load, complete the intro after a short delay
         setTimeout(() => {
+          console.log('🎬 Video failed - completing intro with fallback');
           onComplete();
         }, 2000);
       };
 
       const handleVideoLoad = () => {
-        console.log('Video loaded successfully'); // Debug log
+        console.log('✅ Imperium transition video loaded successfully'); 
       };
 
       // Auto-play the video
       video.play().catch(error => {
-        console.log('Auto-play was prevented:', error);
+        console.log('⚠️ Auto-play was prevented:', error);
+        console.log('🎬 Trying alternative approach...');
         // If autoplay fails, complete the intro after a short delay
         setTimeout(() => {
+          console.log('🎬 Auto-play failed - completing intro');
           onComplete();
         }, 3000);
       });
 
       // Handle video end
       const handleVideoEnd = () => {
-        console.log('Video ended, starting fade out'); // Debug log
+        console.log('🎬 Imperium transition video ended - starting fade out'); 
         // Start fading out immediately when video ends
         setIsFadingOut(true);
         setTimeout(() => {
           setIsVisible(false);
           setTimeout(() => {
+            console.log('🎬 Fade complete - revealing main website');
             onComplete();
           }, 100); // Short delay after fade completes
         }, 1000); // 1 second fade duration
@@ -59,7 +64,7 @@ const VideoIntro = ({ onComplete }: { onComplete: () => void }) => {
         video.removeEventListener('loadeddata', handleVideoLoad);
       };
     } else {
-      console.error('Video element not found');
+      console.error('🚨 Video element not found in VideoIntro component');
     }
   }, [onComplete]);
 
