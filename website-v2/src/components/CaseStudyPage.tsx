@@ -353,19 +353,8 @@ const CaseStudyPage = () => {
             />
           </div>
         );
-      case 7: // Website Design Agency - Anthony's testimonial video
-        return (
-          <div className="rounded-xl overflow-hidden">
-            <video 
-              controls 
-              className="w-full h-auto"
-              style={{ minHeight: '500px', maxHeight: '600px' }}
-            >
-              <source src="/Testemonials/Anthony Testamonial.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        );
+      case 7: // Website Design Agency - Anthony's testimonial video - REMOVED to prevent echo
+        return null; // No video embed to prevent conflict with testimonials section
       case 8: // Window Case study
         return (
           <div style={{ position: 'relative', paddingBottom: '47.08333333333333%', height: 0 }} className="rounded-xl overflow-hidden">

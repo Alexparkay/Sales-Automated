@@ -1,11 +1,10 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 const PeopleLoveWorkingWithUs = () => {
   const [showMore, setShowMore] = useState(false);
   const [showAllMobile, setShowAllMobile] = useState(false);
-  const [playingVideos, setPlayingVideos] = useState<{[key: number]: boolean}>({});
+
   const [videoPausedTimes, setVideoPausedTimes] = useState<{[key: number]: number}>({});
-  const videoRefs = useRef<{[key: number]: HTMLVideoElement | null}>({});
 
   const initialTestimonials = [
     {
@@ -14,7 +13,7 @@ const PeopleLoveWorkingWithUs = () => {
       name: "Anthony M",
       company: "Bond Media",
       videoThumbnail: "custom-video-1",
-      youtubeId: "YOUR_ANTHONY_YOUTUBE_ID", // Replace with actual YouTube video ID
+      youtubeId: "UviqWK_TQB0", // Anthony M YouTube video
       videoUrl: "/Testemonials/Anthony Testamonial.mp4", // Keep as fallback
       industry: "Digital Marketing",
       primaryColor: "from-green-600 to-green-800",
@@ -35,7 +34,7 @@ const PeopleLoveWorkingWithUs = () => {
       name: "M-A-R-C",
       company: "Q Solar & Rebel Group",
       videoThumbnail: "custom-video-2",
-      youtubeId: "YOUR_MARC_YOUTUBE_ID", // Replace with actual YouTube video ID
+      youtubeId: "0j-RFmDkaME", // Marc Q YouTube video
       videoUrl: "/Testemonials/Marc Testemonial-1.mp4", // Keep as fallback
       industry: "Solar Energy & Private Equity",
       primaryColor: "from-green-500 to-green-700",
@@ -65,7 +64,7 @@ const PeopleLoveWorkingWithUs = () => {
       name: "Leo M",
       company: "Apexion Solutions",
       videoThumbnail: "custom-video-6",
-      youtubeId: "YOUR_LEO_YOUTUBE_ID", // Replace with actual YouTube video ID
+      youtubeId: "Xx5vABT_PpE", // Leo M YouTube video
       videoUrl: "/Testemonials/Leo Testamonial.mp4", // Keep as fallback
       industry: "Solar Energy Data",
       primaryColor: "from-green-300 to-green-500",
@@ -140,103 +139,78 @@ const PeopleLoveWorkingWithUs = () => {
   const displayedTestimonials = showMore ? allTestimonials : [...initialTestimonials, ...additionalTestimonials.slice(0, 2)];
   const mobileDisplayedTestimonials = showAllMobile ? allTestimonials : initialTestimonials.slice(0, 2);
 
-  // Pause all other videos when starting a new one
+  // Reset other video states when starting a new YouTube video
   const pauseAllOtherVideos = (currentId: number) => {
-    Object.keys(videoRefs.current).forEach(id => {
+    // Reset video states for other testimonials so only one shows at a time
+    Object.keys(videoPausedTimes).forEach(id => {
       const videoId = parseInt(id);
-      if (videoId !== currentId && videoRefs.current[videoId]) {
-        const video = videoRefs.current[videoId];
-        if (video && !video.paused) {
-          // Store the current time before pausing
-          setVideoPausedTimes(prev => ({...prev, [videoId]: video.currentTime}));
-          video.pause();
-          setPlayingVideos(prev => ({...prev, [videoId]: false}));
-        }
+      if (videoId !== currentId) {
+        setVideoPausedTimes(prev => {
+          const newTimes = {...prev};
+          delete newTimes[videoId];
+          return newTimes;
+        });
       }
     });
   };
 
   const handleVideoClick = (testimonial: any) => {
-    if (testimonial.videoUrl) {
-      // Anthony gets ultra-simple handling - ONLY show video, let user click native play
-      if (testimonial.name === "Anthony M") {
-        if (videoPausedTimes[testimonial.id] === undefined) {
-          pauseAllOtherVideos(testimonial.id);
-          setVideoPausedTimes(prev => ({...prev, [testimonial.id]: 0})); // This shows the video
-          // NO AUTO-PLAY - let native controls handle everything
-        }
-        return;
-      }
-      
-      // Original complex logic for Leo/Marc (keep unchanged)
-      pauseAllOtherVideos(testimonial.id);
-      
-      const videoElement = videoRefs.current[testimonial.id];
-      if (videoElement) {
-        if (playingVideos[testimonial.id]) {
-          // If playing, pause the video and store the current time
-          setVideoPausedTimes(prev => ({...prev, [testimonial.id]: videoElement.currentTime}));
-          videoElement.pause();
-        } else {
-          // If not playing, check if this is the first time starting
-          if (videoPausedTimes[testimonial.id] === undefined) {
-            // First time starting - initialize the paused time to 0 and play immediately
-            setVideoPausedTimes(prev => ({...prev, [testimonial.id]: 0}));
-            videoElement.currentTime = 0;
-            videoElement.play().catch(console.error);
-          } else {
-            // Resume from paused time
-            const pausedTime = videoPausedTimes[testimonial.id];
-            if (pausedTime !== undefined && pausedTime > 0) {
-              videoElement.currentTime = pausedTime;
-            }
-            videoElement.play().catch(console.error);
-          }
-        }
+    // Check for YouTube ID for all testimonials (Anthony, Leo, and Marc)
+    if (testimonial.youtubeId && testimonial.youtubeId.length > 5) {
+      // Simple YouTube handling for all - just show the iframe
+      if (videoPausedTimes[testimonial.id] === undefined) {
+        pauseAllOtherVideos(testimonial.id);
+        setVideoPausedTimes(prev => ({...prev, [testimonial.id]: 0})); // This shows the YouTube video
       }
     } else {
-      console.log('Video not available yet for:', testimonial.name);
+      console.log('YouTube video not available for:', testimonial.name);
     }
   };
 
-  // Handle video play event (when video actually starts playing)
-  const handleVideoPlay = (testimonial: any) => {
-    // Pause all other videos when this one starts playing
-    pauseAllOtherVideos(testimonial.id);
-    setPlayingVideos(prev => ({...prev, [testimonial.id]: true}));
-  };
 
-  // Handle video pause event (when video is paused)
-  const handleVideoPause = (testimonial: any) => {
-    const videoElement = videoRefs.current[testimonial.id];
-    if (videoElement) {
-      // Store the current time when pausing
-      setVideoPausedTimes(prev => ({...prev, [testimonial.id]: videoElement.currentTime}));
-    }
-    setPlayingVideos(prev => ({...prev, [testimonial.id]: false}));
-  };
 
-  // Handle video ended event
-  const handleVideoEnded = (testimonial: any) => {
-    // Reset the paused time when video ends
-    setVideoPausedTimes(prev => ({...prev, [testimonial.id]: 0}));
-    setPlayingVideos(prev => ({...prev, [testimonial.id]: false}));
-  };
-
-  // Completely separate Anthony video implementation
-  const renderAnthonyVideo = (testimonial: any) => {
+  // Universal YouTube video implementation for all testimonials
+  const renderYouTubeVideo = (testimonial: any) => {
     const showVideo = videoPausedTimes[testimonial.id] !== undefined;
-    const hasYouTube = testimonial.youtubeId && testimonial.youtubeId !== "YOUR_ANTHONY_YOUTUBE_ID";
+    const hasYouTube = testimonial.youtubeId && testimonial.youtubeId.length > 5;
+    
+    // Get the correct thumbnail for each person
+    const getThumbnailPath = (name: string) => {
+      switch (name) {
+        case "Anthony M":
+          return "/Testemonials/Anthony Thumnail.jpeg";
+        case "Leo M":
+          return "/Testemonials/Leo Thumbnail.jpeg";
+        case "M-A-R-C":
+          return "/Testemonials/Marc Thumbnail.jpeg";
+        default:
+          return "";
+      }
+    };
+
+    // Get custom scale for each person
+    const getVideoScale = (name: string) => {
+      switch (name) {
+        case "Anthony M": // Anthony: standard scale
+          return "scale(2.16)";
+        case "M-A-R-C": // Marc: extra 20% larger (2.16 * 1.2 = 2.592)
+          return "scale(2.592)";
+        case "Leo M": // Leo: extra 20% more larger + moved up 1%
+          return "scale(2.8512) translateY(-1%)";
+        default:
+          return "scale(2.16)";
+      }
+    };
     
     return (
       <div className="relative min-h-[400px] bg-black rounded-xl overflow-hidden cursor-pointer group flex items-center justify-center">
         {hasYouTube ? (
-          // YouTube embed version
+          // YouTube embed version - custom scaling for Marc and Leo
           <>
             {showVideo ? (
               <iframe
-                className="w-full h-full object-cover object-center scale-110"
-                style={{ objectPosition: 'center', minHeight: '400px' }}
+                className="w-full h-full"
+                style={{ minHeight: '400px', transform: getVideoScale(testimonial.name) }}
                 src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=1&mute=0&controls=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1`}
                 title={`${testimonial.name} testimonial`}
                 frameBorder="0"
@@ -246,8 +220,8 @@ const PeopleLoveWorkingWithUs = () => {
             ) : (
               <>
                 <img 
-                  src="/Testemonials/Anthony Thumnail.jpeg"
-                  alt="Anthony M testimonial thumbnail"
+                  src={getThumbnailPath(testimonial.name)}
+                  alt={`${testimonial.name} testimonial thumbnail`}
                   className="w-full h-full object-cover object-center"
                   style={{ minHeight: '400px' }}
                 />
@@ -260,169 +234,21 @@ const PeopleLoveWorkingWithUs = () => {
             )}
           </>
         ) : (
-          // Original video element fallback
-          <>
-            <video
-              ref={(el) => { 
-                videoRefs.current[testimonial.id] = el;
-              }}
-              className={`w-full h-full object-cover object-center scale-110 ${showVideo ? 'block' : 'hidden'}`}
-              style={{ objectPosition: 'center', minHeight: '400px' }}
-              controls={true}
-              preload="auto"
-              playsInline
-              muted={false}
-              onPlay={() => {
-                pauseAllOtherVideos(testimonial.id);
-                setPlayingVideos(prev => ({...prev, [testimonial.id]: true}));
-              }}
-              onPause={() => {
-                setPlayingVideos(prev => ({...prev, [testimonial.id]: false}));
-              }}
-              onEnded={() => {
-                setPlayingVideos(prev => ({...prev, [testimonial.id]: false}));
-              }}
-            >
-              <source src={testimonial.videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-
-            {/* Show thumbnail when video hasn't been started */}
-            {!showVideo && (
-              <>
-                <img 
-                  src="/Testemonials/Anthony Thumnail.jpeg"
-                  alt="Anthony M testimonial thumbnail"
-                  className="w-full h-full object-cover object-center"
-                  style={{ minHeight: '400px' }}
-                />
-                
-                {/* Play button overlay */}
-                <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
-                  <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
-                </div>
-              </>
-            )}
-          </>
+          // Fallback message if no YouTube ID
+          <div className="text-white text-center">
+            <p>YouTube video not available</p>
+          </div>
         )}
       </div>
     );
   };
 
+
+
   const renderCustomVideoVisual = (testimonial: any) => {
-    // Handle Anthony completely separately  
-    if (testimonial.name === "Anthony M") {
-      return renderAnthonyVideo(testimonial);
-    }
-    
-    // Original logic for Leo/Marc only
-    const isPlaying = playingVideos[testimonial.id];
-    const hasBeenStarted = videoPausedTimes[testimonial.id] !== undefined;
-    
-    // Get thumbnail path based on name
-    const getThumbnailPath = (name: string) => {
-      switch (name) {
-        case "Leo M":
-          return "/Testemonials/Leo Thumbnail.jpeg";
-        case "M-A-R-C":
-          return "/Testemonials/Marc Thumbnail.jpeg";
-        default:
-          return null;
-      }
-    };
-
-    const thumbnailPath = getThumbnailPath(testimonial.name);
-    const hasVideo = testimonial.videoUrl && testimonial.videoUrl !== "";
-
-    if (hasVideo) {
-      // Get scale and positioning based on person - Leo gets 7% bigger with less top spacing
-      const getVideoScale = (name: string) => {
-        return name === "Leo M" ? "scale-[1.17]" : "scale-110";
-      };
-
-      const getVideoPosition = (name: string) => {
-        return name === "Leo M" ? "mt-1" : "";
-      };
-
-      const hasYouTube = testimonial.youtubeId && !testimonial.youtubeId.includes("YOUR_");
-
-      return (
-        <div className="relative min-h-[400px] bg-black rounded-xl overflow-hidden cursor-pointer group flex items-center justify-center">
-          {hasYouTube ? (
-            // YouTube embed version
-            <>
-              {hasBeenStarted ? (
-                <iframe
-                  className={`w-full h-full object-cover object-center ${getVideoScale(testimonial.name)} ${getVideoPosition(testimonial.name)}`}
-                  style={{ objectPosition: 'center', minHeight: '400px' }}
-                  src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=1&mute=0&controls=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1`}
-                  title={`${testimonial.name} testimonial`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              ) : (
-                <>
-                  <img 
-                    src={thumbnailPath || "/Testemonials/Anthony Thumnail.jpeg"}
-                    alt={`${testimonial.name} testimonial thumbnail`}
-                    className="w-full h-full object-cover object-center"
-                    style={{ minHeight: '400px' }}
-                  />
-                  
-                  {/* Play button overlay */}
-                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
-                    <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
-                  </div>
-                </>
-              )}
-            </>
-          ) : (
-            // Original complex video element for Leo/Marc only (fallback)
-            <>
-              <video
-                ref={(el) => { 
-                  videoRefs.current[testimonial.id] = el;
-                  // Simple restoration without complex logic
-                  if (el && videoPausedTimes[testimonial.id] !== undefined && videoPausedTimes[testimonial.id] > 0) {
-                    el.currentTime = videoPausedTimes[testimonial.id];
-                  }
-                }}
-                className={`w-full h-full object-cover object-center ${getVideoScale(testimonial.name)} ${getVideoPosition(testimonial.name)} ${hasBeenStarted ? 'block' : 'hidden'}`}
-                style={{ objectPosition: 'center', minHeight: '400px' }}
-                controls={isPlaying}
-                preload="metadata"
-                playsInline
-                muted={false}
-                onPlay={() => handleVideoPlay(testimonial)}
-                onPause={() => handleVideoPause(testimonial)}
-                onEnded={() => handleVideoEnded(testimonial)}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <source src={testimonial.videoUrl} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-
-              {/* Show thumbnail only when never started */}
-              {!hasBeenStarted && thumbnailPath && (
-                <>
-                  <img 
-                    src={thumbnailPath}
-                    alt={`${testimonial.name} testimonial thumbnail`}
-                    className="w-full h-full object-cover object-center"
-                    style={{ minHeight: '400px' }}
-                  />
-                  
-                  {/* Play button overlay */}
-                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
-                    <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
-                  </div>
-                </>
-              )}
-            </>
-          )}
-        </div>
-      );
+    // Use YouTube rendering for all testimonials (Anthony, Leo, and Marc)
+    if (testimonial.youtubeId && testimonial.youtubeId.length > 5) {
+      return renderYouTubeVideo(testimonial);
     }
 
     // Show "Video Coming Soon" for testimonials without videos
