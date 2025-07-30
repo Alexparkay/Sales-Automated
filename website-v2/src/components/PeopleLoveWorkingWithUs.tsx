@@ -155,12 +155,14 @@ const PeopleLoveWorkingWithUs = () => {
   };
 
   const handleVideoClick = (testimonial: any) => {
-    // Check for YouTube ID for all testimonials (Anthony, Leo, and Marc)
+    // Handle Anthony, Marc, and Leo with state management so they can pause each other
     if (testimonial.youtubeId && testimonial.youtubeId.length > 5) {
-      // Simple YouTube handling for all - just show the iframe
       if (videoPausedTimes[testimonial.id] === undefined) {
+        // First click - show the video
         pauseAllOtherVideos(testimonial.id);
-        setVideoPausedTimes(prev => ({...prev, [testimonial.id]: 0})); // This shows the YouTube video
+        setVideoPausedTimes(prev => ({...prev, [testimonial.id]: 0}));
+      } else {
+        // Already showing video - let YouTube handle further interactions
       }
     } else {
       console.log('YouTube video not available for:', testimonial.name);
@@ -169,10 +171,10 @@ const PeopleLoveWorkingWithUs = () => {
 
 
 
-  // Universal YouTube video implementation for all testimonials
-  const renderYouTubeVideo = (testimonial: any) => {
+
+  // Render thumbnail with play button for all video testimonials (Anthony, Marc, and Leo)
+  const renderThumbnailWithPlayButton = (testimonial: any) => {
     const showVideo = videoPausedTimes[testimonial.id] !== undefined;
-    const hasYouTube = testimonial.youtubeId && testimonial.youtubeId.length > 5;
     
     // Get the correct thumbnail for each person
     const getThumbnailPath = (name: string) => {
@@ -187,68 +189,104 @@ const PeopleLoveWorkingWithUs = () => {
           return "";
       }
     };
-
-    // Get custom scale for each person
+    
+    // Get custom scale for each person (like they had before)
     const getVideoScale = (name: string) => {
       switch (name) {
-        case "Anthony M": // Anthony: standard scale
-          return "scale(2.16)";
-        case "M-A-R-C": // Marc: extra 20% larger (2.16 * 1.2 = 2.592)
+        case "M-A-R-C": // Marc: larger scale to fill the box
           return "scale(2.592)";
-        case "Leo M": // Leo: extra 20% more larger + moved up 1%
+        case "Leo M": // Leo: larger scale to fill the box + moved up slightly
           return "scale(2.8512) translateY(-1%)";
         default:
           return "scale(2.16)";
       }
     };
     
+    if (showVideo) {
+      // Show YouTube video when clicked with proper scaling
+      return (
+        <div className="relative min-h-[400px] bg-black rounded-xl overflow-hidden">
+          <iframe
+            className="w-full h-full"
+            style={{ 
+              minHeight: '400px', 
+              transform: getVideoScale(testimonial.name) 
+            }}
+            src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=1&mute=0&controls=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1`}
+            title={`${testimonial.name} testimonial`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      );
+    }
+
+    // Show thumbnail with play button overlay
     return (
       <div className="relative min-h-[400px] bg-black rounded-xl overflow-hidden cursor-pointer group flex items-center justify-center">
-        {hasYouTube ? (
-          // YouTube embed version - custom scaling for Marc and Leo
-          <>
-            {showVideo ? (
-              <iframe
-                className="w-full h-full"
-                style={{ minHeight: '400px', transform: getVideoScale(testimonial.name) }}
-                src={`https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=1&mute=0&controls=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1`}
-                title={`${testimonial.name} testimonial`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              <>
-                <img 
-                  src={getThumbnailPath(testimonial.name)}
-                  alt={`${testimonial.name} testimonial thumbnail`}
-                  className="w-full h-full object-cover object-center"
-                  style={{ minHeight: '400px' }}
-                />
-                
-                {/* Play button overlay */}
-                <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
-                  <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
-                </div>
-              </>
-            )}
-          </>
-        ) : (
-          // Fallback message if no YouTube ID
-          <div className="text-white text-center">
-            <p>YouTube video not available</p>
-          </div>
-        )}
+        <img 
+          src={getThumbnailPath(testimonial.name)}
+          alt={`${testimonial.name} testimonial thumbnail`}
+          className="w-full h-full object-cover object-center"
+          style={{ minHeight: '400px' }}
+        />
+        
+        {/* Play button overlay */}
+        <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
+          <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
+        </div>
       </div>
     );
   };
 
-
-
   const renderCustomVideoVisual = (testimonial: any) => {
-    // Use YouTube rendering for all testimonials (Anthony, Leo, and Marc)
+    // Special handling for Anthony - show thumbnail first, then direct YouTube embed when clicked
+    if (testimonial.name === "Anthony M" && testimonial.youtubeId === "UviqWK_TQB0") {
+      const showVideo = videoPausedTimes[testimonial.id] !== undefined;
+      
+      if (showVideo) {
+        // Show direct YouTube iframe when clicked (no lag)
+        return (
+          <div className="relative min-h-[400px] bg-black rounded-xl overflow-hidden">
+            <iframe 
+              src="https://www.youtube.com/embed/UviqWK_TQB0?autoplay=1&controls=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1" 
+              allowFullScreen 
+              className="w-full h-full"
+              style={{ 
+                minHeight: '400px', 
+                transform: 'scale(1.8) translateY(-5%)',
+                transformOrigin: 'center center'
+              }}
+              title="Anthony M Testimonial"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            />
+          </div>
+        );
+      }
+      
+      // Show thumbnail with play button first (like Marc and Leo)
+      return (
+        <div className="relative min-h-[400px] bg-black rounded-xl overflow-hidden cursor-pointer group flex items-center justify-center">
+          <img 
+            src="/Testemonials/Anthony Thumnail.jpeg"
+            alt="Anthony M testimonial thumbnail"
+            className="w-full h-full object-cover object-center"
+            style={{ minHeight: '400px' }}
+          />
+          
+          {/* Play button overlay */}
+          <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-all duration-300">
+            <div className="w-0 h-0 border-l-[24px] border-l-white border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2 drop-shadow-lg"></div>
+          </div>
+        </div>
+      );
+    }
+    
+    // Use thumbnail with play button for Marc and Leo only
     if (testimonial.youtubeId && testimonial.youtubeId.length > 5) {
-      return renderYouTubeVideo(testimonial);
+      return renderThumbnailWithPlayButton(testimonial);
     }
 
     // Show "Video Coming Soon" for testimonials without videos

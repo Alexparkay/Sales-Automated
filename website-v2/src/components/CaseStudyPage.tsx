@@ -353,8 +353,19 @@ const CaseStudyPage = () => {
             />
           </div>
         );
-      case 7: // Website Design Agency - Anthony's testimonial video - REMOVED to prevent echo
-        return null; // No video embed to prevent conflict with testimonials section
+      case 7: // Website Design Agency - Anthony's testimonial video (YouTube only)
+        return (
+          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }} className="rounded-xl overflow-hidden">
+            <iframe 
+              src="https://www.youtube.com/embed/UviqWK_TQB0?controls=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1" 
+              allowFullScreen 
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+              title="Anthony M Testimonial"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            />
+          </div>
+        );
       case 8: // Window Case study
         return (
           <div style={{ position: 'relative', paddingBottom: '47.08333333333333%', height: 0 }} className="rounded-xl overflow-hidden">
